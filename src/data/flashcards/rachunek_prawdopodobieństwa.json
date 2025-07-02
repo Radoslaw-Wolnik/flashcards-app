@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ra01",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "understand",
+    "question": "Podaj definicje miary probabilistycznej i omów jej własności.",
+    "answer": "**Definicja**  \n  \nMiarą probabilistyczną na przestrzeni mierzalnej $(\\Omega, \\mathcal{F})$ nazywamy funkcję $P: \\mathcal{F} \\to [0,1]$ spełniającą:  \n1. **Nieujemność**: $P(A) \\geq 0$ dla każdego $A \\in \\mathcal{F}$  \n2. **Normalizacja**: $P(\\Omega) = 1$  \n3. **Przeliczalna addytywność**: Dla dowolnego ciągu zbiorów rozłącznych $A_1, A_2, \\dots \\in \\mathcal{F}$:  \n   $$P\\left( \\bigcup_{i=1}^{\\infty} A_i \\right) = \\sum_{i=1}^{\\infty} P(A_i)$$\n\n**Własności**  \n\n- $P(\\emptyset) = 0$  \n\n- **Monotoniczność**: Jeśli $A \\subseteq B$, to $P(A) \\leq P(B)$  \n\n- **Podaddytywność**: $P\\left( \\bigcup_{i=1}^n A_i \\right) \\leq \\sum_{i=1}^n P(A_i)$  \n\n- **Zasada włączeń i wyłączeń**:  \n  $$P\\left( \\bigcup_{i=1}^n A_i \\right) = \\sum_{i} P(A_i) - \\sum_{i<j} P(A_i \\cap A_j) + \\cdots + (-1)^{n+1} P(A_1 \\cap \\cdots \\cap A_n)$$  \n\n- **Ciągłość z dołu**: Jeśli $A_1 \\subseteq A_2 \\subseteq \\cdots$, to $P\\left( \\bigcup_{i=1}^{\\infty} A_i \\right) = \\lim_{n \\to \\infty} P(A_n)$  \n\n- **Ciągłość z góry**: Jeśli $A_1 \\supseteq A_2 \\supseteq \\cdots$, to $P\\left( \\bigcap_{i=1}^{\\infty} A_i \\right) = \\lim_{n \\to \\infty} P(A_n)$."
+  },
+  {
+    "id": "ra02",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "memorize",
+    "question": "Podaj wzór Bayesa.",
+    "answer": "**Wzór Bayesa**  \n Dla zdarzeń $A, B$ o $P(B) > 0$:  \n$$P(A|B) = \\frac{P(B|A) \\cdot P(A)}{P(B)}$$  \n**Rozszerzenie dla układu zupełnego zdarzeń**  \n  \nJeśli $H_1, \\dots, H_n$ są rozłączne, $\\bigcup_{i=1}^n H_i = \\Omega$, i $P(H_i) > 0$, to:  \n$$P(H_k|A) = \\frac{P(A|H_k) P(H_k)}{\\sum_{i=1}^n P(A|H_i) P(H_i)}$$"
+  },
+  {
+    "id": "ra03",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "memorize",
+    "question": "Podaj definicję wartości oczekiwanej zmiennej losowej i wymień jej własności.",
+    "answer": "**Definicja**  \n\n- **Dyskretna zmienna losowa** (przyjmująca wartości $x_i$ z prawd. $p_i$):  \n  $$E(X) = \\sum_{i} x_i \\cdot p_i$$  \n\n- **Ciągła zmienna losowa** (z gęstością $f(x)$):  \n  $$E(X) = \\int_{-\\infty}^{\\infty} x \\cdot f(x)  dx$$  \n\n**Własności**  \n\n- **Liniowość**: $E(aX + bY) = aE(X) + bE(Y)$  \n\n- **Monotoniczność**: Jeśli $X \\leq Y$ p.n., to $E(X) \\leq E(Y)$  \n\n- **Twierdzenie o całkowaniu**: $E(g(X)) = \\sum_i g(x_i) p_i$ (dyskretna) lub $E(g(X)) = \\int_{-\\infty}^{\\infty} g(x) f(x)  dx$ (ciągła)  \n\n- **Niezależność**: Jeśli $X,Y$ niezależne, to $E(XY) = E(X)E(Y)$  \n\n- **Stała**: $E(c) = c$ dla $c \\in \\mathbb{R}$."
+  },
+  {
+    "id": "ra04",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "memorize",
+    "question": "Podaj definicję dystrybuanty zmiennej losowej i omów jej własności.",
+    "answer": "**Definicja**  \n  \nDystrybuantą zmiennej losowej $X$ nazywamy funkcję $F_X: \\mathbb{R} \\to [0,1]$:  \n$$F_X(x) = P(X \\leq x)$$  \n\n**Własności**  \n  \n1. **Niemalejąca**: $x_1 < x_2 \\implies F_X(x_1) \\leq F_X(x_2)$  \n2. **Prawostronnie ciągła**: $\\lim_{y \\to x^+} F_X(y) = F_X(x)$  \n3. **Granice**:  \n   $$\\lim_{x \\to -\\infty} F_X(x) = 0, \\quad \\lim_{x \\to \\infty} F_X(x) = 1$$  \n4. **Obliczanie prawdopodobieństw**:  \n   $$P(a < X \\leq b) = F_X(b) - F_X(a)$$  \n5. **Związek z gęstością** (dla ciągłych):  \n   $$f_X(x) = \\frac{d}{dx} F_X(x) \\quad \\text{(tam gdzie istnieje)}$$"
+  },
+  {
+    "id": "ra05",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "memorize",
+    "question": "Podaj definicję funkcji prawdopodobieństwa (dyskretna) i gęstości (ciągła) zmiennej losowej oraz omów ich własności.",
+    "answer": "**Funkcja prawdopodobieństwa** (dla dyskretnej zmiennej losowej):  \nFunkcja $p: \\mathbb{R} \\to [0,1]$ taka, że:  \n$$p(x_i) = P(X = x_i) \\quad \\text{oraz} \\quad \\sum_{i} p(x_i) = 1$$  \n**Własności**  \n\n- $p(x) = 0$ dla $x \\notin \\{x_i\\}$  \n\n- $P(X \\in A) = \\sum_{x_i \\in A} p(x_i)$.\n\n**Funkcja gęstości** (dla ciągłej zmiennej losowej):  \nFunkcja $f: \\mathbb{R} \\to [0,\\infty)$ taka, że:  \n$$P(a \\leq X \\leq b) = \\int_a^b f(x)  dx \\quad \\text{oraz} \\quad \\int_{-\\infty}^{\\infty} f(x)  dx = 1$$  \n**Własności**  \n\n- $f(x) \\geq 0$  \n\n- $P(X = a) = 0$ dla każdego $a \\in \\mathbb{R}$  \n\n- $F_X(x) = \\int_{-\\infty}^x f(t)  dt$."
+  },
+  {
+    "id": "ra06",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "memorize",
+    "question": "Podaj przykłady rozkładów dyskretnych i ciągłych zmiennych losowych.",
+    "answer": "**Rozkłady dyskretne**  \n  \n1. **Bernoulliego** ($X \\sim \\text{Ber}(p)$):  \n\n- $P(X=1) = p$, $P(X=0) = 1-p$  \n\n- Przykład: wynik pojedynczego rzutu monetą  \n2. **Dwumianowy** ($X \\sim \\text{Bin}(n,p)$):  \n\n- $P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}$  \n\n- Przykład: liczba sukcesów w $n$ próbach Bernoulliego  \n3. **Poissona** ($X \\sim \\text{Pois}(\\lambda)$):  \n\n- $P(X=k) = e^{-\\lambda} \\frac{\\lambda^k}{k!}$  \n\n- Przykład: liczba klientów w sklepie w ciągu godziny  \n4. **Geometryczny** ($X \\sim \\text{Geom}(p)$):  \n\n- $P(X=k) = (1-p)^{k-1} p$  \n\n- Przykład: liczba prób do pierwszego sukcesu  \n\n**Rozkłady ciągłe**  \n  \n1. **Jednostajny** ($X \\sim \\mathcal{U}(a,b)$):  \n\n- $f(x) = \\frac{1}{b-a}$ dla $x \\in [a,b]$  \n\n- Przykład: losowy punkt na odcinku $[a,b]$  \n2. **Normalny** ($X \\sim \\mathcal{N}(\\mu,\\sigma^2)$):  \n\n- $f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{(x-\\mu)^2}{2\\sigma^2}}$  \n\n- Przykład: wzrost w populacji  \n3. **Wykładniczy** ($X \\sim \\text{Exp}(\\lambda)$):  \n\n- $f(x) = \\lambda e^{-\\lambda x}$ dla $x \\geq 0$  \n\n- Przykład: czas oczekiwania na zdarzenie  \n4. **Gamma** ($X \\sim \\Gamma(\\alpha,\\beta)$):  \n\n- $f(x) = \\frac{\\beta^\\alpha}{\\Gamma(\\alpha)} x^{\\alpha-1} e^{-\\beta x}$  \n\n- Przykład: czas oczekiwania na $k$ zdarzeń Poissona."
+  },
+  {
+    "id": "ra07",
+    "subjectId": "rachunek_prawdopodobieństwa",
+    "type": "memorize",
+    "question": "Podaj definicję wariancji i odchylenia standardowego zmiennej losowej oraz wymień ich własności.",
+    "answer": "**Definicja wariancji**  \n  \n$$\\text{Var}(X) = E\\left[(X - E[X])^2\\right] = E[X^2] - (E[X])^2$$  \n**Własności wariancji**  \n\n- $\\text{Var}(c) = 0$ dla stałej $c$  \n\n- $\\text{Var}(aX + b) = a^2 \\text{Var}(X)$  \n\n- Jeśli $X,Y$ niezależne, to $\\text{Var}(X + Y) = \\text{Var}(X) + \\text{Var}(Y)$  \n\n- $\\text{Var}(X) \\geq 0$  \n\n**Definicja odchylenia standardowego**  \n  \n$$\\sigma_X = \\sqrt{\\text{Var}(X)}$$  \n**Własności odchylenia standardowego**  \n\n- $\\sigma_{aX + b} = |a| \\sigma_X$  \n\n- Interpretacja: miara dyspersji wokół wartości oczekiwanej."
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "al01",
+    "subjectId": "algebra_liniowa",
+    "type": "memorize",
+    "question": "Podaj definicję postaci algebraicznej oraz definicję postaci trygonometrycznej liczby zespolonej. Podaj też własności działań na liczbach zespolonych w postaci trygonometrycznej.",
+    "answer": "**Postać algebraiczna**  \n  \nLiczba zespolona $z = a + bi$, gdzie:  \n\n- $a, b \\in \\mathbb{R}$ – część rzeczywista (Re) i urojona (Im),  \n\n- $i$ – jednostka urojona ($i^2 = -1$).  \n\n**Postać trygonometryczna**  \n  \n$z = r(\\cos \\varphi + i \\sin \\varphi)$, gdzie:  \n\n- $r = |z| = \\sqrt{a^2 + b^2}$ – moduł,  \n\n- $\\varphi = \\arg z$ – argument (kąt z osią Re).  \n\n**Własności działań w postaci trygonometrycznej**  \n\n- **Mnożenie**:  \n  $$z_1 \\cdot z_2 = r_1 r_2 \\left[ \\cos(\\varphi_1 + \\varphi_2) + i \\sin(\\varphi_1 + \\varphi_2) \\right]$$  \n\n- **Dzielenie**:  \n  $$\\frac{z_1}{z_2} = \\frac{r_1}{r_2} \\left[ \\cos(\\varphi_1 - \\varphi_2) + i \\sin(\\varphi_1 - \\varphi_2) \\right]$$  \n\n- **Potęgowanie (wzór de Moivre’a)**:  \n  $$z^n = r^n \\left[ \\cos(n\\varphi) + i \\sin(n\\varphi) \\right]$$  \n\n- **Pierwiastkowanie**:  \n  $$\\sqrt[n]{z} = \\sqrt[n]{r} \\left[ \\cos\\left(\\frac{\\varphi + 2k\\pi}{n}\\right) + i \\sin\\left(\\frac{\\varphi + 2k\\pi}{n}\\right) \\right], \\quad k=0,1,\\dots,n-1.$$"
+  },
+  {
+    "id": "al02",
+    "subjectId": "algebra_liniowa",
+    "type": "memorize",
+    "question": "Podaj definicje i własności podstawowych działań na macierzach.",
+    "answer": "**Definicje działań**  \n\n- **Dodawanie**: $[A + B]_{ij} = a_{ij} + b_{ij}$ (macierze tych samych wymiarów).  \n\n- **Mnożenie przez skalar**: $[cA]_{ij} = c \\cdot a_{ij}$.  \n\n- **Mnożenie macierzy**: $[A \\cdot B]_{ij} = \\sum_{k} a_{ik} b_{kj}$ (liczba kolumn $A$ = liczba wierszy $B$).  \n\n- **Transpozycja**: $[A^T]_{ij} = a_{ji}$.  \n\n**Własności**  \n\n- **Dodawanie**: przemienne ($A+B=B+A$), łączne ($A+(B+C)=(A+B)+C$).  \n\n- **Mnożenie macierzy**: łączne ($A(BC)=(AB)C$), **nie** przemienne ($AB \\neq BA$).  \n\n- **Rozdzielność**: $A(B+C) = AB + AC$.  \n\n- **Transpozycja**: $(AB)^T = B^T A^T$, $(A^T)^T = A$."
+  },
+  {
+    "id": "al03",
+    "subjectId": "algebra_liniowa",
+    "type": "understand",
+    "question": "Podaj definicję i własności macierzy odwrotnej oraz omów metody wyznaczania macierzy odwrotnej.",
+    "answer": "**Definicja**  \n  \nMacierz $A^{-1}$ jest odwrotna do $A$ (kwadratowej), jeśli:  \n$$A \\cdot A^{-1} = A^{-1} \\cdot A = I \\quad (\\text{macierz jednostkowa}).$$  \n**Własności**  \n\n- $(A^{-1})^{-1} = A$,  \n\n- $(AB)^{-1} = B^{-1} A^{-1}$,  \n\n- $(A^T)^{-1} = (A^{-1})^T$.  \n\n**Metody wyznaczania**  \n  \n1. **Wzór z dopełnień algebraicznych**:  \n   $$A^{-1} = \\frac{1}{\\det A} \\cdot (\\text{macierz dopełnień})^T.$$  \n2. **Metoda Gaussa-Jordana**:  \n\n- Tworzymy macierz blokową $[A | I]$,  \n\n- Redukujemy $A$ do postaci jednostkowej operacjami wierszowymi,  \n\n- Po redukcji blok prawy to $A^{-1}$.  \n3. **Warunek istnienia**: $\\det A \\neq 0$ (macierz nieosobliwa)."
+  },
+  {
+    "id": "al04",
+    "subjectId": "algebra_liniowa",
+    "type": "memorize",
+    "question": "Przedstaw podstawowe własności i metody obliczania wyznacznika macierzy kwadratowej.",
+    "answer": "**Własności wyznacznika ($\\det A$)**  \n\n- $\\det(AB) = \\det A \\cdot \\det B$,  \n\n- $\\det(A^T) = \\det A$,  \n\n- Zamiana wierszy/kolumn zmienia znak $\\det$,  \n\n- $\\det(cA) = c^n \\det A$ (dla macierzy $n \\times n$).  \n\n**Metody obliczania**  \n\n- **Rozwinięcie Laplace’a** (względem $i$-tego wiersza):  \n  $$\\det A = \\sum_{j=1}^n (-1)^{i+j} a_{ij} \\cdot M_{ij},$$  \n  gdzie $M_{ij}$ – minor (wyznacznik podmacierzy bez $i$-tego wiersza i $j$-tej kolumny).  \n\n- **Metoda Gaussa**:  \n\n- Sprowadzamy macierz do postaci trójkątnej operacjami wierszowymi (bez skalowania!),  \n\n- $\\det A$ = iloczyn elementów na przekątnej."
+  },
+  {
+    "id": "al05",
+    "subjectId": "algebra_liniowa",
+    "type": "understand",
+    "question": "Omów różne metody rozwiązywania układów równań liniowych.",
+    "answer": "**Układ $n$ równań z $n$ niewiadomymi**  \n $A\\mathbf{x} = \\mathbf{b}$.  \n1. **Metoda Cramera** (tylko gdy $\\det A \\neq 0$):  \n   $$x_k = \\frac{\\det A_k}{\\det A},$$  \n   gdzie $A_k$ – macierz $A$ z $k$-tą kolumną zastąpioną wektorem $\\mathbf{b}$.  \n2. **Metoda macierzy odwrotnej** (tylko gdy $\\det A \\neq 0$):  \n   $$\\mathbf{x} = A^{-1} \\mathbf{b}.$$  \n3. **Metoda eliminacji Gaussa**:  \n\n- Tworzymy macierz rozszerzoną $[A | \\mathbf{b}]$,  \n\n- Sprowadzamy do postaci schodkowej (górnotrójkątnej),  \n\n- Rozwiązujemy od ostatniego równania w górę.  \n4. **Metoda Gaussa-Jordana**:  \n\n- Redukujemy macierz rozszerzoną do postaci jednostkowej,  \n\n- Wektor rozwiązań w ostatniej kolumnie."
+  },
+  {
+    "id": "al06",
+    "subjectId": "algebra_liniowa",
+    "type": "understand",
+    "question": "Omów najważniejsze podprzestrzenie wektorowe związane z macierzą, sposoby wyznaczania tych podprzestrzeni, ich bazy i wymiary.",
+    "answer": "**Kluczowe podprzestrzenie** (dla macierzy $A_{m \\times n}$):  \n1. **Przestrzeń kolumnowa (obraz)**:  \n\n- $\\text{Col}(A) = \\{ A\\mathbf{x} \\mid \\mathbf{x} \\in \\mathbb{R}^n \\}$,  \n\n- **Baza**: kolumny liniowo niezależne z $A$ (po redukcji do postaci schodkowej),  \n\n- **Wymiar**: $\\text{rk}(A)$ (rząd macierzy).  \n2. **Przestrzeń wierszowa**:  \n\n- $\\text{Row}(A) = \\text{Col}(A^T)$,  \n\n- **Baza**: niezerowe wiersze z zredukowanej postaci schodkowej,  \n\n- **Wymiar**: $\\text{rk}(A)$.  \n3. **Jądro (jądro)**:  \n\n- $\\text{Ker}(A) = \\{ \\mathbf{x} \\mid A\\mathbf{x} = \\mathbf{0} \\}$,  \n\n- **Baza**: rozwiązania bazowe układu jednorodnego,  \n\n- **Wymiar**: $n - \\text{rk}(A)$ (twierdzenie o rzędzie)."
+  },
+  {
+    "id": "al07",
+    "subjectId": "algebra_liniowa",
+    "type": "understand",
+    "question": "Przedstaw podstawowe własności i zastosowania iloczynu skalarnego wektorów.",
+    "answer": "**Definicja** (w $\\mathbb{R}^n$):  \n$$\\mathbf{u} \\cdot \\mathbf{v} = \\sum_{i=1}^n u_i v_i = \\|\\mathbf{u}\\| \\|\\mathbf{v}\\| \\cos \\theta,$$  \ngdzie $\\theta$ – kąt między wektorami.  \n\n**Własności**  \n\n- Przemienność: $\\mathbf{u} \\cdot \\mathbf{v} = \\mathbf{v} \\cdot \\mathbf{u}$,  \n\n- Rozdzielność: $\\mathbf{u} \\cdot (\\mathbf{v} + \\mathbf{w}) = \\mathbf{u} \\cdot \\mathbf{v} + \\mathbf{u} \\cdot \\mathbf{w}$,  \n\n- Homogeniczność: $(c\\mathbf{u}) \\cdot \\mathbf{v} = c (\\mathbf{u} \\cdot \\mathbf{v})$.  \n\n**Zastosowania**  \n\n- **Ortogonalność**: $\\mathbf{u} \\cdot \\mathbf{v} = 0 \\iff \\mathbf{u} \\perp \\mathbf{v}$,  \n\n- **Rzut wektora**: $\\text{proj}_{\\mathbf{v}} \\mathbf{u} = \\left( \\frac{\\mathbf{u} \\cdot \\mathbf{v}}{\\|\\mathbf{v}\\|^2} \\right) \\mathbf{v}$,  \n\n- **Norma (długość)**: $\\|\\mathbf{u}\\| = \\sqrt{\\mathbf{u} \\cdot \\mathbf{u}}$,  \n\n- **Nierówność Cauchy’ego-Schwarza**: $|\\mathbf{u} \\cdot \\mathbf{v}| \\leq \\|\\mathbf{u}\\| \\|\\mathbf{v}\\|$."
+  }
+]

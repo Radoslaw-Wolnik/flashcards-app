@@ -1,0 +1,44 @@
+[
+  {
+    "id": "si01",
+    "subjectId": "sieci_komputerowe",
+    "type": "memorize",
+    "question": "Model ISO-OSI stosu protokołów komunikacyjnych",
+    "answer": "Model ISO/OSI to **7-warstwowa architektura** standardów komunikacji sieciowej:  \n1. **Fizyczna (Physical):** Przesył bitów przez medium (kabel, WiFi).  \n\n- Przykład: Ethernet (RJ45), DSL.  \n2. **Łącza danych (Data Link):** Ramkowanie, adresacja MAC, kontrola błędów.  \n\n- Przykład: Ethernet (MAC), PPP.  \n3. **Sieciowa (Network):** Routing między sieciami, adresacja logiczna (IP).  \n\n- Przykład: IP, ICMP, routery.  \n4. **Transportowa (Transport):** Komunikacja end-to-end, kontrola przepływu.  \n\n- Przykład: TCP (połączeniowy), UDP (bezpołączeniowy).  \n5. **Sesji (Session):** Zarządzanie sesjami (np. uruchamianie/kończenie połączeń).  \n\n- Przykład: NetBIOS, RPC.  \n6. **Prezentacji (Presentation):** Translacja danych (szyfrowanie, kompresja).  \n\n- Przykład: SSL/TLS, JPEG.  \n7. **Aplikacji (Application):** Interfejs dla użytkownika.  \n\n- Przykład: HTTP, FTP, SMTP.  \n\n**Kluczowa zasada:** Warstwy komunikują się z odpowiadającymi warstwami na innych urządzeniach (encapsulation/decapsulation)."
+  },
+  {
+    "id": "si02",
+    "subjectId": "sieci_komputerowe",
+    "type": "understand",
+    "question": "Charakterystyka modelu klient-serwer",
+    "answer": "**Architektura:**  \n\n- **Klient:** Inicjuje żądania (np. przeglądarka).  \n\n- **Serwer:** Odbiera żądania, przetwarza, zwraca odpowiedzi (np. serwer WWW).  \n\n**Cechy:**  \n| Aspekt               | Klient                          | Serwer                     |  \n|----------------------|---------------------------------|----------------------------|  \n| **Rola**             | Konsument usług                 | Dostawca usług             |  \n| **Inicjatywa**       | Aktywny (wysyła żądania)        | Pasywny (czeka na żądania) |  \n| **Zasoby**           | Ograniczone                     | Wysokiej dostępności       |  \n| **Przykłady**        | Przeglądarka, aplikacja mobilna | Apache, Nginx, bazy danych |  \n\n**Zalety:**  \n\n- Centralne zarządzanie danymi.  \n\n- Łatwa skalowalność serwera.  \n\n- Bezpieczeństwo (autoryzacja centralna).  \n\n**Wady:**  \n\n- Punkt awarii (serwer).  \n\n- Koszt utrzymania infrastruktury.  \n\n**Przeciwieństwo:** **P2P (peer-to-peer)** – każdy węzeł jest klientem i serwerem (np. BitTorrent)."
+  },
+  {
+    "id": "si03",
+    "subjectId": "sieci_komputerowe",
+    "type": "memorize",
+    "question": "Pojęcie topologii fizycznej sieci komputerowych, przykłady topologii",
+    "answer": "**Topologia fizyczna** = układ fizycznych połączeń między urządzeniami.  \n\n| Typ topologii      | Opis                                                                 | Zalety/Wady                                                                 |  \n|--------------------|----------------------------------------------------------------------|-----------------------------------------------------------------------------|  \n| **Gwiazda (Star)** | Wszystkie urządzenia podłączone do centralnego huba/switche.         | **+** Łatwa diagnostyka<br>**-** Awaria huba paraliżuje sieć               |  \n| **Pierścień (Ring)**| Urządzenia połączone w zamknięty pierścień (dane krążą w pętli).     | **+** Brak kolizji<br>**-** Awaria jednego urządzenia blokuje sieć         |  \n| **Szyna (Bus)**    | Wszystkie urządzenia podłączone do jednej magistrali kablowej.       | **+** Niski koszt<br>**-** Kolizje danych; awaria kabla paraliżuje sieć    |  \n| **Siatka (Mesh)**  | Każde urządzenie ma bezpośrednie połączenie z wieloma innymi.        | **+** Nadmiarowość (odporność na awarie)<br>**-** Wysoki koszt okablowania |  \n| **Drzewo (Tree)**  | Hierarchia urządzeń (np. gwiazdy połączone magistralą).              | **+** Skalowalność<br>**-** Złożona konfiguracja                           |  \n\n**Przykład zastosowania:**  \n\n- **Biuro:** Topologia gwiazdy (łatwe zarządzanie).  \n\n- **Internet:** Topologia siatki (odporność na awarie)."
+  },
+  {
+    "id": "si04",
+    "subjectId": "sieci_komputerowe",
+    "type": "understand",
+    "question": "Organizacja domen w sieci Internet",
+    "answer": "**Domena** = czytelna dla człowieka nazwa zastępująca adres IP (np. `google.com`).  \n\n**Hierarchia DNS:**  \n1. **Root (.)**: Najwyższy poziom (serwery root zarządzane przez IANA).  \n2. **TLD (Top-Level Domain)**:  \n\n- `gTLD`: `.com`, `.org`, `.net`  \n\n- `ccTLD`: `.pl`, `.de`, `.jp`  \n\n- `nTLD`: `.app`, `.blog`  \n3. **Domeny drugiego poziomu**: `example.com`, `wikipedia.org`  \n4. **Subdomeny**: `shop.example.com`, `en.wikipedia.org`  \n\n**Proces rozwiązywania nazw DNS:**  \n1. Klient pyta **rekurencyjny resolver** (np. dostawcy internetu).  \n2. Resolver pyta **root serwer** o adres serwera TLD dla `.com`.  \n3. Resolver pyta **serwer TLD** o adres serwera `example.com`.  \n4. Resolver pyta **serwer autorytatywny** `example.com` o adres `www.example.com`.  \n5. Resolver zwraca adres IP klientowi.  \n\n**Zarządzanie:**  \n\n- **ICANN**: Nadzór nad TLD.  \n\n- **Rejestratorzy**: Sprzedają domeny (np. GoDaddy)."
+  },
+  {
+    "id": "si05",
+    "subjectId": "sieci_komputerowe",
+    "type": "understand",
+    "question": "Porównanie działania protokołów TCP i UDP",
+    "answer": "| Kryterium          | TCP (Transmission Control Protocol)       | UDP (User Datagram Protocol)        |  \n|--------------------|-------------------------------------------|--------------------------------------|  \n| **Połączenie**     | Połączeniowe (handshake: SYN-SYN/ACK-ACK) | Bezpołączeniowe                      |  \n| **Niezawodność**   | Gwarantuje dostarczenie (retransmisje)    | Brak gwarancji                       |  \n| **Kolejność danych**| Zachowuje kolejność pakietów             | Nie zachowuje kolejności             |  \n| **Kontrola przepływu**| Tak (dostosowuje szybkość)             | Nie                                  |  \n| **Nagłówek**       | 20-60 bajtów (złożony)                   | 8 bajtów (prosty)                    |  \n| **Przepustowość**  | Wolniejszy (narzut)                      | Szybszy (mniejszy narzut)            |  \n| **Zastosowania**   | HTTP, FTP, SSH, email                    | DNS, VoIP, streaming, gry online     |  \n\n**Przykład TCP:**  \n```  \nKlient: SYN →  \nSerwer: SYN-ACK →  \nKlient: ACK + dane  \n```  \n**Przykład UDP:**  \n```  \nKlient: DANE → (bez potwierdzenia)  \n```"
+  },
+  {
+    "id": "si06",
+    "subjectId": "sieci_komputerowe",
+    "type": "memorize",
+    "question": "Protokoły poczty elektronicznej",
+    "answer": "**a) SMTP (Simple Mail Transfer Protocol):**  \n\n- **Port:** 25 (lub 465/587 dla szyfrowania).  \n\n- **Funkcja:** Wysyłanie wiadomości między serwerami.  \n\n- **Przepływ:**  \n  ```  \n  Nadawca → Serwer SMTP nadawcy → Serwer SMTP odbiorcy → Skrzynka odbiorcy  \n  ```  \n\n**b) POP3 (Post Office Protocol v3):**  \n\n- **Port:** 110 (lub 995 dla SSL).  \n\n- **Funkcja:** Pobieranie wiadomości **z serwera na lokalne urządzenie** (usuwa z serwera).  \n\n- **Komendy:** `USER`, `PASS`, `RETR`, `DELE`.  \n\n**c) IMAP (Internet Message Access Protocol):**  \n\n- **Port:** 143 (lub 993 dla SSL).  \n\n- **Funkcja:** Zarządzanie wiadomościami **bezpośrednio na serwerze** (synchronizacja między urządzeniami).  \n\n- **Zalety:** Obsługa folderów, wyszukiwanie po stronie serwera.  \n\n**Format wiadomości (MIME):**  \n\n- **Struktura:**  \n  ```  \n  Nagłówki (From, To, Subject)  \n  Pusta linia  \n  Ciało wiadomości (tekst/HTML/załączniki)  \n  ```  \n\n- **Kodowanie:** Base64 dla załączników binarnych."
+  }
+]

@@ -1,0 +1,79 @@
+[
+  {
+    "id": "ję01",
+    "subjectId": "języki_programowania_i",
+    "type": "memorize",
+    "question": "Podstawowe typy danych w języku C",
+    "answer": "Podstawowe typy wbudowane w C:  \n\n- **`int`**: Liczby całkowite (np. `42`, `-7`). Rozmiar: zwykle 4 bajty.  \n\n- **`float`**: Liczby zmiennoprzecinkowe pojedynczej precyzji (np. `3.14f`). Rozmiar: 4 bajty.  \n\n- **`double`**: Liczby zmiennoprzecinkowe podwójnej precyzji (np. `2.71828`). Rozmiar: 8 bajtów.  \n\n- **`char`**: Pojedynczy znak (np. `'A'`, `'\\0'`). Rozmiar: 1 bajt.  \n\n- **`void`**: Brak typu (używany w funkcjach bez zwracanej wartości).  \n\n- **Modyfikatory:** `short`, `long`, `signed`, `unsigned` (np. `unsigned int`, `long double`).  \n\n**Przykład:**  \n```c\nint age = 30;  \nfloat pi = 3.14159f;  \nchar grade = 'A';  \n```"
+  },
+  {
+    "id": "ję02",
+    "subjectId": "języki_programowania_i",
+    "type": "memorize",
+    "question": "Instrukcje sterujące języka C",
+    "answer": "Klasy instrukcji sterujących:  \n\n- **Warunkowe:**  \n\n- `if`/`else`:  \n    ```c\n    if (x > 0) printf(\"Dodatnie\");  \n    else if (x == 0) printf(\"Zero\");  \n    else printf(\"Ujemne\");  \n    ```  \n\n- `switch`:  \n    ```c\n    switch (op) {  \n        case '+': result = a + b; break;  \n        case '-': result = a - b; break;  \n        default: printf(\"Nieznana operacja\");  \n    }  \n    ```  \n\n- **Pętle:**  \n\n- `for`: `for (int i = 0; i < 10; i++) { ... }`  \n\n- `while`: `while (i < 10) { ... }`  \n\n- `do-while`: `do { ... } while (i < 10);`  \n\n- **Skoki:**  \n\n- `break` (przerywa pętlę/`switch`),  \n\n- `continue` (pomija bieżącą iterację),  \n\n- `goto` (skok do etykiety)."
+  },
+  {
+    "id": "ję03",
+    "subjectId": "języki_programowania_i",
+    "type": "memorize",
+    "question": "Struktura programu w języku C",
+    "answer": "Typowa struktura programu:  \n```c\n#include <stdio.h>  // Dyrektywy preprocesora (nagłówki)  \n\n#define PI 3.14     // Definicje stałych  \n\nint global_var;      // Zmienne globalne  \n\nvoid funkcja();      // Deklaracje funkcji  \n\nint main() {         // Funkcja główna (entry point)  \n    int lokalna = 5; // Zmienne lokalne  \n    funkcja();  \n    return 0;        // Kod powrotu  \n}  \n\nvoid funkcja() {     // Definicja funkcji  \n    printf(\"Hello\");  \n}  \n```  \n**Kluczowe elementy:**  \n\n- **`#include`**: Dołączanie bibliotek (np. `<stdio.h>` dla I/O).  \n\n- **`main()`**: Punkt startowy programu.  \n\n- **Funkcje**: Definicje + deklaracje.  \n\n- **Zmienne**: Globalne (widoczne wszędzie) vs lokalne (widoczne w bloku)."
+  },
+  {
+    "id": "ję04",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Funkcje rekurencyjne (z przykładami)",
+    "answer": "**Definicja:** Funkcja wywołująca samą siebie, z warunkiem stopu.  \n**Przykład 1: Silnia**  \n```c\nint silnia(int n) {  \n    if (n <= 1) return 1;     // Warunek stopu  \n    else return n * silnia(n - 1); // Rekurencja  \n}  \n```  \n**Przykład 2: Fibonacci**  \n```c\nint fib(int n) {  \n    if (n <= 0) return 0;  \n    else if (n == 1) return 1;  \n    else return fib(n - 1) + fib(n - 2);  \n}  \n```  \n**Zastosowania:** Algorytmy \"dziel i zwyciężaj\" (np. przeszukiwanie binarne, sortowanie przez scalanie)."
+  },
+  {
+    "id": "ję05",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Zasięg zmiennych i funkcji w programach napisanych w języku C",
+    "answer": "**Rodzaje zasięgu:**  \n\n- **Lokalny (automatyczny):**  \n\n- Zmienne wewnątrz funkcji/bloku (`{}`).  \n\n- Widoczne **tylko w tym bloku**.  \n\n- Niszczone po wyjściu z bloku.  \n  ```c\n  void funkcja() {  \n      int x = 10; // Lokalna, widoczna tylko w funkcja()  \n  }  \n  ```  \n\n- **Globalny (zewnętrzny):**  \n\n- Zmienne zadeklarowane poza funkcjami.  \n\n- Widoczne **od punktu deklaracji do końca pliku**.  \n  ```c\n  int global = 5; // Globalna  \n\n  void foo() {  \n      global++; // Można modyfikować  \n  }  \n  ```  \n\n- **`static`:**  \n\n- Dla zmiennych: Zachowuje wartość między wywołaniami funkcji.  \n\n- Dla funkcji: Widoczna tylko w pliku, gdzie zadeklarowana.  \n  ```c\n  void counter() {  \n      static int count = 0; // Inicjalizacja raz!  \n      count++;  \n      printf(\"%d\", count); // 1, 2, 3...  \n  }  \n  ```"
+  },
+  {
+    "id": "ję06",
+    "subjectId": "języki_programowania_i",
+    "type": "memorize",
+    "question": "Etapy kompilacji programów w języku C",
+    "answer": "4 etapy kompilacji:  \n1. **Preprocesing:**  \n\n- Rozwijanie makr (`#define`), dołączanie plików nagłówkowych (`#include`).  \n\n- Polecenie: `gcc -E plik.c -o plik.i` (generuje plik `.i`).  \n2. **Kompilacja właściwa:**  \n\n- Translacja kodu C do kodu asemblera.  \n\n- Polecenie: `gcc -S plik.i -o plik.s` (generuje plik `.s`).  \n3. **Asemblacja:**  \n\n- Konwersja kodu asemblera do kodu maszynowego (obiektowy).  \n\n- Polecenie: `gcc -c plik.s -o plik.o` (generuje plik `.o`).  \n4. **Linkowanie:**  \n\n- Łączenie plików obiektowych z bibliotekami (np. `libc.so`).  \n\n- Polecenie: `gcc plik.o -o program` (generuje plik wykonywalny)."
+  },
+  {
+    "id": "ję07",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Sposób reprezentacji napisów w języku C oraz podstawowe funkcje standardowej biblioteki do przetwarzania napisów",
+    "answer": "**Reprezentacja napisów:**  \n\n- Napisy w C to **tablice `char` zakończone znakiem `'\\0'` (null-terminator)**.  \n\n- Przykład:  \n  ```c\n  char str[] = \"Hello\"; // Tablica: {'H','e','l','l','o','\\0'}  \n  ```  \n\n**Podstawowe funkcje (`<string.h>`):**  \n\n- **`strlen(str)`**: Zwraca długość napisu (bez `'\\0'`).  \n\n- **`strcpy(dest, src)`**: Kopiuje napis `src` do `dest`.  \n\n- **`strcat(dest, src)`**: Łączy `src` z końcem `dest`.  \n\n- **`strcmp(s1, s2)`**: Porównuje napisy (zwraca 0 jeśli równe).  \n\n- **`strstr(haystack, needle)`**: Wyszukuje podnapis.  \n\n**Przykład użycia:**  \n```c\n#include <string.h>  \n\nint main() {  \n    char s1[20] = \"Ala ma \";  \n    char s2[] = \"kota\";  \n    strcat(s1, s2); // \"Ala ma kota\"  \n    printf(\"%d\", strlen(s1)); // 10  \n}  \n```"
+  },
+  {
+    "id": "ję08",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Obsługa plików w języku C",
+    "answer": "**Operacje na plikach:**  \n1. **Otwarcie pliku:** `FILE *fopen(const char *filename, const char *mode);`  \n\n- Tryby: `\"r\"` (czytanie), `\"w\"` (zapis, nadpisuje), `\"a\"` (dopisywanie), `\"r+\"` (read/write).  \n   ```c\n   FILE *file = fopen(\"dane.txt\", \"r\");  \n   if (file == NULL) perror(\"Błąd otwarcia\");  \n   ```  \n2. **Czytanie/zapis:**  \n\n- Tekstowe: `fprintf(file, \"Liczba: %d\", 42)`, `fscanf(file, \"%d\", &x)`.  \n\n- Binarne: `fwrite(buffer, sizeof(int), 5, file)`, `fread(...)`.  \n3. **Pozycja w pliku:**  \n\n- `fseek(file, offset, SEEK_SET)` (przesuwa wskaźnik pliku).  \n\n- `ftell(file)` (zwraca aktualną pozycję).  \n4. **Zamknięcie pliku:** `fclose(file)`.  \n\n**Przykład kopiowania pliku:**  \n```c\nFILE *src = fopen(\"źródło.txt\", \"r\");  \nFILE *dest = fopen(\"kopia.txt\", \"w\");  \nchar ch;  \nwhile $ch = fgetc(src$ != EOF) fputc(ch, dest);  \nfclose(src); fclose(dest);  \n```"
+  },
+  {
+    "id": "ję09",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Definiowanie złożonych typów danych w języku C (struktury, unie i pola bitowe)",
+    "answer": "**a) Struktury (`struct`):**  \n\n- Grupują zmienne różnych typów.  \n```c\nstruct Student {  \n    char name[50];  \n    int age;  \n    float avg_grade;  \n};  \n\nstruct Student s1 = {\"Jan\", 20, 4.5};  \nprintf(\"%s\", s1.name);  \n```  \n\n**b) Unie (`union`):**  \n\n- Wszystkie pola współdzielą tę samą pamięć (rozmiar = rozmiar największego pola).  \n```c\nunion Data {  \n    int i;  \n    float f;  \n    char str[20];  \n};  \n\nunion Data d;  \nd.i = 10; // d.f i d.str są teraz \"nadpisane\"  \n```  \n\n**c) Pola bitowe:**  \n\n- Pozwalają definiować zmienne o określonej liczbie bitów.  \n```c\nstruct Flags {  \n    unsigned int is_ready : 1; // 1 bit  \n    unsigned int count : 4;    // 4 bity (wartości 0-15)  \n};  \n```"
+  },
+  {
+    "id": "ję10",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Alokacja pamięci w języku C",
+    "answer": "**Funkcje zarządzania pamięcią (`<stdlib.h>`):**  \n\n- **`malloc(size)`**: Alokuje `size` bajtów (nie inicjalizuje).  \n\n- **`calloc(n, size)`**: Alokuje `n * size` bajtów (inicjalizuje zerami).  \n\n- **`realloc(ptr, new_size)`**: Zmienia rozmiar bloku pamięci.  \n\n- **`free(ptr)`**: Zwalnia pamięć.  \n\n**Przykład tablicy dynamicznej:**  \n```c\nint *arr = (int*) malloc(5 * sizeof(int)); // Alokacja  \nif (arr == NULL) exit(1);  \n\narr[0] = 10;  \narr = (int*) realloc(arr, 10 * sizeof(int)); // Rozszerzenie  \n\nfree(arr); // Zwolnienie pamięci!  \n```  \n**Uwaga:** Brak `free` → wyciek pamięci (memory leak)."
+  },
+  {
+    "id": "ję11",
+    "subjectId": "języki_programowania_i",
+    "type": "understand",
+    "question": "Wskaźniki w języku C. Związek między tablicami a wskaźnikami",
+    "answer": "**Podstawy wskaźników:**  \n\n- Wskaźnik przechowuje **adres pamięci** zmiennej.  \n```c\nint x = 10;  \nint *ptr = &x; // ptr przechowuje adres x  \nprintf(\"%d\", *ptr); // Dereferencja: 10  \n*ptr = 20; // Modyfikacja x przez wskaźnik  \n```  \n\n**Związek tablice ↔ wskaźniki:**  \n\n- **Nazwa tablicy** jest wskaźnikiem do jej pierwszego elementu:  \n  ```c\n  int arr[3] = {1, 2, 3};  \n  int *p = arr; // p == &arr[0]  \n  printf(\"%d\", *(p + 1)); // arr[1] = 2  \n  ```  \n\n- **Arytmetyka wskaźników:**  \n\n- `ptr + n` przesuwa wskaźnik o `n * sizeof(typ)` bajtów.  \n\n- **Tablice 2D:**  \n  ```c\n  int matrix[2][3] = {{1,2,3}, {4,5,6}};  \n  int (*ptr)[3] = matrix; // Wskaźnik do tablicy 3-elementowej  \n  printf(\"%d\", ptr[1][2]); // 6  \n  ```  \n\n**Kluczowa różnica:**  \n\n- `sizeof(arr)` zwraca **rozmiar całej tablicy**, podczas gdy `sizeof(ptr)` zwraca rozmiar wskaźnika (np. 8 bajtów na x64)."
+  }
+]

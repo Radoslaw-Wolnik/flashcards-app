@@ -1,0 +1,37 @@
+[
+  {
+    "id": "sy01",
+    "subjectId": "systemy_operacyjne",
+    "type": "understand",
+    "question": "Znaczenie praw specjalnych o kodach \"s\" i \"t\" w systemach Unix/Linux/BSD",
+    "answer": "**a) `s` (SetUID/SetGID):**  \n\n- **SetUID (`s` w uprawnieniach właściciela):**  \n\n- Plik wykonywany z `s` (np. `-rwsr-xr-x`) uruchamia się z uprawnieniami **właściciela**, a nie użytkownika.  \n\n- Przykład: `passwd` (może modyfikować `/etc/shadow` jako root).  \n  ```bash\n  chmod u+s plik  # Ustawia SetUID\n  ```\n\n- **SetGID (`s` w uprawnieniach grupy):**  \n\n- Dla plików: Uruchamia z uprawnieniami **grupy właściciela**.  \n\n- Dla katalogów: Nowe pliki dziedziczą **grupę katalogu** (np. współdzielone foldery).  \n  ```bash\n  chmod g+s katalog  # Ustawia SetGID\n  ```\n\n**b) `t` (Sticky Bit):**  \n\n- Dla katalogów: Tylko **właściciel pliku/katalogu** może usuwać/zmieniać nazwy swoich plików.  \n\n- Przykład: Katalog `/tmp` (wszyscy mogą tworzyć pliki, ale nie usuwać cudzych).  \n  ```bash\n  drwxrwxrwt   # \"t\" na końcu uprawnień\n  chmod +t /tmp  # Ustawia Sticky Bit\n  ```\n\n**Bezpieczeństwo:**  \n\n- `s`/`t` zmniejszają ryzyko przypadkowego nadpisania/usuwań.  \n\n- Nadużycie SetUID może prowadzić do eskalacji uprawnień (np. gdy plik z `s` ma luki)."
+  },
+  {
+    "id": "sy02",
+    "subjectId": "systemy_operacyjne",
+    "type": "understand",
+    "question": "Budowa systemu plików w systemach Unix/Linux",
+    "answer": "**Hierarchia katalogów (FHS – Filesystem Hierarchy Standard):**  \n| Ścieżka          | Zawartość                                                                 |  \n|------------------|---------------------------------------------------------------------------|  \n| `/`              | Katalog główny (root)                                                     |  \n| `/bin`           | Podstawowe binarne polecenia (ls, cp)                                     |  \n| `/etc`           | Pliki konfiguracyjne systemu                                              |  \n| `/home`          | Katalogi domowe użytkowników                                              |  \n| `/var`           | Dane zmienne (logi, cache, bazy danych)                                   |  \n| `/dev`           | Pliki urządzeń (np. `/dev/sda` – dysk)                                    |  \n| `/proc`          | Wirtualny system plików z informacjami o procesach/jądrze                 |  \n| `/usr`           | Zasoby użytkownika (aplikacje, biblioteki, dokumentacja)                 |  \n\n**Struktura inode:**  \n\n- Każdy plik/katalog ma **inode** (metadane: rozmiar, uprawnienia, wskaźniki do bloków danych).  \n\n- **Twarde dowiązania:** Wiele nazw plików do jednego inode.  \n\n- **Miękkie dowiązania (symlink):** Wskaźnik do ścieżki (inny inode).  \n\n**Przykład:**  \n```bash\n$ ls -i /etc/passwd  # Wyświetla numer inode\n13245 /etc/passwd\n```"
+  },
+  {
+    "id": "sy03",
+    "subjectId": "systemy_operacyjne",
+    "type": "understand",
+    "question": "Koncepcja procesu w systemie operacyjnym",
+    "answer": "**Definicja:** Proces to **wykonywane wystąpienie programu** z własną przestrzenią adresową, zasobami i stanem.  \n\n**Stany procesu:**  \n1. **Running:** Wykonywany na CPU.  \n2. **Ready:** Gotowy do wykonania (czeka na przydział CPU).  \n3. **Blocked:** Czeka na zdarzenie (np. I/O).  \n4. **Zombie:** Zakończony, ale rekord jeszcze w tablicy procesów.  \n\n**Struktura procesu:**  \n\n- **PID (Process ID):** Unikalny identyfikator.  \n\n- **PPID (Parent PID):** PID procesu-rodzica.  \n\n- **Przestrzeń adresowa:** Kod, dane, stos, sterta.  \n\n- **Kontekst:** Zawartość rejestrów CPU.  \n\n**Narzędzia:**  \n```bash\nps aux      # Lista procesów  \ntop         # Monitorowanie w czasie rzeczywistym  \npstree      # Drzewo procesów  \n```\n\n**Komunikacja międzyprocesowa (IPC):**  \n\n- Potoki (`|`), gniazda, pamięć współdzielona, kolejki komunikatów."
+  },
+  {
+    "id": "sy04",
+    "subjectId": "systemy_operacyjne",
+    "type": "understand",
+    "question": "Bash jako język programowania",
+    "answer": "Bash to interpreter poleceń z możliwością pisania skryptów.  \n\n**Kluczowe funkcje:**  \n\n- **Zmienne:**  \n  ```bash\n  name=\"Jan\"        # Przypisanie  \n  echo \"Witaj, $name\"  # Odwołanie  \n  ```\n\n- **Struktury sterujące:**  \n  ```bash\n  # Warunkowe:  \n  if [ \"$a\" -gt \"$b\" ]; then  \n    echo \"a > b\"  \n  fi  \n\n  # Pętle:  \n  for i in {1..5}; do  \n    echo $i  \n  done  \n\n  while [ $counter -lt 5 ]; do  \n    echo $counter  \n    $counter++$  \n  done  \n  ```\n\n- **Funkcje:**  \n  ```bash\n  greet() {  \n    echo \"Witaj, $1!\"  \n  }  \n  greet \"Anna\"  \n  ```\n\n- **Przetwarzanie tekstu:**  \n  ```bash\n  echo \"Ala ma kota\" | cut -d ' ' -f 2  # \"ma\"  \n  grep \"error\" log.txt                  # Filtruje linie  \n  ```\n\n**Zastosowania:**  \n\n- Automatyzacja zadań (backupy, deploy),  \n\n- Konfiguracja systemu (np. skrypty startowe)."
+  },
+  {
+    "id": "sy05",
+    "subjectId": "systemy_operacyjne",
+    "type": "understand",
+    "question": "Zasada działania macierzy RAID",
+    "answer": "**RAID (Redundant Array of Independent Disks):** Łączenie dysków w celu zwiększenia wydajności/niezawodności.  \n\n| Typ   | Minimalna liczba dysków | Zasada działania                     | Zalety                                 | Wady                          |  \n|-------|-------------------------|--------------------------------------|----------------------------------------|-------------------------------|  \n| **RAID 0** | 2 | **Striping** (dane dzielone na bloki rozkładane równolegle) | Wysoka wydajność | Brak redundancji – awaria 1 dysku niszczy dane |  \n| **RAID 1** | 2 | **Mirroring** (pełne dublowanie danych) | Odporność na awarie 1 dysku | 50% pojemności tracone na redundancję |  \n| **RAID 5** | 3 | **Striping + parity distributed** (parzystość rozproszona) | Odporność na awarię 1 dysku, dobra wydajność czytania | Wolne zapisy (obliczanie parzystości) |  \n| **RAID 6** | 4 | Jak RAID 5, ale z **dwiema parzystościami** | Odporność na awarie 2 dysków | Większy narzut pojemności |  \n| **RAID 10** | 4 | **Mirroring + striping** (RAID 1+0) | Szybkość + odporność | Wysoki koszt (50% pojemności na redundancję) |  \n\n**Przykład RAID 5:**  \n```\nDysk1: Blok1, Blok4, Parzystość(B7,B10)  \nDysk2: Blok2, Parzystość(B5,B8), Blok10  \nDysk3: Parzystość(B1,B4), Blok3, Blok6  \n```  \n\n- Awaria 1 dysku → odtworzenie danych z parzystości."
+  }
+]

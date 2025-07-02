@@ -1,0 +1,44 @@
+[
+  {
+    "id": "al01",
+    "subjectId": "algorytmy_i_struktury_danych",
+    "type": "memorize",
+    "question": "Złożoność czasowa algorytmów sortowania",
+    "answer": "**Kluczowe algorytmy i ich złożoności:**  \n| Algorytm          | Złożoność (avg) | Złożoność (worst) | Stabilny? | Uwagi                          |  \n|-------------------|-----------------|-------------------|-----------|--------------------------------|  \n| **Quicksort**     | $O(n \\log n)$ | $O(n^2)$        | ❌        | W miejscu, pivot losowy        |  \n| **Mergesort**     | $O(n \\log n)$ | $O(n \\log n)$   | ✅        | Wymaga $O(n)$ pamięci        |  \n| **Heapsort**      | $O(n \\log n)$ | $O(n \\log n)$   | ❌        | W miejscu, wykorzystuje kopiec |  \n| **Insertion Sort**| $O(n^2)$      | $O(n^2)$        | ✅        | Szybki dla małych $n$        |  \n| **Counting Sort** | $O(n + k)$    | $O(n + k)$      | ✅        | Tylko liczby całkowite         |  \n| **Radix Sort**    | $O(d \\cdot (n + k))$ | $O(d \\cdot (n + k))$ | ✅ | Dla liczb/łańcuchów |  \n\n**Przykład:**  \n\n- **Quicksort:**  \n  ```python\n  def quicksort(arr):\n      if len(arr) <= 1: return arr\n      pivot = arr[len(arr)//2]\n      left = [x for x in arr if x < pivot]\n      middle = [x for x in arr if x == pivot]\n      right = [x for x in arr if x > pivot]\n      return quicksort(left) + middle + quicksort(right)\n  ```"
+  },
+  {
+    "id": "al02",
+    "subjectId": "algorytmy_i_struktury_danych",
+    "type": "understand",
+    "question": "Drzewa poszukiwań binarnych (BST i czerwono-czarne): definicja i złożoność operacji",
+    "answer": "**a) Standard BST:**  \n\n- **Definicja:** Dla każdego węzła:  \n\n- Lewe poddrzewo $\\leq$ węzeł $<$ prawe poddrzewo.  \n\n- **Operacje:**  \n\n- Wstawianie: $O(h)$  \n\n- Usuwanie: $O(h)$  \n\n- Wyszukiwanie: $O(h)$  \n\n- $h$ – wysokość drzewa (w najgorszym przypadku $O(n)$, gdy drzewo zdegenerowane).  \n\n**b) Drzewa czerwono-czarne (RBT):**  \n\n- **Definicja:** Samorównoważące BST z dodatkowymi właściwościami:  \n  1. Każdy węzeł jest **czerwony** lub **czarny**.  \n  2. Korzeń i liście (NULL) są **czarne**.  \n  3. Czerwony węzeł ma **czarne dzieci**.  \n  4. Każda ścieżka do liścia ma **tę samą liczbę czarnych węzłów** (czarna wysokość).  \n\n- **Operacje:**  \n\n- Wstawianie/usuwanie: $O(\\log n)$ (rotacje i przemalowania zachowują właściwości).  \n\n- Wyszukiwanie: $O(\\log n)$.  \n\n**Porównanie:**  \n| Właściwość       | BST          | Czerwono-czarne |  \n|------------------|--------------|-----------------|  \n| Wysokość         | $O(n)$     | $O(\\log n)$   |  \n| Gwarancja        | Brak         | Zrównoważone    |  \n| Zastosowania     | Proste przypadki | Systemy czasu rzeczywistego |"
+  },
+  {
+    "id": "al03",
+    "subjectId": "algorytmy_i_struktury_danych",
+    "type": "understand",
+    "question": "B-drzewa: definicja i złożoność operacji",
+    "answer": "**Definicja:** Samorównoważące drzewo dla systemów dyskowych (duże dane):  \n\n- Każdy węzeł (oprócz korzenia) ma $\\geq t-1$ i $\\leq 2t-1$ kluczy ($t$ – stopień).  \n\n- Wszystkie liście na tej samej głębokości.  \n\n- Węzeł z $k$ kluczami ma $k+1$ dzieci.  \n\n**Operacje:**  \n\n- **Wyszukiwanie:** $O(\\log n)$ (przeszukiwanie binarne w węźle).  \n\n- **Wstawianie:** $O(\\log n)$ (podział węzłów w górę).  \n\n- **Usuwanie:** $O(\\log n)$ (łączenie węzłów).  \n\n**Zastosowania:** Systemy plików (ext4, NTFS), bazy danych (np. indeksy w MySQL).  \n\n**Przykład B-drzewa (t=2):**  \n```\n      [10, 20]  \n     /    |    \\  \n[5]    [15]    [25, 30]  \n```"
+  },
+  {
+    "id": "al04",
+    "subjectId": "algorytmy_i_struktury_danych",
+    "type": "understand",
+    "question": "Tablice z haszowaniem: idea haszowania i sposoby rozwiązywania konfliktów",
+    "answer": "**Idea haszowania:**  \n\n- Funkcja haszująca $h: \\text{klucz} \\to \\text{indeks}$ w tablicy.  \n\n- Idealna: $O(1)$ dla wstawiania, usuwania, wyszukiwania.  \n\n**Metody rozwiązywania konfliktów:**  \n1. **Adresowanie otwarte (open addressing):**  \n\n- **Liniowe:** $h(k, i) = (h'(k) + i) \\mod m$  \n\n- **Kwadratowe:** $h(k, i) = (h'(k) + c_1 i + c_2 i^2) \\mod m$  \n\n- **Podwójne haszowanie:** $h(k, i) = (h_1(k) + i \\cdot h_2(k)) \\mod m$  \n\n2. **Łańcuchowanie (chaining):**  \n\n- Każdy slot tablicy to lista elementów o tym samym haszu.  \n   ```python\n   class HashTable:\n       def __init__(self, size):\n           self.table = [[] for _ in range(size)]\n       def insert(self, key, value):\n           index = hash(key) % len(self.table)\n           self.table[index].append$key, value$\n   ```\n\n**Złożoność (avg):**  \n\n- Przy równomiernym haszowaniu: $O(1 + \\alpha)$, gdzie $\\alpha = n/m$ (współczynnik wypełnienia)."
+  },
+  {
+    "id": "al05",
+    "subjectId": "algorytmy_i_struktury_danych",
+    "type": "understand",
+    "question": "Kopce binarne i ich zastosowania",
+    "answer": "**Definicja:** Kompletne drzewo binarne spełniające własność kopca:  \n\n- **Kopiec min:** Wartość węzła $\\leq$ wartości dzieci.  \n\n- **Kopiec max:** Wartość węzła $\\geq$ wartości dzieci.  \n\n- **Reprezentacja:** Tablica (dziecko $i$: $2i+1$, $2i+2$; rodzic: $\\lfloor (i-1)/2 \\rfloor$).  \n\n**Operacje:**  \n\n- `insert`: $O(\\log n)$ (przesianie w górę).  \n\n- `extract_min/max`: $O(\\log n)$ (przesianie w dół).  \n\n- `build_heap`: $O(n)$.  \n\n**Zastosowania:**  \n1. **Kolejka priorytetowa** (np. w algorytmie Dijkstry).  \n2. **Heapsort**.  \n3. **Znajdowanie $k$-tego największego elementu**.  \n\n**Przykład kopca min:**  \n```\n        1  \n      /   \\  \n     3     5  \n    / \\   /  \n   4   8 7  \n```"
+  },
+  {
+    "id": "al06",
+    "subjectId": "algorytmy_i_struktury_danych",
+    "type": "understand",
+    "question": "Stosy i kolejki: definicja i typowe implementacje",
+    "answer": "**a) Stos (LIFO):**  \n\n- **Definicja:** Dodawanie (`push`) i usuwanie (`pop`) z **tego samego końca** (wierzchołek).  \n\n- **Operacje:**  \n\n- `push(item)`: $O(1)$  \n\n- `pop()`: $O(1)$  \n\n- `peek()`: Zwraca wierzchołek bez usuwania.  \n\n- **Implementacje:**  \n\n- Tablica dynamiczna (z realokacją).  \n\n- Lista jednokierunkowa.  \n  ```python\n  stack = []\n  stack.append(1)  # push\n  stack.pop()      # pop\n  ```\n\n**b) Kolejka (FIFO):**  \n\n- **Definicja:** Dodawanie (`enqueue`) z **tyłu**, usuwanie (`dequeue`) z **przodu**.  \n\n- **Operacje:**  \n\n- `enqueue(item)`: $O(1)$  \n\n- `dequeue()`: $O(1)$  \n\n- **Implementacje:**  \n\n- Lista dwukierunkowa.  \n\n- Tablica z dwoma wskaźnikami (front/rear) i cyklicznym buforem.  \n  ```python\n  from collections import deque\n  queue = deque()\n  queue.append(1)   # enqueue\n  queue.popleft()   # dequeue\n  ```\n\n**Zastosowania:**  \n\n- **Stos:** Parsowanie wyrażeń, rekurencja/iteracja, cofanie operacji.  \n\n- **Kolejka:** Buforowanie, BFS, systemy kolejkowania."
+  }
+]

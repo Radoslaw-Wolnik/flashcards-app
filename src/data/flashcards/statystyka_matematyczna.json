@@ -1,0 +1,44 @@
+[
+  {
+    "id": "st01",
+    "subjectId": "statystyka_matematyczna",
+    "type": "understand",
+    "question": "Omów miary położenia i zmienności danych.",
+    "answer": "**Miary położenia**  \n\n- **Średnia arytmetyczna**:  \n  $$\\bar{x} = \\frac{1}{n} \\sum_{i=1}^n x_i$$  \n  *Zalety*: Wrażliwa na wszystkie dane. *Wady*: Wrażliwa na wartości skrajne.  \n\n- **Mediana**: Wartość środkowa w uporządkowanym zbiorze danych.  \n  *Zastosowanie*: Odporne na outliers (np. przy danych o rozkładzie skośnym).  \n\n- **Dominanta (moda)**: Najczęściej występująca wartość.  \n\n**Miary zmienności**  \n\n- **Wariancja**:  \n  $$s^2 = \\frac{1}{n} \\sum_{i=1}^n (x_i - \\bar{x})^2$$  \n\n- **Odchylenie standardowe**: $s = \\sqrt{s^2}$ – interpretowalne w jednostkach danych.  \n\n- **Rozstęp**: $R = x_{\\text{max}} - x_{\\text{min}}$.  \n\n- **IQR (międzykwartylowy)**: $Q_3 - Q_1$ – odporność na outliers.  \n\n**Przykład**  \n  \nDla danych $[2, 4, 4, 6, 8]$:  \n\n- Średnia: $4.8$, Mediana: $4$, Moda: $4$, Wariancja: $4.8$, Odchylenie: $2.19$, IQR: $4$."
+  },
+  {
+    "id": "st02",
+    "subjectId": "statystyka_matematyczna",
+    "type": "understand",
+    "question": "Omów graficzną prezentację danych.",
+    "answer": "**Wykresy dla danych jakościowych**  \n\n- **Wykres kołowy**: Proporcje kategorii (np. udział procentowy preferencji).  \n\n- **Wykres słupkowy**: Porównanie częstości kategorii.  \n\n**Wykresy dla danych ilościowych**  \n\n- **Histogram**: Rozkład częstości przedziałów wartości (np. przedziały wzrostu).  \n\n- **Boxplot (wykres pudełkowy)**:  \n\n- Linia środkowa: Mediana ($Q_2$).  \n\n- \"Pudełko\": $Q_1$ do $Q_3$.  \n\n- \"Wąsy\": Zakres danych (z wyłączeniem outliers).  \n\n- **Outliers**: Punkty poza $1.5 \\times \\text{IQR}$.  \n\n- **Wykres rozrzutu (scatter plot)**: Zależność między dwiema zmiennymi (np. wzrost vs. waga).  \n\n**Przykład**  \n  \nBoxplot dla danych $[10, 12, 12, 13, 14, 15, 16, 20]$:  \n\n- $Q_1 = 12$, $Q_2 = 13.5$, $Q_3 = 15.5$, IQR = $3.5$, Outlier: $20$."
+  },
+  {
+    "id": "st03",
+    "subjectId": "statystyka_matematyczna",
+    "type": "understand",
+    "question": "Omów weryfikację hipotez dotyczących frakcji.",
+    "answer": "**Kroki testowania hipotezy o frakcji $p$**  \n  \n1. **Formułowanie hipotez**:  \n\n- $H_0: p = p_0$ (np. $p_0 = 0.5$ – \"50% wyborców preferuje kandydata\").  \n\n- $H_1: p \\neq p_0$ (dwustronna) lub $H_1: p > p_0$ (jednostronna).  \n2. **Statystyka testowa** (dla dużych prób, $np_0 \\geq 5$ i $n(1-p_0) \\geq 5$):  \n   $$Z = \\frac{\\hat{p} - p_0}{\\sqrt{\\frac{p_0(1-p_0)}{n}}}, \\quad \\hat{p} = \\frac{\\text{liczba sukcesów}}{n}$$  \n3. **Decyzja**:  \n\n- Porównaj $|Z|$ z wartością krytyczną $z_{\\alpha/2}$ (np. $1.96$ dla $\\alpha = 0.05$).  \n\n- Jeśli $|Z| > z_{\\alpha/2}$, odrzucamy $H_0$.  \n\n**Przykład**  \n  \nDla $n=100$, $\\hat{p}=0.6$, $p_0=0.5$:  \n$$Z = \\frac{0.6 - 0.5}{\\sqrt{\\frac{0.5 \\times 0.5}{100}}} = 2.0 \\quad (\\text{Odrzucamy } H_0 \\text{ dla } \\alpha=0.05).$$"
+  },
+  {
+    "id": "st04",
+    "subjectId": "statystyka_matematyczna",
+    "type": "understand",
+    "question": "Omów weryfikację hipotez dotyczących średniej.",
+    "answer": "**Test dla średniej ($\\mu$) w rozkładzie normalnym**  \n  \n1. **Hipotezy**:  \n\n- $H_0: \\mu = \\mu_0$, $H_1: \\mu \\neq \\mu_0$.  \n2. **Statystyka testowa**:  \n\n- **Znane $\\sigma$**:  \n     $$Z = \\frac{\\bar{X} - \\mu_0}{\\sigma/\\sqrt{n}}$$  \n\n- **Nieznane $\\sigma$**:  \n     $$t = \\frac{\\bar{X} - \\mu_0}{s/\\sqrt{n}} \\quad (\\text{rozkład } t\\text{-Studenta z } n-1 \\text{ stopniami swobody}).$$  \n3. **Decyzja**:  \n\n- Porównaj statystykę z wartością krytyczną ($z_{\\alpha/2}$ lub $t_{\\alpha/2, n-1}$).  \n\n**Przykład**  \n  \nDane: $\\bar{x}=105$, $\\mu_0=100$, $s=10$, $n=25$:  \n$$t = \\frac{105 - 100}{10/\\sqrt{25}} = 2.5 \\quad (\\text{Odrzucamy } H_0 \\text{ dla } t_{0.025,24} \\approx 2.064).$$"
+  },
+  {
+    "id": "st05",
+    "subjectId": "statystyka_matematyczna",
+    "type": "understand",
+    "question": "Omów weryfikację hipotez dotyczących odchylenia standardowego.",
+    "answer": "**Test dla wariancji ($\\sigma^2$) w rozkładzie normalnym**  \n  \n1. **Hipotezy**:  \n\n- $H_0: \\sigma^2 = \\sigma_0^2$, $H_1: \\sigma^2 \\neq \\sigma_0^2$.  \n2. **Statystyka testowa**:  \n   $$\\chi^2 = \\frac{(n-1)s^2}{\\sigma_0^2} \\quad (\\text{rozkład chi-kwadrat z } n-1 \\text{ stopniami swobody}).$$  \n3. **Decyzja**:  \n\n- Porównaj $\\chi^2$ z wartościami krytycznymi $\\chi^2_{\\alpha/2, n-1}$ i $\\chi^2_{1-\\alpha/2, n-1}$.  \n\n**Przykład**  \n  \nDla $n=30$, $s^2=4$, $\\sigma_0^2=3$:  \n$$\\chi^2 = \\frac{29 \\times 4}{3} \\approx 38.67 \\quad (\\text{Odrzucamy } H_0 \\text{ jeśli } \\chi^2 > 45.72 \\text{ lub } \\chi^2 < 16.05 \\text{ dla } \\alpha=0.05).$$"
+  },
+  {
+    "id": "st06",
+    "subjectId": "statystyka_matematyczna",
+    "type": "understand",
+    "question": "Omów weryfikację hipotez dotyczących niezależności dwóch zmiennych.",
+    "answer": "**Test chi-kwadrat niezależności**  \n  \n1. **Hipotezy**:  \n\n- $H_0$: Zmienne są niezależne, $H_1$: Zmienne są zależne.  \n2. **Statystyka testowa**:  \n   $$\\chi^2 = \\sum \\frac{(O_{ij} - E_{ij})^2}{E_{ij}}, \\quad E_{ij} = \\frac{(\\text{suma wiersza } i) \\times (\\text{suma kolumny } j)}{n}$$  \n   gdzie $O_{ij}$ – obserwowane częstości, $E_{ij}$ – częstości oczekiwane przy niezależności.  \n3. **Decyzja**:  \n\n- Porównaj $\\chi^2$ z wartością krytyczną $\\chi^2_{\\alpha, (r-1)(c-1)}$ ($r$ – liczba wierszy, $c$ – kolumn).  \n\n**Przykład**  \n  \nTabela $2 \\times 2$ dla płci a preferencji produktu:  \n$$\\chi^2 = \\frac{(50-40)^2}{40} + \\frac{(30-40)^2}{40} + \\cdots \\quad (\\text{Odrzucamy } H_0 \\text{ jeśli } \\chi^2 > 3.84).$$"
+  }
+]

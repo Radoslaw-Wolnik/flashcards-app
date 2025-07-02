@@ -1,0 +1,44 @@
+[
+  {
+    "id": "te01",
+    "subjectId": "teoretyczne_podstawy_informatyki",
+    "type": "memorize",
+    "question": "Wyrażenia regularne – definicja",
+    "answer": "Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język regularny) nad skończonym alfabetem. Definiuje się je rekurencyjnie:  \n\n- **Baza:**  \n\n- `∅` (zbiór pusty), `ε` (słowo puste), `a` (pojedynczy symbol).  \n\n- **Operacje:**  \n\n- **Suma (alternatywa):** `R + S` = `R|S` (np. `a|b` = {a, b}).  \n\n- **Katenacja:** `R ∘ S` (np. `a ∘ b` = {ab}).  \n\n- **Gwiazdka Kleene’ego:** `R*` (np. `a*` = {ε, a, aa, aaa, ...}).  \n\n**Formalnie:** Języki regularne to najmniejsza klasa języków zawierająca `∅`, `{ε}`, `{a}` dla każdego symbolu `a`, i zamknięta na sumę, katenację i gwiazdkę Kleene’ego."
+  },
+  {
+    "id": "te02",
+    "subjectId": "teoretyczne_podstawy_informatyki",
+    "type": "understand",
+    "question": "Przykłady wyrażeń regularnych oraz ich zastosowań",
+    "answer": "**Przykłady:**  \n\n- `a(b|c)*` – wszystkie ciągi zaczynające się od `a`, po którym występuje dowolna kombinacja `b` i `c` (np. `a`, `ab`, `ac`, `abbc`).  \n\n- `[0-9]{3}-[0-9]{2}` – kody numeryczne w formacie `XXX-XX` (np. `123-45`).  \n\n- `\\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Z|a-z]{2,}\\b` – adresy email.  \n\n**Zastosowania:**  \n\n- **Walidacja danych:** Sprawdzanie poprawności formatu (np. adresy email, numery telefonów).  \n\n- **Wyszukiwanie wzorców:** W edytorach tekstu (`grep`, `sed`), analizie logów.  \n\n- **Tokenizacja w kompilatorach:** Rozpoznawanie leksemów (np. identyfikatory `[a-zA-Z_][a-zA-Z0-9_]*`)."
+  },
+  {
+    "id": "te03",
+    "subjectId": "teoretyczne_podstawy_informatyki",
+    "type": "understand",
+    "question": "Automaty skończone deterministyczne i niedeterministyczne",
+    "answer": "**a) DFA (Deterministyczny automat skończony):**  \n\n- **Definicja:** Piątka `(Q, Σ, δ, q₀, F)`, gdzie:  \n\n- `Q` – skończony zbiór stanów,  \n\n- `Σ` – alfabet,  \n\n- `δ: Q × Σ → Q` – funkcja przejścia,  \n\n- `q₀` – stan początkowy,  \n\n- `F ⊆ Q` – stany akceptujące.  \n\n- **Działanie:** Dla każdego stanu i symbolu istnieje **dokładnie jedno** przejście.  \n\n- **Przykład:** Automat akceptujący ciągi kończące się na `ab`:  \n  ![DFA](https://i.imgur.com/8zX9J0m.png)  \n\n**b) NFA (Niedeterministyczny automat skończony):**  \n\n- **Definicja:** Piątka `(Q, Σ, δ, q₀, F)`, ale `δ: Q × (Σ ∪ {ε}) → P(Q)` (zbiór stanów).  \n\n- **Działanie:** Może mieć **wiele przejść** dla jednego symbolu (lub `ε`-przejścia).  \n\n- **Przykład:** Automat akceptujący ciągi zawierające `ab`:  \n  ![NFA](https://i.imgur.com/5WYkL7f.png)  \n\n**Kluczowe różnice:**  \n| Właściwość       | DFA                          | NFA                          |  \n|------------------|------------------------------|------------------------------|  \n| Przejścia        | Deterministyczne             | Niedeterministyczne          |  \n| `ε`-przejścia    | Niedozwolone                 | Dozwolone                    |  \n| Złożoność stanów | Więcej stanów                | Mniej stanów                 |  \n| Konwersja        | –                            | Każdy NFA da się przekształcić na równoważny DFA |"
+  },
+  {
+    "id": "te04",
+    "subjectId": "teoretyczne_podstawy_informatyki",
+    "type": "understand",
+    "question": "Gramatyki bezkontekstowe i języki bezkontekstowe; zastosowania",
+    "answer": "**a) Gramatyka bezkontekstowa (CFG):**  \n\n- **Definicja:** Czworka `(V, Σ, P, S)`, gdzie:  \n\n- `V` – symbole nieterminalne (zmienne),  \n\n- `Σ` – symbole terminalne (alfabet),  \n\n- `P` – reguły produkcji postaci `A → α` (`A ∈ V`, `α ∈ (V ∪ Σ)*`),  \n\n- `S` – symbol startowy.  \n\n- **Przykład:** Gramatyka dla języka `{aⁿbⁿ | n ≥ 1}`:  \n  ```  \n  S → aSb | ab  \n  ```  \n\n**b) Język bezkontekstowy (CFL):**  \n\n- Język generowany przez CFG.  \n\n- **Przykłady:**  \n\n- Język poprawnych nawiasów: `S → (S) | SS | ε`.  \n\n- Proste wyrażenia arytmetyczne: `E → E + E | E * E | (E) | id`.  \n\n**c) Zastosowania:**  \n\n- **Kompilatory:** Parsowanie składniowe (np. drzewa składniowe w Pythonie/Java).  \n\n- **Lingwistyka komputerowa:** Modelowanie struktur zdaniowych.  \n\n- **Formaty danych:** Walidacja JSON/XML (za pomocą rozszerzonych gramatyk)."
+  },
+  {
+    "id": "te05",
+    "subjectId": "teoretyczne_podstawy_informatyki",
+    "type": "understand",
+    "question": "Maszyna Turinga i klasa języków akceptowanych przez maszyny Turinga",
+    "answer": "**a) Maszyna Turinga (MT):**  \n\n- **Definicja:** Siódemka `(Q, Σ, Γ, δ, q₀, B, F)`, gdzie:  \n\n- `Q` – stany,  \n\n- `Σ` – alfabet wejściowy,  \n\n- `Γ` – alfabet taśmowy (`Σ ⊆ Γ`),  \n\n- `δ: Q × Γ → Q × Γ × {L, R}` – funkcja przejścia (L=lewo, R=prawo),  \n\n- `q₀` – stan początkowy,  \n\n- `B ∈ Γ` – symbol pusty,  \n\n- `F ⊆ Q` – stany akceptujące.  \n\n- **Działanie:** Nieskończona taśma, głowica czyta/zapisuje symbole i przesuwa się.  \n\n**b) Klasa języków:**  \n\n- **Języki rekurencyjnie przeliczalne (RE):** Akceptowane przez MT (dowolne zatrzymanie).  \n\n- **Języki rekurencyjne:** Akceptowane przez MT, które **zawsze się zatrzymują**.  \n\n**c) Moc obliczeniowa:**  \n\n- MT rozpoznaje wszystkie języki, dla których istnieje **algorytm** (hipoteza Churcha-Turinga).  \n\n- **Przykład:** Język `{aⁿbⁿcⁿ | n ≥ 0}` jest rozpoznawany przez MT, ale nie przez gramatyki bezkontekstowe."
+  },
+  {
+    "id": "te06",
+    "subjectId": "teoretyczne_podstawy_informatyki",
+    "type": "memorize",
+    "question": "Hierarchia Chomsky’ego",
+    "answer": "Klasyfikacja gramatyk formalnych i odpowiadających im języków:  \n\n| Typ  | Gramatyka          | Automat               | Język                     | Przykład               |  \n|------|--------------------|-----------------------|---------------------------|------------------------|  \n| **0**| Unrestricted       | Maszyna Turinga      | RE (rekurencyjnie przeliczalne) | `{aⁿbⁿcⁿ \\| n ≥ 0}` |  \n| **1**| Kontekstowa        | Liniowo ograniczony  | Kontekstowy               | `{aⁿbⁿcᵐ \\| n, m ≥ 0}`|  \n| **2**| Bezkontekstowa     | Automat ze stosem    | Bezkontekstowy (CFL)      | `{aⁿbⁿ \\| n ≥ 0}`     |  \n| **3**| Regularna          | DFA/NFA              | Regularny                 | `{aⁿ \\| n ≥ 0}`       |  \n\n**Kluczowe własności:**  \n\n- **Hierarchia inkluzyjna:** Typ 3 ⊂ Typ 2 ⊂ Typ 1 ⊂ Typ 0.  \n\n- **Moc obliczeniowa:** Maleje od Typu 0 (najsilniejszy) do Typu 3 (najsłabszy)."
+  }
+]

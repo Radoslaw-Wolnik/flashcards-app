@@ -1,0 +1,37 @@
+[
+  {
+    "id": "po01",
+    "subjectId": "podstawy_inżynierii_oprogramowania",
+    "type": "understand",
+    "question": "Przypadki użycia (use cases) w UML: notacja, zastosowania, diagram dla bankomatu",
+    "answer": "**Definicja:** Przypadki użycia opisują **interakcje między aktorami a systemem** w celu osiągnięcia konkretnego celu.  \n\n- **Aktor:** Rola zewnętrzna (człowiek/system) inicjująca interakcję (np. \"Klient\", \"Bank\").  \n\n- **Przypadek użycia:** Funkcjonalność systemu (np. \"Wypłata gotówki\").  \n\n**Notacja UML:**  \n\n- **Aktor:** Stick figure (🧍).  \n\n- **Przypadek użycia:** Elipsa z nazwą.  \n\n- **Relacje:**  \n\n- `→` (Asocjacja): Aktor wywołuje przypadek użycia.  \n\n- `⪧` (Include): Wymagane wywołanie innego przypadku (np. \"Weryfikuj PIN\" musi być w \"Wypłata gotówki\").  \n\n- `⪦` (Extend): Opcjonalne rozszerzenie (np. \"Drukuj potwierdzenie\" rozszerza \"Wypłata gotówki\").  \n\n**Diagram dla bankomatu:**  \n```  \n[Klient] → (Wypłata gotówki) \n(Wypłata gotówki) ⪧ (Weryfikuj PIN)  \n(Wypłata gotówki) ⪦ (Drukuj potwierdzenie)  \n[Bank] → (Aktualizuj saldo)  \n```  \n**Zastosowania:**  \n\n- Identyfikacja wymagań funkcjonalnych.  \n\n- Komunikacja z interesariuszami (np. klientem)."
+  },
+  {
+    "id": "po02",
+    "subjectId": "podstawy_inżynierii_oprogramowania",
+    "type": "understand",
+    "question": "Diagram klas w UML: składnia, zastosowania, diagram dla programu opisującego samochód",
+    "answer": "**Definicja:** Diagram klas modeluje **strukturę systemu** (klasy, atrybuty, metody, relacje).  \n\n**Składnia:**  \n\n- **Klasa:** Prostokąt z sekcjami: `Nazwa | Atrybuty | Metody()`.  \n\n- **Relacje:**  \n\n- **Asocjacja:** Linia (np. `Samochód — Silnik`).  \n\n- **Agregacja:** ◇ (część może istnieć bez całości, np. `Warsztat ◇— Samochód`).  \n\n- **Kompozycja:** ◆ (część niszczona z całością, np. `Samochód ◆— Koło`).  \n\n- **Dziedziczenie:** △ (strzałka pusta, np. `Pojazd ←△ Samochód`).  \n\n**Diagram dla programu \"Samochód\":**  \n```  \n[Pojazd]  \n△  \n[Samochód]  \n| marka: String  \n| model: String  \n| start()  \n|  \n◆— [Silnik]  \n| typ: String  \n| pojemność: Float  \n|  \n◇— [Kierowca]  \n| imię: String  \n|  \n```  \n**Zastosowania:**  \n\n- Projektowanie struktury obiektowej.  \n\n- Dokumentacja architektury systemu."
+  },
+  {
+    "id": "po03",
+    "subjectId": "podstawy_inżynierii_oprogramowania",
+    "type": "understand",
+    "question": "Diagram sekwencji w UML: składnia, zastosowania, diagram dla scenariusza bankomatu",
+    "answer": "**Definicja:** Diagram sekwencji pokazuje **kolejność komunikatów między obiektami** w scenariuszu.  \n\n**Składnia:**  \n\n- **Obiekty:** Prostokąt z nazwą (`:Klasa`).  \n\n- **Linia życia:** Linia przerywana od obiektu.  \n\n- **Komunikat:** Strzałka:  \n\n- `→` (Synchroniczny, oczekuje odpowiedzi).  \n\n- `⤍` (Asynchroniczny, bez oczekiwania).  \n\n- **Aktywacja:** Prostokąt na linii życia (czas wykonania).  \n\n**Diagram dla scenariusza \"Wypłata gotówki\":**  \n```  \n[Klient]       [:Bankomat]       [:SystemBankowy]  \n   | → Włóż kartę       |                   |  \n   | ← Wprowadź PIN     |                   |  \n   | → PIN: \"1234\"      | → Sprawdź PIN()   |  \n   |               | ←----- Poprawny ----|  \n   | → Kwota: 500  | → Sprawdź saldo()  |  \n   |               | ←----- Saldo OK ---|  \n   | ← Wypłata gotówki | → Zaktualizuj saldo()  \n```  \n**Zastosowania:**  \n\n- Projektowanie logiki biznesowej.  \n\n- Testowanie scenariuszy."
+  },
+  {
+    "id": "po04",
+    "subjectId": "podstawy_inżynierii_oprogramowania",
+    "type": "understand",
+    "question": "Diagram stanu w UML: składnia, zastosowania, diagram dla automatu z napojami",
+    "answer": "**Definicja:** Diagram stanów modeluje **zachowanie obiektu w reakcji na zdarzenia**.  \n\n**Składnia:**  \n\n- **Stan:** Zaokrąglony prostokąt (np. \"Oczekiwanie\").  \n\n- **Przejście:** Strzałka z etykietą `zdarzenie [warunek] / akcja`.  \n\n- **Stany specjalne:**  \n\n- ● (Stan początkowy).  \n\n- ⬭ (Stan końcowy).  \n\n**Diagram dla automatu z napojami:**  \n```  \n● → [Oczekiwanie]  \n|   \"Wybierz napój\" [brak monety] → [Błąd: \"Wrzuć monetę\"]  \n|   \"Wrzuć monetę\" / suma += wartość → [Akceptacja monet]  \n|   \"Wybierz napój\" [suma >= cena] / wydaj napój → [Wydawanie napoju] → ⬭  \n|   \"Wybierz napój\" [suma < cena] → [Błąd: \"Niewystarczająca kwota\"]  \n```  \n**Zastosowania:**  \n\n- Modelowanie zachowania urządzeń (np. automaty).  \n\n- Implementacja maszyn stanowych w kodzie."
+  },
+  {
+    "id": "po05",
+    "subjectId": "podstawy_inżynierii_oprogramowania",
+    "type": "understand",
+    "question": "Podstawowe fazy tworzenia oprogramowania; charakteryzacja co najmniej trzech modeli cyklu życia",
+    "answer": "**Fazy tworzenia oprogramowania:**  \n1. **Zbieranie wymagań:** Definicja potrzeb klienta.  \n2. **Projektowanie:** Architektura systemu (diagramy UML).  \n3. **Implementacja:** Kodowanie.  \n4. **Testowanie:** Weryfikacja poprawności.  \n5. **Wdrożenie:** Instalacja u klienta.  \n6. **Utrzymanie:** Naprawa błędów i aktualizacje.  \n\n**Modele cyklu życia:**  \n| Model          | Charakterystyka                                                                 | Zalety/Wady                                  |  \n|----------------|---------------------------------------------------------------------------------|----------------------------------------------|  \n| **Kaskadowy**  | Fazy wykonują się **liniowo** (zakończenie jednej → start następnej).          | **+** Prosta dokumentacja<br>**-** Brak elastyczności, zmiany trudne |  \n| **Iteracyjny** | System budowany **w cyklach** (każda iteracja dostarcza działający podsystem). | **+** Elastyczność na zmiany<br>**-** Złożone zarządzanie |  \n| **Agile (Scrum)**| **Przyrosty** (sprinty 2-4 tyg.), codzienne spotkania, backlog zadań.         | **+** Szybka reakcja na zmiany<br>**-** Wymaga zaangażowania klienta |  \n| **Spiralny**   | Połączenie kaskadowego i iteracyjnego + **analiza ryzyka** w każdej iteracji.  | **+** Skupienie na ryzykach<br>**-** Wysokie koszty |  \n\n**Przykład Agile/Scrum:**  \n\n- **Sprint Planning:** Wybór zadań z backlogu.  \n\n- **Daily Stand-up:** 15-minutowe spotkanie (co zrobiłem? co zrobię? blokady?).  \n\n- **Sprint Review:** Prezentacja przyrostu klientowi.  \n\n- **Retrospective:** Usprawnienia procesu."
+  }
+]

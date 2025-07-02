@@ -1,0 +1,79 @@
+[
+  {
+    "id": "ma01",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Metoda indukcji matematycznej",
+    "answer": "**Definicja:** Dowodzenie twierdzeń dla liczb naturalnych przez:  \n1. **Baza indukcyjna:** Sprawdzenie prawdziwości dla $n_0$ (np. $n=1$).  \n2. **Krok indukcyjny:**  \n\n- Założenie: Twierdzenie prawdziwe dla $n = k$ (*założenie indukcyjne*).  \n\n- Dowód: Prawdziwość dla $n = k+1$.  \n\n**Przykład:** Dowód, że $1 + 2 + \\dots + n = \\frac{n(n+1)}{2}$:  \n\n- **Baza:** Dla $n=1$: $1 = \\frac{1 \\cdot 2}{2} = 1$.  \n\n- **Krok:**  \n\n- Załóżmy, że wzór jest prawdziwy dla $k$: $\\sum_{i=1}^k i = \\frac{k(k+1)}{2}$.  \n\n- Dla $k+1$:  \n    $$\\sum_{i=1}^{k+1} i = \\sum_{i=1}^k i + (k+1) = \\frac{k(k+1)}{2} + (k+1) = \\frac{(k+1)(k+2)}{2}. \\quad \\square$$"
+  },
+  {
+    "id": "ma02",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Sposoby kodowania liczb w komputerze",
+    "answer": "**a) Liczby całkowite:**  \n\n- **Uzupełnienie do dwóch** (*two's complement*):  \n\n- Najstarszy bit: znak (0 – dodatnia, 1 – ujemna).  \n\n- Np. $-3$ w 4 bitach:  \n    $3 = 0011 \\rightarrow \\text{odwróć bity} = 1100 \\rightarrow \\text{dodaj 1} = 1101$.  \n\n- **Kod BCD**: Każda cyfra dziesiętna kodowana 4 bitami (np. $12 \\rightarrow 0001\\ 0010$).  \n\n**b) Liczby rzeczywiste:**  \n\n- **Zmiennoprzecinkowe (IEEE 754):**  \n\n- Składniki: znak ($S$), wykładnik ($E$), mantysa ($M$).  \n\n- Wartość: $(-1)^S \\times 1.M \\times 2^{E-\\text{bias}}$.  \n\n- Np. float (32 bity): $S$ (1 bit), $E$ (8 bitów), $M$ (23 bity)."
+  },
+  {
+    "id": "ma03",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Zasada szufladkowa Dirichleta",
+    "answer": "**Treść:** Jeśli $n$ obiektów umieszczamy w $m$ szufladach i $n > m$, to co najmniej jedna szuflada zawiera $\\lceil n/m \\rceil$ obiektów.  \n\n**Przykłady:**  \n1. Wśród 13 osób co najmniej 2 urodziły się w tym samym miesiącu ($13 > 12$ miesięcy).  \n2. Dowód, że w grupie 6 osób są 3 znajomych lub 3 obcych (teoria grafów: $K_6$ z krawędziami w 2 kolorach)."
+  },
+  {
+    "id": "ma04",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Liczba ciągów bez powtórzeń, z powtórzeniami, funkcji, podzbiorów, podzbiorów k-elementowych",
+    "answer": "- **Ciągi bez powtórzeń** (permutacje):  \n  $$P(n) = n! \\quad \\text{(np. } n=3: 123, 132, 213, \\dots)$$  \n\n- **Ciągi z powtórzeniami** (wariacje z powtórzeniami):  \n  $$W_n^k = n^k \\quad \\text{(np. } n=2, k=2: 00,01,10,11)$$  \n\n- **Funkcje:** Liczba funkcji $f: A \\to B$:  \n  $$|B|^{|A|} \\quad \\text{(gdy } |A|=k, |B|=n \\text{)}$$  \n\n- **Podzbiory:**  \n  $$2^n \\quad \\text{(np. } n=2: \\emptyset, \\{1\\}, \\{2\\}, \\{1,2\\})$$  \n\n- **Podzbiory $k$-elementowe** (kombinacje):  \n  $$\\binom{n}{k} = \\frac{n!}{k!(n-k)!} \\quad \\text{(np. } n=3, k=2: \\{1,2\\}, \\{1,3\\}, \\{2,3\\}\\text{)}$$"
+  },
+  {
+    "id": "ma05",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Relacja kongruencji modulo, pierścień \\(\\mathbb{Z}_m\\). Metody szukania elementów odwrotnych w \\(\\mathbb{Z}_m\\)",
+    "answer": "**Kongruencja modulo $m$:**  \n$$a \\equiv b \\pmod{m} \\iff m \\mid (a - b).$$  \n**Pierścień $\\mathbb{Z}_m$:** Zbiór reszt $\\{0, 1, \\dots, m-1\\}$ z działaniami dodawania i mnożenia modulo $m$.  \n\n**Element odwrotny w $\\mathbb{Z}_m$:**  \nLiczba $a$ ma element odwrotny modulo $m$ wtedy i tylko wtedy, gdy $\\gcd(a, m) = 1$.  \n\n- **Rozszerzony algorytm Euklidesa:** Znajduje $x, y$ takie, że $ax + my = 1$. Wtedy $x \\equiv a^{-1} \\pmod{m}$.  \n  *Przykład:* Znajdź $3^{-1} \\pmod{11}$:  \n  $$11 = 3 \\cdot 3 + 2, \\quad 3 = 2 \\cdot 1 + 1, \\quad 1 = 3 - 2 \\cdot 1 = 3 - (11 - 3 \\cdot 3) = 4 \\cdot 3 - 1 \\cdot 11.$$  \n  Zatem $3^{-1} \\equiv 4 \\pmod{11}$."
+  },
+  {
+    "id": "ma06",
+    "subjectId": "matematyka_dyskretna",
+    "type": "memorize",
+    "question": "Definicja oraz własności funkcji Eulera",
+    "answer": "**Definicja:** $\\phi(n)$ to liczba liczb całkowitych w $\\{1, 2, \\dots, n\\}$ względnie pierwszych z $n$.  \n\n- **Wzór:** Jeśli $n = p_1^{k_1} \\cdots p_r^{k_r}$, to:  \n  $$\\phi(n) = n \\left(1 - \\frac{1}{p_1}\\right) \\cdots \\left(1 - \\frac{1}{p_r}\\right).$$  \n\n**Własności:**  \n1. $\\phi(p) = p-1$ dla liczby pierwszej $p$.  \n2. $\\phi(p^k) = p^k - p^{k-1}$.  \n3. Jeśli $\\gcd(a,b)=1$, to $\\phi(ab) = \\phi(a) \\phi(b)$.  \n4. **Twierdzenie Eulera:** Jeśli $\\gcd(a,n)=1$, to $a^{\\phi(n)} \\equiv 1 \\pmod{n}$.  \n\n**Przykład:** $\\phi(10) = 4$ (liczby: 1,3,7,9)."
+  },
+  {
+    "id": "ma07",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Szyfrowanie asymetryczne - algorytm RSA",
+    "answer": "**Kroki generowania kluczy:**  \n1. Wybierz dwie duże liczby pierwsze $p, q$.  \n2. Oblicz $n = p \\cdot q$ oraz $\\phi(n) = (p-1)(q-1)$.  \n3. Wybierz $e$ takie, że $1 < e < \\phi(n)$ i $\\gcd(e, \\phi(n)) = 1$.  \n4. Znajdź $d$ takie, że $e \\cdot d \\equiv 1 \\pmod{\\phi(n)}$ (użyj rozszerzonego algorytmu Euklidesa).  \n\n- **Klucz publiczny:** $(e, n)$.  \n\n- **Klucz prywatny:** $(d, n)$.  \n\n**Szyfrowanie:** Dla wiadomości $M$:  \n$$C = M^e \\mod n.$$  \n**Deszyfrowanie:**  \n$$M = C^d \\mod n.$$  \n\n**Bezpieczeństwo:** Opiera się na trudności faktoryzacji dużych liczb $n$."
+  },
+  {
+    "id": "ma08",
+    "subjectId": "matematyka_dyskretna",
+    "type": "memorize",
+    "question": "Sieci boolowskie – definicja oraz przykłady",
+    "answer": "**Definicja:** Sieć boolowska to skierowany graf acykliczny (DAG), gdzie:  \n\n- Wierzchołki: Bramki logiczne (AND, OR, NOT, XOR).  \n\n- Krawędzie: Połączenia między bramkami.  \n\n- Wejścia: Stałe 0/1 lub zmienne.  \n\n**Przykłady:**  \n1. **Bramka XOR:** $A \\oplus B = (A \\land \\neg B) \\lor (\\neg A \\land B)$.  \n   ``` \n   A --|     \\\n        | AND |-- OR --> Wynik\n   B --|_____/\n   ```  \n2. **Półsumator (half-adder):**  \n\n- Suma: $S = A \\oplus B$.  \n\n- Przeniesienie: $C = A \\land B$."
+  },
+  {
+    "id": "ma09",
+    "subjectId": "matematyka_dyskretna",
+    "type": "memorize",
+    "question": "Definicja oraz własności funkcji parzystości",
+    "answer": "**Definicja:** Funkcja $f: \\mathbb{Z} \\to \\mathbb{Z}$ jest:  \n\n- **Parzysta:** $f(-x) = f(x)$ (symetria względem OY).  \n\n- **Nieparzysta:** $f(-x) = -f(x)$ (symetria względem (0,0)).  \n\n**Własności:**  \n1. Suma funkcji parzystych jest parzysta.  \n2. Iloczyn funkcji parzystej i nieparzystej jest nieparzysty.  \n3. **Rozkład dowolnej funkcji:**  \n   $$f(x) = \\frac{f(x) + f(-x)}{2} + \\frac{f(x) - f(-x)}{2}.$$  \n   (część parzysta + część nieparzysta).  \n\n**Przykład:**  \n\n- Parzysta: $f(x) = x^2$, bo $(-x)^2 = x^2$.  \n\n- Nieparzysta: $g(x) = x^3$, bo $(-x)^3 = -x^3$."
+  },
+  {
+    "id": "ma10",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Drzewa i algorytmy przeszukiwania drzew, drzewa przeszukiwań binarnych",
+    "answer": "**Drzewo:** Spójny graf acykliczny.  \n\n- **BST (Binary Search Tree):**  \n\n- Dla każdego węzła:  \n\n- Wszystkie w lewym poddrzewie mają wartości $\\leq$ węzła.  \n\n- Wszystkie w prawym poddrzewie mają wartości $>$ węzła.  \n\n**Algorytmy przeszukiwania:**  \n1. **DFS (Depth-First Search):**  \n\n- **In-order** (lewe-poddrzewo, korzeń, prawe-poddrzewo): Zwraca elementy posortowane.  \n\n- **Pre-order** (korzeń, lewe, prawe): Kopiowanie struktury drzewa.  \n\n- **Post-order** (lewe, prawe, korzeń): Usuwanie drzewa.  \n2. **BFS (Breadth-First Search):** Poziomy od korzenia.  \n\n**Złożoność operacji w BST:**  \n\n- Wyszukiwanie/wstawianie: $O(h)$, gdzie $h$ – wysokość drzewa (dla zrównoważonego BST: $O(\\log n)$)."
+  },
+  {
+    "id": "ma11",
+    "subjectId": "matematyka_dyskretna",
+    "type": "understand",
+    "question": "Rekurencja - przykłady algorytmów rekurencyjnych; rekurencyjne definiowanie funkcji",
+    "answer": "**Rekurencja:** Funkcja wywołująca samą siebie z mniejszym problemem.  \n\n**Przykłady algorytmów:**  \n1. **Silnia:**  \n   ```python\n   def factorial(n):\n       if n == 0: return 1\n       else: return n * factorial(n-1)\n   ```  \n2. **Ciąg Fibonacciego:**  \n   ```python\n   def fib(n):\n       if n <= 1: return n\n       else: return fib(n-1) + fib(n-2)\n   ```  \n3. **Przeszukiwanie BST (in-order):**  \n   ```python\n   def inorder(node):\n       if node:\n           inorder(node.left)\n           print(node.value)\n           inorder(node.right)\n   ```  \n\n**Rekurencyjne definiowanie funkcji:**  \n\n- **Baza:** Wartość dla najmniejszego argumentu (np. $f(0) = 1$).  \n\n- **Krok rekurencyjny:** $f(n)$ wyrażone przez $f(k)$ dla $k < n$ (np. $f(n) = n \\cdot f(n-1)$)."
+  }
+]

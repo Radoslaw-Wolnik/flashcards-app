@@ -1,0 +1,92 @@
+[
+  {
+    "id": "teoretyczne_podstawy_informatyki",
+    "name": "Teoretyczne Podstawy Informatyki",
+    "categoryId": "cs",
+    "teacherId": "A"
+  },
+  {
+    "id": "języki_programowania_i",
+    "name": "Języki Programowania I",
+    "categoryId": "cs",
+    "teacherId": "A"
+  },
+  {
+    "id": "języki_programowania_ii",
+    "name": "Języki Programowania II",
+    "categoryId": "cs",
+    "teacherId": "C"
+  },
+  {
+    "id": "matematyka_dyskretna",
+    "name": "Matematyka Dyskretna",
+    "categoryId": "cs",
+    "teacherId": "C"
+  },
+  {
+    "id": "algorytmy_i_struktury_danych",
+    "name": "Algorytmy i Struktury Danych",
+    "categoryId": "cs",
+    "teacherId": "C"
+  },
+  {
+    "id": "systemy_operacyjne",
+    "name": "Systemy Operacyjne",
+    "categoryId": "cs",
+    "teacherId": "C"
+  },
+  {
+    "id": "architektura_komputerów",
+    "name": "Architektura Komputerów",
+    "categoryId": "cs",
+    "teacherId": "A"
+  },
+  {
+    "id": "sieci_komputerowe",
+    "name": "Sieci Komputerowe",
+    "categoryId": "cs",
+    "teacherId": "A"
+  },
+  {
+    "id": "bazy_danych",
+    "name": "Bazy Danych",
+    "categoryId": "cs",
+    "teacherId": "C"
+  },
+  {
+    "id": "podstawy_inżynierii_oprogramowania",
+    "name": "Podstawy Inżynierii Oprogramowania",
+    "categoryId": "cs",
+    "teacherId": "C"
+  },
+  {
+    "id": "analiza_matematyczna",
+    "name": "Analiza Matematyczna",
+    "categoryId": "maths",
+    "teacherId": "B"
+  },
+  {
+    "id": "algebra_liniowa",
+    "name": "Algebra Liniowa",
+    "categoryId": "maths",
+    "teacherId": "B"
+  },
+  {
+    "id": "rachunek_prawdopodobieństwa",
+    "name": "Rachunek prawdopodobieństwa",
+    "categoryId": "maths",
+    "teacherId": "B"
+  },
+  {
+    "id": "statystyka_matematyczna",
+    "name": "Statystyka Matematyczna",
+    "categoryId": "maths",
+    "teacherId": "A"
+  },
+  {
+    "id": "analiza_danych_i_metody_numeryczne",
+    "name": "Analiza Danych i Metody Numeryczne",
+    "categoryId": "maths",
+    "teacherId": "B"
+  }
+]

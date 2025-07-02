@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ję01",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Typy proste i obiektowe w języku Java",
+    "answer": "**Answer:**  \n**a) Typy proste (prymitywne):**  \n\n- 8 podstawowych typów: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, `boolean`.  \n\n- Przechowywane **na stosie**, bez metod.  \n\n- **Autoboxing/Autounboxing** (automatyczna konwersja na obiekty i z powrotem):  \n  ```java\n  int x = 5;                     // Typ prosty\n  Integer obj = x;                // Autoboxing (int → Integer)\n  int y = obj;                    // Unboxing (Integer → int)\n  ```\n\n**b) Typy obiektowe:**  \n\n- Klasy (np. `String`, `ArrayList`), interfejsy, tablice.  \n\n- Przechowywane **na stercie**, mają metody i pola.  \n\n- Domyślna wartość: `null`.  \n  ```java\n  String text = new String(\"Hello\");  // Obiekt\n  String name = \"Java\";               // Literał łańcuchowy (też obiekt)\n  ```\n\n**Kluczowa różnica:**  \n```java\nint a = 5;                           // Typ prosty\nInteger b = new Integer(5);          // Typ obiektowy\nSystem.out.println(a == b);          // true (autounboxing)\nSystem.out.println(b.equals(5));     // true\n```"
+  },
+  {
+    "id": "ję02",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Użycie słów kluczowych: `abstract`, `final`, `static`",
+    "answer": "**a) `abstract`:**  \n\n- **Klasa:** Nie można tworzyć instancji, służy jako baza dla podklas.  \n\n- **Metoda:** Brak implementacji, musi być nadpisana w podklasie.  \n  ```java\n  abstract class Animal {\n      abstract void makeSound();  // Metoda abstrakcyjna\n  }\n  ```\n\n**b) `final`:**  \n\n- **Klasa:** Nie można dziedziczyć (np. `String`).  \n\n- **Metoda:** Nie można nadpisać.  \n\n- **Zmienna:** Stała (niezmienialna).  \n  ```java\n  final class MathUtils {}          // Klasa finalna\n  final double PI = 3.14159;        // Stała\n  ```\n\n**c) `static`:**  \n\n- Należy do **klasy**, a nie instancji.  \n\n- Współdzielone przez wszystkie obiekty klasy.  \n  ```java\n  class Counter {\n      static int count = 0;         // Współdzielone pole\n      Counter() { count++; }\n      static void reset() { count = 0; } // Metoda statyczna\n  }\n  ```"
+  },
+  {
+    "id": "ję03",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Sposoby zabezpieczania dostępu do komponentów klas i obiektów w Java",
+    "answer": "**Modyfikatory dostępu:**  \n\n- **`private`**: Dostęp tylko w tej samej klasie.  \n\n- **`protected`**: Dostęp w pakiecie + podklasach.  \n\n- **`public`**: Dostęp wszędzie.  \n\n- **Brak modyfikatora (domyślny)**: Dostęp tylko w pakiecie.  \n\n**Przykład:**  \n```java\npublic class BankAccount {\n    private double balance;          // Pole prywatne\n\n    public double getBalance() {     // Publiczny getter\n        return balance;\n    }\n\n    protected void setBalance(double amount) { // Protected setter\n        if (amount > 0) balance = amount;\n    }\n}\n```\n\n**Zasada hermetyzacji:** Pola prywatne + publiczne metody dostępowe (getters/setters)."
+  },
+  {
+    "id": "ję04",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Polimorfizm w językach obiektowych (na przykładach)",
+    "answer": "**Definicja:** Zdolność obiektu do przyjmowania wielu form.  \n**a) Przesłanianie metod (Override):**  \n```java\nclass Animal {\n    void makeSound() { System.out.println(\"Some sound\"); }\n}\n\nclass Dog extends Animal {\n    @Override\n    void makeSound() { System.out.println(\"Bark!\"); } // Nadpisanie\n}\n\nAnimal myPet = new Dog();\nmyPet.makeSound();  // \"Bark!\" (polimorfizm runtime)\n```\n\n**b) Przeciążanie metod (Overload):**  \n```java\nclass Calculator {\n    int add(int a, int b) { return a + b; }\n    double add(double a, double b) { return a + b; } // Inne parametry\n}\n```\n\n**c) Polimorfizm przez interfejsy:**  \n```java\ninterface Shape {\n    double area();\n}\n\nclass Circle implements Shape {\n    public double area() { return Math.PI * radius * radius; }\n}\n\nclass Square implements Shape {\n    public double area() { return side * side; }\n}\n```"
+  },
+  {
+    "id": "ję05",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Pakiety i interfejsy w Javie",
+    "answer": "**a) Pakiety:**  \n\n- Organizują klasy w grupy (np. `java.util`, `com.mojafirma.model`).  \n\n- Zapobiegają konfliktom nazw.  \n\n- **Import:**  \n  ```java\n  import java.util.ArrayList;  // Import pojedynczej klasy\n  import java.util.*;          // Import całego pakietu\n  ```\n\n**b) Interfejsy:**  \n\n- Definiują **kontrakt** (metody bez implementacji).  \n\n- Umożliwiają wielodziedziczenie zachowań.  \n```java\ninterface Drawable {\n    void draw();  // Metoda abstrakcyjna\n    default void resize() {   // Metoda domyślna (Java 8+)\n        System.out.println(\"Resizing...\");\n    }\n}\n\nclass Circle implements Drawable {\n    public void draw() { /* implementacja */ }\n}\n```"
+  },
+  {
+    "id": "ję06",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Tworzenie i synchronizacja wątków w Javie",
+    "answer": "**a) Tworzenie wątków:**  \n\n- **Rozszerzenie klasy `Thread`:**  \n  ```java\n  class MyThread extends Thread {\n      public void run() {\n          System.out.println(\"Wątek działa\");\n      }\n  }\n  new MyThread().start();\n  ```\n\n- **Implementacja `Runnable` (lepsza praktyka):**  \n  ```java\n  new Thread(() -> {\n      System.out.println(\"Lambda wątek\");\n  }).start();\n  ```\n\n**b) Synchronizacja:**  \n\n- Chroni przed **współbieżnym dostępem** do zasobów.  \n\n- **Słowo kluczowe `synchronized`:**  \n  ```java\n  class Counter {\n      private int count = 0;\n      \n      public synchronized void increment() { // Synchronizowana metoda\n          count++;\n      }\n  }\n  ```\n\n- **Blok synchronizowany:**  \n  ```java\n  synchronized (lockObject) {  // Jawna blokada\n      // Krytyczna sekcja\n  }\n  ```"
+  },
+  {
+    "id": "ję07",
+    "subjectId": "języki_programowania_ii",
+    "type": "understand",
+    "question": "Podstawy programowania generycznego w Javie (na podstawie kolekcji)",
+    "answer": "**Generyki (Generics):**  \n\n- Pozwalają tworzyć **typowe bezpieczne** klasy/interfejsy.  \n\n- Eliminują konieczność rzutowania.  \n\n**Przykład z kolekcjami:**  \n```java\nList<String> names = new ArrayList<>(); // Typ bezpieczny\nnames.add(\"Anna\");\n// names.add(42); // Błąd kompilacji!\nString first = names.get(0); // Bez rzutowania\n```\n\n**Własna klasa generyczna:**  \n```java\nclass Box<T> {\n    private T content;\n    void setContent(T content) { this.content = content; }\n    T getContent() { return content; }\n}\n\nBox<Integer> intBox = new Box<>();\nintBox.setContent(42);\n```\n\n**Wildcards (`?`):**  \n```java\nvoid printList(List<?> list) { // Akceptuje listę dowolnego typu\n    for (Object item : list) System.out.println(item);\n}\n```"
+  }
+]

@@ -1,0 +1,51 @@
+[
+  {
+    "id": "ba01",
+    "subjectId": "bazy_danych",
+    "type": "memorize",
+    "question": "Pojęcia klucza w relacyjnych bazach danych i słowa kluczowe w SQL",
+    "answer": "**Klucze:**  \n\n- **Klucz główny (Primary Key):** Unikalnie identyfikuje wiersz w tabeli (np. `id`).  \n  ```sql\n  CREATE TABLE Users (\n      id INT PRIMARY KEY,  -- Definicja klucza\n      name VARCHAR(50)\n  );\n  ```  \n\n- **Klucz obcy (Foreign Key):** Wskazuje na klucz główny innej tabeli, tworząc relację.  \n  ```sql\n  CREATE TABLE Orders (\n      order_id INT PRIMARY KEY,\n      user_id INT REFERENCES Users(id)  -- Klucz obcy\n  );\n  ```  \n\n- **Klucz kandydujący (Candidate Key):** Zbiór atrybutów mogących pełnić rolę klucza głównego (np. `email` lub `pesel`).  \n\n- **Nadklucz (Super Key):** Nadzbiór klucza kandydującego (np. `id + email`).  \n\n**Słowa kluczowe SQL:**  \n\n- `PRIMARY KEY`  \n\n- `FOREIGN KEY ... REFERENCES`  \n\n- `UNIQUE` (dla kluczy kandydujących)"
+  },
+  {
+    "id": "ba02",
+    "subjectId": "bazy_danych",
+    "type": "memorize",
+    "question": "Warunki poprawności (więzy) dla tabel baz danych",
+    "answer": "**Więzy integralności:**  \n| Typ więzu              | Opis                                                                 | Przykład SQL                                  |  \n|------------------------|----------------------------------------------------------------------|-----------------------------------------------|  \n| **Encja (NOT NULL)**   | Kolumna nie może być pusta.                                          | `name VARCHAR(50) NOT NULL`                   |  \n| **Domeny (CHECK)**     | Wartość musi spełniać warunek.                                       | `age INT CHECK (age >= 18)`                   |  \n| **Klucza (UNIQUE)**    | Wartości w kolumnie muszą być unikalne.                              | `email VARCHAR(100) UNIQUE`                   |  \n| **Referencyjna (FOREIGN KEY)** | Wartość w kolumnie musi istnieć w innej tabelie.                   | `FOREIGN KEY (dept_id) REFERENCES Departments(id)` |  \n\n**Przykład złożonego więzu:**  \n```sql\nCREATE TABLE Employees (\n    id INT PRIMARY KEY,\n    salary DECIMAL(10,2) CHECK (salary > 0),\n    dept_id INT NOT NULL,\n    FOREIGN KEY (dept_id) REFERENCES Departments(id)\n);\n```"
+  },
+  {
+    "id": "ba03",
+    "subjectId": "bazy_danych",
+    "type": "understand",
+    "question": "Pojęcie transakcji, własności transakcji, przykłady negatywnych zjawisk",
+    "answer": "**Transakcja:** Sekwencja operacji traktowana jako **niepodzielna jednostka pracy** (np. przelew bankowy).  \n\n**Własności ACID:**  \n| Własność       | Opis                                                                 |  \n|----------------|----------------------------------------------------------------------|  \n| **Atomowość (Atomicity)** | Transakcja wykonuje się w całości lub wcale (cofnięcie przy błędzie). |  \n| **Spójność (Consistency)** | Transakcja prowadzi bazę z jednego stanu spójnego w inny.           |  \n| **Izolacja (Isolation)** | Współbieżne transakcje nie wpływają na siebie.                      |  \n| **Trwałość (Durability)** | Po zatwierdzeniu zmiany są permanentne.                             |  \n\n**Negatywne zjawiska bez transakcji:**  \n\n- **Brudne odczyty (Dirty Reads):** Odczyt niezatwierdzonych danych (np. odczyt anulowanego przelewu).  \n\n- **Nierepeatowalne odczyty (Non-repeatable Reads):** Różne wyniki przy powtórzeniu odczytu (np. zmiana salda podczas odczytu).  \n\n- **Odczyty fantomowe (Phantom Reads):** Pojawienie się nowych wierszy między odczytami (np. nowy użytkownik podczas generowania raportu).  \n\n**SQL:**  \n```sql\nBEGIN TRANSACTION;  -- Start transakcji\nUPDATE Accounts SET balance = balance - 100 WHERE id = 1;\nUPDATE Accounts SET balance = balance + 100 WHERE id = 2;\nCOMMIT;  -- Zatwierdź\n-- ROLLBACK; -- Cofnij w przypadku błędu\n```"
+  },
+  {
+    "id": "ba04",
+    "subjectId": "bazy_danych",
+    "type": "understand",
+    "question": "Negatywne strony redundancji w bazach danych, przykłady, sposoby zwalczania",
+    "answer": "**Redundancja = powielanie danych.**  \n**Negatywne skutki:**  \n\n- **Niespójność danych:** Aktualizacja w jednym miejscu, brak w innym (np. zmiana adresu klienta w `Orders`, ale nie w `Users`).  \n\n- **Marnotrawstwo miejsca:** Powielone dane zajmują przestrzeń.  \n\n- **Trudności w utrzymaniu:** Złożone aktualizacje.  \n\n**Przykład redundancji:**  \nTabela `Orders` przechowuje:  \n| `order_id` | `user_name` | `user_address` | ... |  \n|------------|-------------|----------------|-----|  \n| 101        | Jan Kowalski| Kraków         | ... |  \n\n*Problem:* Jeśli adres użytkownika zmieni się w `Users`, `Orders` będzie przechowywać starą wartość.  \n\n**Sposoby zwalczania:**  \n1. **Normalizacja bazy danych:**  \n\n- **1NF:** Brak powtarzających się grup.  \n\n- **2NF:** Usuń zależności częściowe (klucz główny → atrybuty).  \n\n- **3NF:** Usuń zależności przechodnie (np. `user_id → user_address`).  \n2. **Relacje zamiast powielania:**  \n   ```sql\n   CREATE TABLE Users (id INT PRIMARY KEY, name VARCHAR, address VARCHAR);\n   CREATE TABLE Orders (id INT PRIMARY KEY, user_id INT REFERENCES Users(id));\n   ```  \n3. **Widoki (VIEW):** Łączenie danych bez fizycznej redundancji."
+  },
+  {
+    "id": "ba05",
+    "subjectId": "bazy_danych",
+    "type": "understand",
+    "question": "Realizacja operacji rzutu i wyboru relacji w SQL; inne operacje",
+    "answer": "**a) Rzut (PROJECT):** Wybór kolumn.  \n\n- SQL: `SELECT kolumna1, kolumna2 FROM tabela`  \n  ```sql\n  SELECT name, email FROM Users;  -- Rzut na kolumny name, email\n  ```  \n\n**b) Wybór (SELECT):** Filtrowanie wierszy.  \n\n- SQL: `SELECT ... WHERE warunek`  \n  ```sql\n  SELECT * FROM Orders WHERE total > 100;  -- Wybór wierszy spełniających warunek\n  ```  \n\n**c) Inne operacje algebry relacji w SQL:**  \n| Operacja          | Algebra relacji | SQL                                     |  \n|-------------------|-----------------|-----------------------------------------|  \n| **Złączenie (JOIN)** | $R \\bowtie S$ | `SELECT * FROM R JOIN S ON R.id=S.id`   |  \n| **Suma (UNION)**  | $R \\cup S$    | `SELECT ... UNION SELECT ...`           |  \n| **Różnica (EXCEPT)**| $R - S$      | `SELECT ... EXCEPT SELECT ...`          |  \n| **Iloczyn kartezjański** | $R \\times S$ | `SELECT * FROM R, S`                  |  \n\n**Przykład złączenia:**  \n```sql\nSELECT Users.name, Orders.total \nFROM Users \nJOIN Orders ON Users.id = Orders.user_id;  -- Połączenie tabel\n```"
+  },
+  {
+    "id": "ba06",
+    "subjectId": "bazy_danych",
+    "type": "memorize",
+    "question": "Rodzaje związków w relacyjnych bazach danych i realizacja w SQL",
+    "answer": "**Trzy rodzaje związków:**  \n1. **1:1 (jeden do jednego):**  \n\n- *Przykład:* Użytkownik ma jeden profil.  \n\n- **Realizacja w SQL:** Wspólny klucz główny lub klucz obcy z `UNIQUE`.  \n     ```sql\n     CREATE TABLE Users (id INT PRIMARY KEY, ...);\n     CREATE TABLE Profiles (\n         user_id INT PRIMARY KEY REFERENCES Users(id), \n         bio TEXT\n     );\n     ```  \n\n2. **1:N (jeden do wielu):**  \n\n- *Przykład:* Dział ma wielu pracowników.  \n\n- **Realizacja w SQL:** Klucz obcy w tabeli \"wiele\".  \n     ```sql\n     CREATE TABLE Departments (id INT PRIMARY KEY);\n     CREATE TABLE Employees (\n         id INT PRIMARY KEY,\n         dept_id INT REFERENCES Departments(id)  -- Klucz obcy\n     );\n     ```  \n\n3. **N:M (wiele do wielu):**  \n\n- *Przykład:* Student ma wiele kursów, kurs ma wielu studentów.  \n\n- **Realizacja w SQL:** Tabela łącząca z kluczami obcymi.  \n     ```sql\n     CREATE TABLE Students (id INT PRIMARY KEY);\n     CREATE TABLE Courses (id INT PRIMARY KEY);\n     CREATE TABLE Enrollments (\n         student_id INT REFERENCES Students(id),\n         course_id INT REFERENCES Courses(id),\n         PRIMARY KEY (student_id, course_id)  -- Klucz złożony\n     );\n     ```"
+  },
+  {
+    "id": "ba07",
+    "subjectId": "bazy_danych",
+    "type": "understand",
+    "question": "Problemy usuwania przy kluczu obcym i rozwiązania",
+    "answer": "**Problem:** Usunięcie rekordu, do którego odwołują się inne tabele, narusza integralność.  \n*Przykład:*  \n```sql\nDELETE FROM Users WHERE id = 1;  -- Błąd, jeśli Orders odwołuje się do user_id=1\n```  \n\n**Rozwiązania (ON DELETE):**  \n| Opcja             | Działanie                                                                 | Przykład SQL                                      |  \n|-------------------|---------------------------------------------------------------------------|---------------------------------------------------|  \n| **RESTRICT**      | Blokuje usunięcie (domyślne).                                             | `FOREIGN KEY ... ON DELETE RESTRICT`              |  \n| **CASCADE**       | Automatycznie usuwa powiązane rekordy.                                     | `FOREIGN KEY ... ON DELETE CASCADE`               |  \n| **SET NULL**      | Ustawia klucz obcy na `NULL` w powiązanych rekordach.                     | `FOREIGN KEY ... ON DELETE SET NULL`              |  \n| **SET DEFAULT**   | Ustawia klucz obcy na wartość domyślną w powiązanych rekordach.           | `FOREIGN KEY ... ON DELETE SET DEFAULT`           |  \n| **NO ACTION**     | Jak `RESTRICT` (standard SQL).                                            | `FOREIGN KEY ... ON DELETE NO ACTION`             |  \n\n**Przykład z `CASCADE`:**  \n```sql\nCREATE TABLE Orders (\n    id INT PRIMARY KEY,\n    user_id INT REFERENCES Users(id) ON DELETE CASCADE  -- Usuń zamówienia, gdy użytkownik jest usuwany\n);\n```"
+  }
+]
