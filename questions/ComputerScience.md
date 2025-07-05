@@ -1032,20 +1032,11 @@ def inorder(node):
 1. **Adresowanie otwarte (open addressing):**
 
    * **Liniowe:**
-
-     $$
-       h(k,i) = \bigl(h'(k) + i\bigr)\bmod m.
-     $$
+    $$h(k,i) = \bigl(h'(k) + i\bigr)\bmod m$$
    * **Kwadratowe:**
-
-     $$
-       h(k,i) = \bigl(h'(k) + c_1\,i + c_2\,i^2\bigr)\bmod m.
-     $$
+     $$h(k,i) = \bigl(h'(k) + c_1\,i + c_2\,i^2\bigr)\bmod m$$
    * **Podwójne haszowanie:**
-
-     $$
-       h(k,i) = \bigl(h_1(k) + i\cdot h_2(k)\bigr)\bmod m.
-     $$
+     $$h(k,i) = \bigl(h_1(k) + i\cdot h_2(k)\bigr)\bmod m$$
 
 2. **Łańcuchowanie (chaining):**  
    - Każdy slot tablicy to lista elementów o tym samym haszu.  
