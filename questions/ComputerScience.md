@@ -648,218 +648,290 @@ void printList(List<?> list) { // Akceptuje listę dowolnego typu
 ---
 
 
-## **Matematyka Dyskretna**  
+## **Matematyka Dyskretna**
 
-#### **1. [💡] Metoda indukcji matematycznej**   
-**Definicja:** Dowodzenie twierdzeń dla liczb naturalnych przez:  
-1. **Baza indukcyjna:** Sprawdzenie prawdziwości dla \(n_0\) (np. \(n=1\)).  
-2. **Krok indukcyjny:**  
-   - Założenie: Twierdzenie prawdziwe dla \(n = k\) (*założenie indukcyjne*).  
-   - Dowód: Prawdziwość dla \(n = k+1\).  
+#### **1. \[💡] Metoda indukcji matematycznej**
 
-**Przykład:** Dowód, że \(1 + 2 + \dots + n = \frac{n(n+1)}{2}\):  
-- **Baza:** Dla \(n=1\): \(1 = \frac{1 \cdot 2}{2} = 1\).  
-- **Krok:**  
-  - Załóżmy, że wzór jest prawdziwy dla \(k\): \(\sum_{i=1}^k i = \frac{k(k+1)}{2}\).  
-  - Dla \(k+1\):  
-    \[
-    \sum_{i=1}^{k+1} i = \sum_{i=1}^k i + (k+1) = \frac{k(k+1)}{2} + (k+1) = \frac{(k+1)(k+2)}{2}. \quad \square
-    \]  
+**Definicja:** Dowodzenie twierdzeń dla liczb naturalnych przez:
 
----
+1. **Baza indukcyjna:** Sprawdzenie prawdziwości dla \$n\_0\$ (np. \$n=1\$).
+2. **Krok indukcyjny:**
 
-#### **2. [💡] Sposoby kodowania liczb w komputerze**   
-**a) Liczby całkowite:**  
-- **Uzupełnienie do dwóch** (*two's complement*):  
-  - Najstarszy bit: znak (0 – dodatnia, 1 – ujemna).  
-  - Np. \(-3\) w 4 bitach:  
-    \(3 = 0011 \rightarrow \text{odwróć bity} = 1100 \rightarrow \text{dodaj 1} = 1101\).  
-- **Kod BCD**: Każda cyfra dziesiętna kodowana 4 bitami (np. \(12 \rightarrow 0001\ 0010\)).  
+   * **Założenie (hipoteza indukcyjna):** Twierdzenie prawdziwe dla \$n = k\$.
+   * **Dowód:** Pokaż prawdziwość dla \$n = k+1\$.
 
-**b) Liczby rzeczywiste:**  
-- **Zmiennoprzecinkowe (IEEE 754):**  
-  - Składniki: znak (\(S\)), wykładnik (\(E\)), mantysa (\(M\)).  
-  - Wartość: \((-1)^S \times 1.M \times 2^{E-\text{bias}}\).  
-  - Np. float (32 bity): \(S\) (1 bit), \(E\) (8 bitów), \(M\) (23 bity).  
+**Przykład:** Dowód, że
 
----
+$$
+1 + 2 + \dots + n = \frac{n(n+1)}{2}.
+$$
 
-#### **3. [💡] Zasada szufladkowa Dirichleta**   
-**Treść:** Jeśli \(n\) obiektów umieszczamy w \(m\) szufladach i \(n > m\), to co najmniej jedna szuflada zawiera \(\lceil n/m \rceil\) obiektów.  
+* **Baza:** Dla \$n=1\$:
 
-**Przykłady:**  
-1. Wśród 13 osób co najmniej 2 urodziły się w tym samym miesiącu (\(13 > 12\) miesięcy).  
-2. Dowód, że w grupie 6 osób są 3 znajomych lub 3 obcych (teoria grafów: \(K_6\) z krawędziami w 2 kolorach).  
+$$
+1 = \frac{1 \cdot 2}{2} = 1.
+$$
+
+* **Krok:**
+  Załóżmy, że dla pewnego \$k\$ zachodzi:
+
+$$
+\sum_{i=1}^k i = \frac{k(k+1)}{2}.
+$$
+
+Wtedy:
+
+$$
+\sum_{i=1}^{k+1} i = \sum_{i=1}^k i + (k+1)
+= \frac{k(k+1)}{2} + (k+1)
+= \frac{(k+1)(k+2)}{2}.
+\quad \blacksquare
+$$
 
 ---
 
-#### **4. [💡] Liczba ciągów bez powtórzeń, z powtórzeniami, funkcji, podzbiorów, podzbiorów k-elementowych**
-- **Ciągi bez powtórzeń** (permutacje):  
-  \[
-  P(n) = n! \quad \text{(np. } n=3: 123, 132, 213, \dots)
-  \]  
-- **Ciągi z powtórzeniami** (wariacje z powtórzeniami):  
-  \[
-  W_n^k = n^k \quad \text{(np. } n=2, k=2: 00,01,10,11)
-  \]  
-- **Funkcje:** Liczba funkcji \(f: A \to B\):  
-  \[
-  |B|^{|A|} \quad \text{(gdy } |A|=k, |B|=n \text{)}
-  \]  
-- **Podzbiory:**  
-  \[
-  2^n \quad \text{(np. } n=2: \emptyset, \{1\}, \{2\}, \{1,2\})
-  \]  
-- **Podzbiory \(k\)-elementowe** (kombinacje):  
-  \[
-  \binom{n}{k} = \frac{n!}{k!(n-k)!} \quad \text{(np. } n=3, k=2: \{1,2\}, \{1,3\}, \{2,3\}\text{)}
-  \]  
+#### **2. \[💡] Sposoby kodowania liczb w komputerze**
+
+**a) Liczby całkowite:**
+
+* **Uzupełnienie do dwóch (two's complement):**
+
+  * Najstarszy bit: znak (0 – dodatnia, 1 – ujemna).
+  * Przykład: \$-3\$ w 4 bitach:
+
+  $$
+  3 = 0011 \;\to\; \text{odwróć bity: }1100 \;\to\; +1: 1101.
+  $$
+
+* **Kod BCD (Binary-Coded Decimal):**
+  Każda cyfra dziesiętna kodowana 4 bitami (np. \$12 \to 0001,0010\$).
+
+**b) Liczby rzeczywiste:**
+
+* **Reprezentacja zmiennoprzecinkowa (IEEE 754):**
+  Składniki: znak (\$S\$), wykładnik (\$E\$), mantysa (\$M\$).
+  Wartość:
+
+  $$
+  (-1)^S \times 1.M \times 2^{E - \text{bias}}.
+  $$
+
+  Dla formatu float (32 bity): \$S=1\$ bit, \$E=8\$ bitów, \$M=23\$ bitów.
 
 ---
 
-#### **5. [💡] Relacja kongruencji modulo, pierścień \(\mathbb{Z}_m\). Metody szukania elementów odwrotnych w \(\mathbb{Z}_m\)**
-**Kongruencja modulo \(m\):**  
-\[
+#### **3. \[💡] Zasada szufladkowa Dirichleta**
+
+**Treść:** Jeśli \$n\$ obiektów umieszczamy w \$m\$ szufladach i \$n > m\$, to co najmniej jedna szuflada zawiera \$\lceil n/m \rceil\$ obiektów.
+
+**Przykłady:**
+
+1. Wśród 13 osób co najmniej 2 urodziły się w tym samym miesiącu (\$13 > 12\$).
+2. Dowód, że w grupie 6 osób są 3 znajomych lub 3 obcych (graf \$K\_6\$ z krawędziami w 2 kolorach).
+
+---
+
+#### **4. \[💡] Liczba ciągów, funkcji i podzbiorów**
+
+* **Permutacje (ciągi bez powtórzeń):**
+
+$$
+P(n) = n! \\
+(\text{np. dla }n=3:\ 123, 132, 213, \dots)
+$$
+
+* **Wariacje z powtórzeniami:**
+
+$$
+W_n^k = n^k \\
+(\text{np. }n=2,k=2:\ 00,01,10,11)
+$$
+
+* **Funkcje }f: A \to B{:**
+
+$$
+|B|^{|A|} \quad (|A|=k,|B|=n)
+$$
+
+* **Podzbiory:**
+
+$$
+2^n \quad (\emptyset,\{1\},\{2\},\{1,2\})
+$$
+
+* **Kombinacje (podzbiory \$k\$-elementowe):**
+
+$$
+\binom{n}{k} = \frac{n!}{k!(n-k)!} \\
+(\text{np. }n=3,k=2:\ \{1,2\},\{1,3\},\{2,3\})
+$$
+
+---
+
+#### **5. \[💡] Kongruencja modulo i pierścień \$\mathbb{Z}\_m\$**
+
+**Kongruencja:**
+
+$$
 a \equiv b \pmod{m} \iff m \mid (a - b).
-\]  
-**Pierścień \(\mathbb{Z}_m\):** Zbiór reszt \(\{0, 1, \dots, m-1\}\) z działaniami dodawania i mnożenia modulo \(m\).  
+$$
 
-**Element odwrotny w \(\mathbb{Z}_m\):**  
-Liczba \(a\) ma element odwrotny modulo \(m\) wtedy i tylko wtedy, gdy \(\gcd(a, m) = 1\).  
-- **Rozszerzony algorytm Euklidesa:** Znajduje \(x, y\) takie, że \(ax + my = 1\). Wtedy \(x \equiv a^{-1} \pmod{m}\).  
-  *Przykład:* Znajdź \(3^{-1} \pmod{11}\):  
-  \[
-  11 = 3 \cdot 3 + 2, \quad 3 = 2 \cdot 1 + 1, \quad 1 = 3 - 2 \cdot 1 = 3 - (11 - 3 \cdot 3) = 4 \cdot 3 - 1 \cdot 11.
-  \]  
-  Zatem \(3^{-1} \equiv 4 \pmod{11}\).  
+**Pierścień \$\mathbb{Z}\_m\$:** Zbiór reszt \${0,1,\dots,m-1}\$ z dodawaniem i mnożeniem modulo \$m\$.
 
----
+**Element odwrotny:** \$a^{-1}\$ istnieje wtedy i tylko wtedy, gdy \$\gcd(a,m)=1\$.
 
-#### **6. [📘] Definicja oraz własności funkcji Eulera**
-**Definicja:** \(\phi(n)\) to liczba liczb całkowitych w \(\{1, 2, \dots, n\}\) względnie pierwszych z \(n\).  
-- **Wzór:** Jeśli \(n = p_1^{k_1} \cdots p_r^{k_r}\), to:  
-  \[
-  \phi(n) = n \left(1 - \frac{1}{p_1}\right) \cdots \left(1 - \frac{1}{p_r}\right).
-  \]  
+* **Algorytm Euklidesa (rozszerzony):** Znajdź \$x,y\$ takie, że \$ax + my = 1\$. Wtedy \$x \equiv a^{-1} \pmod{m}\$.
 
-**Własności:**  
-1. \(\phi(p) = p-1\) dla liczby pierwszej \(p\).  
-2. \(\phi(p^k) = p^k - p^{k-1}\).  
-3. Jeśli \(\gcd(a,b)=1\), to \(\phi(ab) = \phi(a) \phi(b)\).  
-4. **Twierdzenie Eulera:** Jeśli \(\gcd(a,n)=1\), to \(a^{\phi(n)} \equiv 1 \pmod{n}\).  
+**Przykład:** \$3^{-1} \bmod 11\$:
 
-**Przykład:** \(\phi(10) = 4\) (liczby: 1,3,7,9).  
+$$
+11 = 3\cdot3 + 2,\;3=2\cdot1+1,\;1=3-2\cdot1=4\cdot3-1\cdot11
+$$
+
+Zatem \$3^{-1} \equiv 4 \pmod{11}\$.
 
 ---
 
-#### **7. [💡] Szyfrowanie asymetryczne - algorytm RSA**
-**Kroki generowania kluczy:**  
-1. Wybierz dwie duże liczby pierwsze \(p, q\).  
-2. Oblicz \(n = p \cdot q\) oraz \(\phi(n) = (p-1)(q-1)\).  
-3. Wybierz \(e\) takie, że \(1 < e < \phi(n)\) i \(\gcd(e, \phi(n)) = 1\).  
-4. Znajdź \(d\) takie, że \(e \cdot d \equiv 1 \pmod{\phi(n)}\) (użyj rozszerzonego algorytmu Euklidesa).  
-- **Klucz publiczny:** \((e, n)\).  
-- **Klucz prywatny:** \((d, n)\).  
+#### **6. \[📘] Funkcja Eulera \$\phi(n)\$**
 
-**Szyfrowanie:** Dla wiadomości \(M\):  
-\[
-C = M^e \mod n.
-\]  
-**Deszyfrowanie:**  
-\[
-M = C^d \mod n.
-\]  
+**Definicja:** Liczba liczb w \${1,2,\dots,n}\$ względnie pierwszych z \$n\$.
+**Wzór:** Jeśli \$n=\prod\_{i=1}^r p\_i^{k\_i}\$, to
 
-**Bezpieczeństwo:** Opiera się na trudności faktoryzacji dużych liczb \(n\).  
+$$
+\phi(n) = n \prod_{i=1}^r \Bigl(1 - \frac{1}{p_i}\Bigr).
+$$
+
+**Własności:**
+
+1. \$\phi(p)=p-1\$ dla liczby pierwszej \$p\$.
+2. \$\phi(p^k)=p^k-p^{k-1}\$.
+3. Jeśli \$\gcd(a,b)=1\$, to \$\phi(ab)=\phi(a)\phi(b)\$.
+4. **Twierdzenie Eulera:** Jeśli \$\gcd(a,n)=1\$, to \$a^{\phi(n)}\equiv1\pmod{n}\$.
+
+**Przykład:** \$\phi(10)=4\$ (liczby: 1,3,7,9).
 
 ---
 
-#### **8. [📘] Sieci boolowskie – definicja oraz przykłady**
-**Definicja:** Sieć boolowska to skierowany graf acykliczny (DAG), gdzie:  
-- Wierzchołki: Bramki logiczne (AND, OR, NOT, XOR).  
-- Krawędzie: Połączenia między bramkami.  
-- Wejścia: Stałe 0/1 lub zmienne.  
+#### **7. \[💡] Algorytm RSA**
 
-**Przykłady:**  
-1. **Bramka XOR:** \(A \oplus B = (A \land \neg B) \lor (\neg A \land B)\).  
-   ``` 
-   A --|     \
-        | AND |-- OR --> Wynik
-   B --|_____/
-   ```  
-2. **Półsumator (half-adder):**  
-   - Suma: \(S = A \oplus B\).  
-   - Przeniesienie: \(C = A \land B\).  
+1. Wybierz dwie duże liczby pierwsze \$p,q\$.
+2. Oblicz \$n=pq\$ oraz \$\phi(n)=(p-1)(q-1)\$.
+3. Wybierz \$e\$ takie, że \$1\<e<\phi(n)\$ i \$\gcd(e,\phi(n))=1\$.
+4. Znajdź \$d\$ takie, że \$ed\equiv1\pmod{\phi(n)}\$.
+
+> **Klucz publiczny:** \$(e,n)\$
+> **Klucz prywatny:** \$(d,n)\$
+
+* **Szyfrowanie:** \$C = M^e \bmod n\$.
+* **Deszyfrowanie:** \$M = C^d \bmod n\$.
 
 ---
 
-#### **9. [📘] Definicja oraz własności funkcji parzystości**
-**Definicja:** Funkcja \(f: \mathbb{Z} \to \mathbb{Z}\) jest:  
-- **Parzysta:** \(f(-x) = f(x)\) (symetria względem OY).  
-- **Nieparzysta:** \(f(-x) = -f(x)\) (symetria względem (0,0)).  
+#### **8. \[📘] Sieci boolowskie**
 
-**Własności:**  
-1. Suma funkcji parzystych jest parzysta.  
-2. Iloczyn funkcji parzystej i nieparzystej jest nieparzysty.  
-3. **Rozkład dowolnej funkcji:**  
-   \[
-   f(x) = \frac{f(x) + f(-x)}{2} + \frac{f(x) - f(-x)}{2}.
-   \]  
-   (część parzysta + część nieparzysta).  
+Graf skierowany acykliczny (DAG), w którym wierzchołki to bramki logiczne (AND, OR, NOT, XOR), a krawędzie to połączenia.
 
-**Przykład:**  
-- Parzysta: \(f(x) = x^2\), bo \((-x)^2 = x^2\).  
-- Nieparzysta: \(g(x) = x^3\), bo \((-x)^3 = -x^3\).  
+**Przykłady:**
 
----
+* **XOR:**
 
-#### **10. [💡] Drzewa i algorytmy przeszukiwania drzew, drzewa przeszukiwań binarnych**
-**Drzewo:** Spójny graf acykliczny.  
-- **BST (Binary Search Tree):**  
-  - Dla każdego węzła:  
-    - Wszystkie w lewym poddrzewie mają wartości \(\leq\) węzła.  
-    - Wszystkie w prawym poddrzewie mają wartości \(>\) węzła.  
+$$
+A \oplus B = (A \land \neg B) \lor (\neg A \land B).
+$$
 
-**Algorytmy przeszukiwania:**  
-1. **DFS (Depth-First Search):**  
-   - **In-order** (lewe-poddrzewo, korzeń, prawe-poddrzewo): Zwraca elementy posortowane.  
-   - **Pre-order** (korzeń, lewe, prawe): Kopiowanie struktury drzewa.  
-   - **Post-order** (lewe, prawe, korzeń): Usuwanie drzewa.  
-2. **BFS (Breadth-First Search):** Poziomy od korzenia.  
+```text
+A --|       \
+     | AND |-- OR --> Wynik
+B --|______/
+```
 
-**Złożoność operacji w BST:**  
-- Wyszukiwanie/wstawianie: \(O(h)\), gdzie \(h\) – wysokość drzewa (dla zrównoważonego BST: \(O(\log n)\)).  
+* **Półsumator:**
+
+```text
+S = A \oplus B
+C = A \land B
+```
 
 ---
 
-#### **11. [💡] Rekurencja - przykłady algorytmów rekurencyjnych; rekurencyjne definiowanie funkcji**
-**Rekurencja:** Funkcja wywołująca samą siebie z mniejszym problemem.  
+#### **9. \[📘] Funkcje parzystości**
 
-**Przykłady algorytmów:**  
-1. **Silnia:**  
-   ```python
-   def factorial(n):
-       if n == 0: return 1
-       else: return n * factorial(n-1)
-   ```  
-2. **Ciąg Fibonacciego:**  
-   ```python
-   def fib(n):
-       if n <= 1: return n
-       else: return fib(n-1) + fib(n-2)
-   ```  
-3. **Przeszukiwanie BST (in-order):**  
-   ```python
-   def inorder(node):
-       if node:
-           inorder(node.left)
-           print(node.value)
-           inorder(node.right)
-   ```  
+**Definicje:**
 
-**Rekurencyjne definiowanie funkcji:**  
-- **Baza:** Wartość dla najmniejszego argumentu (np. \(f(0) = 1\)).  
-- **Krok rekurencyjny:** \(f(n)\) wyrażone przez \(f(k)\) dla \(k < n\) (np. \(f(n) = n \cdot f(n-1)\)).  
+* Parzysta: \$f(-x)=f(x)\$.
+* Nieparzysta: \$f(-x)=-f(x)\$.
+
+**Własności:**
+
+1. Suma funkcji parzystych jest parzysta.
+2. Iloczyn funkcji parzystej i nieparzystej jest nieparzysty.
+3. Dowolną funkcję można rozłożyć:
+
+$$
+f(x)=\frac{f(x)+f(-x)}{2}+\frac{f(x)-f(-x)}{2}.
+$$
+
+**Przykłady:**
+
+* Parzysta: \$x^2\$.
+* Nieparzysta: \$x^3\$.
+
+---
+
+#### **10. \[💡] Drzewa i przeszukiwanie**
+
+**Drzewo:** Spójny, acykliczny graf.
+**BST:** Lewe poddrzewo ≤ korzeń < prawe poddrzewo.
+
+**Algorytmy DFS:**
+
+* **In-order:** lewe → korzeń → prawe
+* **Pre-order:** korzeń → lewe → prawe
+* **Post-order:** lewe → prawe → korzeń
+
+**BFS:** Przeszukiwanie poziomami.
+
+**Złożoność (BST):** \$O(h)\$, gdzie \$h\$ to wysokość drzewa (dla zrównoważonego: \$O(\log n)\$).
+
+---
+
+#### **11. \[💡] Rekurencja**
+
+Funkcja wywołująca samą siebie z mniejszym problemem.
+
+**Przykłady algorytmów:**
+
+````python
+# Silnia
+```python
+def factorial(n):
+    if n == 0:
+        return 1
+    return n * factorial(n-1)
+````
+
+````python
+# Ciąg Fibonacciego
+```python
+def fib(n):
+    if n <= 1:
+        return n
+    return fib(n-1) + fib(n-2)
+````
+
+```python
+# Przeszukiwanie BST (in-order)
+def inorder(node):
+    if node:
+        inorder(node.left)
+        print(node.value)
+        inorder(node.right)
+```
+
+**Struktura definicyjna:**
+
+* Baza: wartość dla najmniejszego argumentu (np. $f(0)=1$).
+* Krok: wyrażenie $f(n)$ przez wartości $f(k)$ dla $k<n$.
 
 ---
 
@@ -870,12 +942,12 @@ M = C^d \mod n.
 **Kluczowe algorytmy i ich złożoności:**  
 | Algorytm          | Złożoność (avg) | Złożoność (worst) | Stabilny? | Uwagi                          |  
 |-------------------|-----------------|-------------------|-----------|--------------------------------|  
-| **Quicksort**     | \(O(n \log n)\) | \(O(n^2)\)        | ❌        | W miejscu, pivot losowy        |  
-| **Mergesort**     | \(O(n \log n)\) | \(O(n \log n)\)   | ✅        | Wymaga \(O(n)\) pamięci        |  
-| **Heapsort**      | \(O(n \log n)\) | \(O(n \log n)\)   | ❌        | W miejscu, wykorzystuje kopiec |  
-| **Insertion Sort**| \(O(n^2)\)      | \(O(n^2)\)        | ✅        | Szybki dla małych \(n\)        |  
-| **Counting Sort** | \(O(n + k)\)    | \(O(n + k)\)      | ✅        | Tylko liczby całkowite         |  
-| **Radix Sort**    | \(O(d \cdot (n + k))\) | \(O(d \cdot (n + k))\) | ✅ | Dla liczb/łańcuchów |  
+| **Quicksort**     | $O(n \log n)$ | $O(n^2)$        | ❌        | W miejscu, pivot losowy        |  
+| **Mergesort**     | $O(n \log n)$ | $O(n \log n)$   | ✅        | Wymaga $O(n)$ pamięci        |  
+| **Heapsort**      | $O(n \log n)$ | $O(n \log n)$   | ❌        | W miejscu, wykorzystuje kopiec |  
+| **Insertion Sort**| $O(n^2)$      | $O(n^2)$        | ✅        | Szybki dla małych $n$        |  
+| **Counting Sort** | $O(n + k)$    | $O(n + k)$      | ✅        | Tylko liczby całkowite         |  
+| **Radix Sort**    | $O(d \cdot (n + k))$ | $O(d \cdot (n + k))$ | ✅ | Dla liczb/łańcuchów |  
 
 **Przykład:**  
 - **Quicksort:**  
@@ -893,13 +965,14 @@ M = C^d \mod n.
 
 #### **2. [💡] Drzewa poszukiwań binarnych (BST i czerwono-czarne): definicja i złożoność operacji**   
 **a) Standard BST:**  
-- **Definicja:** Dla każdego węzła:  
-  - Lewe poddrzewo \(\leq\) węzeł \(<\) prawe poddrzewo.  
+- **Definicja:** Dla każdego węzła:
+  - Lewe poddrzewo $\leq$ węzeł  
+  - Prawe poddrzewo $>$ węzeł
 - **Operacje:**  
-  - Wstawianie: \(O(h)\)  
-  - Usuwanie: \(O(h)\)  
-  - Wyszukiwanie: \(O(h)\)  
-  - \(h\) – wysokość drzewa (w najgorszym przypadku \(O(n)\), gdy drzewo zdegenerowane).  
+  - Wstawianie: $O(h)$  
+  - Usuwanie: $O(h)$  
+  - Wyszukiwanie: $O(h)$  
+  - \(h\) – wysokość drzewa (w najgorszym przypadku $O(n)$, gdy drzewo zdegenerowane).  
 
 **b) Drzewa czerwono-czarne (RBT):**  
 - **Definicja:** Samorównoważące BST z dodatkowymi właściwościami:  
@@ -914,44 +987,65 @@ M = C^d \mod n.
 **Porównanie:**  
 | Właściwość       | BST          | Czerwono-czarne |  
 |------------------|--------------|-----------------|  
-| Wysokość         | \(O(n)\)     | \(O(\log n)\)   |  
+| Wysokość         | $O(n)$     | $O(\log n)$   |  
 | Gwarancja        | Brak         | Zrównoważone    |  
 | Zastosowania     | Proste przypadki | Systemy czasu rzeczywistego |  
 
 ---
 
-#### **3. [💡] B-drzewa: definicja i złożoność operacji**
-**Definicja:** Samorównoważące drzewo dla systemów dyskowych (duże dane):  
-- Każdy węzeł (oprócz korzenia) ma \(\geq t-1\) i \(\leq 2t-1\) kluczy (\(t\) – stopień).  
-- Wszystkie liście na tej samej głębokości.  
-- Węzeł z \(k\) kluczami ma \(k+1\) dzieci.  
 
-**Operacje:**  
-- **Wyszukiwanie:** \(O(\log n)\) (przeszukiwanie binarne w węźle).  
-- **Wstawianie:** \(O(\log n)\) (podział węzłów w górę).  
-- **Usuwanie:** \(O(\log n)\) (łączenie węzłów).  
+#### **3. \[💡] B‑drzewa: definicja i złożoność operacji**
 
-**Zastosowania:** Systemy plików (ext4, NTFS), bazy danych (np. indeksy w MySQL).  
+**Definicja:** Samorównoważące drzewo dla systemów dyskowych (duże dane):
 
-**Przykład B-drzewa (t=2):**  
-```
-      [10, 20]  
-     /    |    \  
-[5]    [15]    [25, 30]  
+* Każdy węzeł (oprócz korzenia) ma $\geq t-1$ i $\leq 2t-1$ kluczy ($t$ – stopień).
+* Wszystkie liście na tej samej głębokości.
+* Węzeł z $k$ kluczami ma $k+1$ dzieci.
+
+**Operacje:**
+
+* **Wyszukiwanie:** $O(\log n)$ (przeszukiwanie binarne we wnętrzu węzła).
+* **Wstawianie:** $O(\log n)$ (ew. podział węzłów „w górę”).
+* **Usuwanie:** $O(\log n)$ (ew. łączenie węzłów).
+
+**Zastosowania:** Systemy plików (ext4, NTFS), bazy danych (np. indeksy w MySQL).
+
+**Przykład (t = 2):**
+
+```text
+      [10, 20]
+     /   |    \
+  [5]  [15]  [25, 30]
 ```
 
 ---
 
-#### **4. [💡] Tablice z haszowaniem: idea haszowania i sposoby rozwiązywania konfliktów**
-**Idea haszowania:**  
-- Funkcja haszująca \(h: \text{klucz} \to \text{indeks}\) w tablicy.  
-- Idealna: \(O(1)\) dla wstawiania, usuwania, wyszukiwania.  
+#### **4. \[💡] Tablice z haszowaniem: idea i sposoby rozwiązywania konfliktów**
 
-**Metody rozwiązywania konfliktów:**  
-1. **Adresowanie otwarte (open addressing):**  
-   - **Liniowe:** \(h(k, i) = (h'(k) + i) \mod m\)  
-   - **Kwadratowe:** \(h(k, i) = (h'(k) + c_1 i + c_2 i^2) \mod m\)  
-   - **Podwójne haszowanie:** \(h(k, i) = (h_1(k) + i \cdot h_2(k)) \mod m\)  
+**Idea haszowania:**
+
+* Funkcja $h\colon \text{klucz}\to \text{indeks}$ w tablicy.
+* Idealna złożoność: $O(1)$ dla wstawiania, usuwania i wyszukiwania.
+
+**Metody rozwiązywania konfliktów:**
+
+1. **Adresowanie otwarte (open addressing):**
+
+   * **Liniowe:**
+
+     $$
+       h(k,i) = \bigl(h'(k) + i\bigr)\bmod m.
+     $$
+   * **Kwadratowe:**
+
+     $$
+       h(k,i) = \bigl(h'(k) + c_1\,i + c_2\,i^2\bigr)\bmod m.
+     $$
+   * **Podwójne haszowanie:**
+
+     $$
+       h(k,i) = \bigl(h_1(k) + i\cdot h_2(k)\bigr)\bmod m.
+     $$
 
 2. **Łańcuchowanie (chaining):**  
    - Każdy slot tablicy to lista elementów o tym samym haszu.  
@@ -965,25 +1059,25 @@ M = C^d \mod n.
    ```
 
 **Złożoność (avg):**  
-- Przy równomiernym haszowaniu: \(O(1 + \alpha)\), gdzie \(\alpha = n/m\) (współczynnik wypełnienia).  
+- Przy równomiernym haszowaniu: $O(1 + \alpha)$, gdzie $\alpha = n/m$ (współczynnik wypełnienia).  
 
 ---
 
 #### **5. [💡] Kopce binarne i ich zastosowania**
 **Definicja:** Kompletne drzewo binarne spełniające własność kopca:  
-- **Kopiec min:** Wartość węzła \(\leq\) wartości dzieci.  
-- **Kopiec max:** Wartość węzła \(\geq\) wartości dzieci.  
-- **Reprezentacja:** Tablica (dziecko \(i\): \(2i+1\), \(2i+2\); rodzic: \(\lfloor (i-1)/2 \rfloor\)).  
+- **Kopiec min:** Wartość węzła $\leq$ wartości dzieci.  
+- **Kopiec max:** Wartość węzła $\geq$ wartości dzieci.  
+- **Reprezentacja:** Tablica (dziecko $i$: $2i+1$, $2i+2$; rodzic: $\lfloor (i-1)/2 \rfloor$).  
 
 **Operacje:**  
-- `insert`: \(O(\log n)\) (przesianie w górę).  
-- `extract_min/max`: \(O(\log n)\) (przesianie w dół).  
-- `build_heap`: \(O(n)\).  
+- `insert`: $O(\log n)$ (przesianie w górę).  
+- `extract_min/max`: $O(\log n)$ (przesianie w dół).  
+- `build_heap`: $O(n)$.  
 
 **Zastosowania:**  
 1. **Kolejka priorytetowa** (np. w algorytmie Dijkstry).  
 2. **Heapsort**.  
-3. **Znajdowanie \(k\)-tego największego elementu**.  
+3. **Znajdowanie $k$-tego największego elementu**.  
 
 **Przykład kopca min:**  
 ```
@@ -1000,8 +1094,8 @@ M = C^d \mod n.
 **a) Stos (LIFO):**  
 - **Definicja:** Dodawanie (`push`) i usuwanie (`pop`) z **tego samego końca** (wierzchołek).  
 - **Operacje:**  
-  - `push(item)`: \(O(1)\)  
-  - `pop()`: \(O(1)\)  
+  - `push(item)`: $O(1)$  
+  - `pop()`: $O(1)$  
   - `peek()`: Zwraca wierzchołek bez usuwania.  
 - **Implementacje:**  
   - Tablica dynamiczna (z realokacją).  
@@ -1015,8 +1109,8 @@ M = C^d \mod n.
 **b) Kolejka (FIFO):**  
 - **Definicja:** Dodawanie (`enqueue`) z **tyłu**, usuwanie (`dequeue`) z **przodu**.  
 - **Operacje:**  
-  - `enqueue(item)`: \(O(1)\)  
-  - `dequeue()`: \(O(1)\)  
+  - `enqueue(item)`: $O(1)$  
+  - `dequeue()`: $O(1)$  
 - **Implementacje:**  
   - Lista dwukierunkowa.  
   - Tablica z dwoma wskaźnikami (front/rear) i cyklicznym buforem.  
