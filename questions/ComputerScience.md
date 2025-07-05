@@ -650,7 +650,7 @@ void printList(List<?> list) { // Akceptuje listę dowolnego typu
 
 ## **Matematyka Dyskretna**
 
-#### **1. \💡 Metoda indukcji matematycznej**
+#### **1. 💡 Metoda indukcji matematycznej**
 
 **Definicja:** Dowodzenie twierdzeń dla liczb naturalnych przez:
 
@@ -690,7 +690,7 @@ $$
 
 ---
 
-#### **2. \💡 Sposoby kodowania liczb w komputerze**
+#### **2. 💡 Sposoby kodowania liczb w komputerze**
 
 **a) Liczby całkowite:**
 
@@ -720,7 +720,7 @@ $$
 
 ---
 
-#### **3. \💡 Zasada szufladkowa Dirichleta**
+#### **3. 💡 Zasada szufladkowa Dirichleta**
 
 **Treść:** Jeśli $n$ obiektów umieszczamy w $m$ szufladach i $n > m$, to co najmniej jedna szuflada zawiera $\lceil n/m \rceil$ obiektów.
 
@@ -731,7 +731,7 @@ $$
 
 ---
 
-#### **4. \💡 Liczba ciągów, funkcji i podzbiorów**
+#### **4. 💡 Liczba ciągów, funkcji i podzbiorów**
 
 * **Permutacje (ciągi bez powtórzeń):**
 
@@ -768,7 +768,7 @@ $$
 
 ---
 
-#### **5. \💡 Kongruencja modulo i pierścień $\mathbb{Z}\_m$**
+#### **5. 💡 Kongruencja modulo i pierścień $\mathbb{Z}\_m$**
 
 **Kongruencja:**
 
@@ -812,7 +812,7 @@ $$
 
 ---
 
-#### **7. \💡 Algorytm RSA**
+#### **7. 💡 Algorytm RSA**
 
 1. Wybierz dwie duże liczby pierwsze $p,q$.
 2. Oblicz $n=pq$ oraz $\phi(n)=(p-1)(q-1)$.
@@ -878,7 +878,7 @@ $$
 
 ---
 
-#### **10. \💡 Drzewa i przeszukiwanie**
+#### **10. 💡 Drzewa i przeszukiwanie**
 
 **Drzewo:** Spójny, acykliczny graf.
 **BST:** Lewe poddrzewo ≤ korzeń < prawe poddrzewo.
@@ -895,7 +895,7 @@ $$
 
 ---
 
-#### **11. \💡 Rekurencja**
+#### **11. 💡 Rekurencja**
 
 Funkcja wywołująca samą siebie z mniejszym problemem.
 
@@ -994,7 +994,7 @@ def inorder(node):
 ---
 
 
-#### **3. \💡 B‑drzewa: definicja i złożoność operacji**
+#### **3. 💡 B‑drzewa: definicja i złożoność operacji**
 
 **Definicja:** Samorównoważące drzewo dla systemów dyskowych (duże dane):
 
@@ -1020,7 +1020,7 @@ def inorder(node):
 
 ---
 
-#### **4. \💡 Tablice z haszowaniem: idea i sposoby rozwiązywania konfliktów**
+#### **4. 💡 Tablice z haszowaniem: idea i sposoby rozwiązywania konfliktów**
 
 **Idea haszowania:**
 
