@@ -1,6 +1,6 @@
 ## **Analiza Matematyczna**
 
-#### **1. [📘] Podaj definicję granicy ciągu liczbowego. Sformułuj treść twierdzenia o trzech ciągach.**  
+#### **1. 📘 Podaj definicję granicy ciągu liczbowego. Sformułuj treść twierdzenia o trzech ciągach.**  
 **Definicja granicy ciągu**:  
 Ciąg liczbowy $(a_n)$ ma granicę $g \in \mathbb{R}$ (ozn. $\lim_{n \to \infty} a_n = g$), jeśli:  
 $$
@@ -14,7 +14,7 @@ to $\lim_{n \to \infty} b_n = g$.
 
 ---
 
-#### **2. [📘] Podaj definicję pochodnej funkcji jednej zmiennej. Sformułuj twierdzenie o wartości średniej Lagrange’a.**  
+#### **2. 📘 Podaj definicję pochodnej funkcji jednej zmiennej. Sformułuj twierdzenie o wartości średniej Lagrange’a.**  
 **Definicja pochodnej**:  
 Pochodną funkcji $f$ w punkcie $x_0$ nazywamy granicę:  
 $$
@@ -31,7 +31,7 @@ $$
 
 ---
 
-#### **3. [💡] Omów pojęcie ekstremum lokalnego funkcji jednej zmiennej. Podaj warunek konieczny i wystarczający jego istnienia.**  
+#### **3. 💡 Omów pojęcie ekstremum lokalnego funkcji jednej zmiennej. Podaj warunek konieczny i wystarczający jego istnienia.**  
 **Ekstremum lokalne**:  
 - **Minimum lokalne**: $f(x_0) \leq f(x)$ dla $x$ w otoczeniu $x_0$.  
 - **Maksimum lokalne**: $f(x_0) \geq f(x)$ dla $x$ w otoczeniu $x_0$.  
@@ -50,7 +50,7 @@ Jeśli $f$ ma ekstremum lokalne w $x_0$ i jest różniczkowalna w $x_0$, to $f'(
 
 ---
 
-#### **4. [📘] Podaj warunek konieczny zbieżności szeregu liczbowego oraz dwa kryteria jego zbieżności.**  
+#### **4. 📘 Podaj warunek konieczny zbieżności szeregu liczbowego oraz dwa kryteria jego zbieżności.**  
 **Warunek konieczny zbieżności**:  
 Jeśli szereg $\sum_{n=1}^{\infty} a_n$ jest zbieżny, to $\lim_{n \to \infty} a_n = 0$.  
 
@@ -64,7 +64,7 @@ Jeśli szereg $\sum_{n=1}^{\infty} a_n$ jest zbieżny, to $\lim_{n \to \infty} a
 
 ---
 
-#### **5. [💡] Wyjaśnij pojęcia: funkcja pierwotna, całka nieoznaczona. Podaj wzór na całkowanie przez części.**  
+#### **5. 💡 Wyjaśnij pojęcia: funkcja pierwotna, całka nieoznaczona. Podaj wzór na całkowanie przez części.**  
 **Funkcja pierwotna**:  
 Funkcja $F$ jest pierwotną funkcji $f$ w przedziale $I$, jeśli $\forall x \in I: F'(x) = f(x)$.  
 
@@ -80,7 +80,7 @@ $\int x e^x  dx = x e^x - \int e^x  dx = x e^x - e^x + C$.
 
 ---
 
-#### **6. [💡] Podaj interpretację geometryczną całki oznaczonej. Sformułuj podstawowy wzór rachunku różniczkowego i całkowego.**  
+#### **6. 💡 Podaj interpretację geometryczną całki oznaczonej. Sformułuj podstawowy wzór rachunku różniczkowego i całkowego.**  
 **Interpretacja geometryczna**:  
 Całka oznaczona $\int_a^b f(x)  dx$ to pole obszaru ograniczonego:  
 - osią $OX$,  
@@ -98,7 +98,7 @@ $$
 
 ## **Algebra Liniowa**
 
-#### **1. [📘] Podaj definicję postaci algebraicznej oraz definicję postaci trygonometrycznej liczby zespolonej. Podaj też własności działań na liczbach zespolonych w postaci trygonometrycznej.**  
+#### **1. 📘 Podaj definicję postaci algebraicznej oraz definicję postaci trygonometrycznej liczby zespolonej. Podaj też własności działań na liczbach zespolonych w postaci trygonometrycznej.**  
 **Postać algebraiczna**:  
 Liczba zespolona $ z = a + bi $, gdzie:  
 - $ a, b \in \mathbb{R} $ – część rzeczywista (Re) i urojona (Im),  
@@ -129,7 +129,7 @@ $ z = r(\cos \varphi + i \sin \varphi) $, gdzie:
 
 ---
 
-#### **2. [📘] Podaj definicje i własności podstawowych działań na macierzach.**  
+#### **2. 📘 Podaj definicje i własności podstawowych działań na macierzach.**  
 **Definicje działań**:  
 - **Dodawanie**: $ [A + B]_{ij} = a_{ij} + b_{ij} $ (macierze tych samych wymiarów).  
 - **Mnożenie przez skalar**: $ [cA]_{ij} = c \cdot a_{ij} $.  
@@ -144,7 +144,7 @@ $ z = r(\cos \varphi + i \sin \varphi) $, gdzie:
 
 ---
 
-#### **3. [💡] Podaj definicję i własności macierzy odwrotnej oraz omów metody wyznaczania macierzy odwrotnej.**  
+#### **3. 💡 Podaj definicję i własności macierzy odwrotnej oraz omów metody wyznaczania macierzy odwrotnej.**  
 **Definicja**:  
 Macierz $ A^{-1} $ jest odwrotna do $ A $ (kwadratowej), jeśli:  
 $$
@@ -168,7 +168,7 @@ $$
 
 ---
 
-#### **4. [📘] Przedstaw podstawowe własności i metody obliczania wyznacznika macierzy kwadratowej.**  
+#### **4. 📘 Przedstaw podstawowe własności i metody obliczania wyznacznika macierzy kwadratowej.**  
 **Własności wyznacznika ($\det A$)**:  
 - $\det(AB) = \det A \cdot \det B$,  
 - $\det(A^T) = \det A$,  
@@ -187,7 +187,7 @@ $$
 
 ---
 
-#### **5. [💡] Omów różne metody rozwiązywania układów równań liniowych.**  
+#### **5. 💡 Omów różne metody rozwiązywania układów równań liniowych.**  
 **Układ $n$ równań z $n$ niewiadomymi**: $ A\mathbf{x} = \mathbf{b} $.  
 1. **Metoda Cramera** (tylko gdy $\det A \neq 0$):  
    $$
@@ -208,7 +208,7 @@ $$
 
 ---
 
-#### **6. [💡] Omów najważniejsze podprzestrzenie wektorowe związane z macierzą, sposoby wyznaczania tych podprzestrzeni, ich bazy i wymiary.**  
+#### **6. 💡 Omów najważniejsze podprzestrzenie wektorowe związane z macierzą, sposoby wyznaczania tych podprzestrzeni, ich bazy i wymiary.**  
 **Kluczowe podprzestrzenie** (dla macierzy $A_{m \times n}$):  
 1. **Przestrzeń kolumnowa (obraz)**:  
    - $\text{Col}(A) = \{ A\mathbf{x} \mid \mathbf{x} \in \mathbb{R}^n \}$,  
@@ -225,7 +225,7 @@ $$
 
 ---
 
-#### **7. [💡] Przedstaw podstawowe własności i zastosowania iloczynu skalarnego wektorów.**  
+#### **7. 💡 Przedstaw podstawowe własności i zastosowania iloczynu skalarnego wektorów.**  
 **Definicja** (w $\mathbb{R}^n$):  
 $$
 \mathbf{u} \cdot \mathbf{v} = \sum_{i=1}^n u_i v_i = \|\mathbf{u}\| \|\mathbf{v}\| \cos \theta,
@@ -248,7 +248,7 @@ gdzie $\theta$ – kąt między wektorami.
 
 ## **Rachunek prawdopodobieństwa**
 
-#### **1. [💡] Podaj definicje miary probabilistycznej i omów jej własności.**  
+#### **1. 💡 Podaj definicje miary probabilistycznej i omów jej własności.**  
 **Definicja**:  
 Miarą probabilistyczną na przestrzeni mierzalnej $(\Omega, \mathcal{F})$ nazywamy funkcję $P: \mathcal{F} \to [0,1]$ spełniającą:  
 1. **Nieujemność**: $P(A) \geq 0$ dla każdego $A \in \mathcal{F}$  
@@ -271,7 +271,7 @@ Miarą probabilistyczną na przestrzeni mierzalnej $(\Omega, \mathcal{F})$ nazyw
 
 ---
 
-#### **2. [📘] Podaj wzór Bayesa.**  
+#### **2. 📘 Podaj wzór Bayesa.**  
 **Wzór Bayesa**: Dla zdarzeń $A, B$ o $P(B) > 0$:  
 $$
 P(A|B) = \frac{P(B|A) \cdot P(A)}{P(B)}
@@ -284,7 +284,7 @@ $$
 
 ---
 
-#### **3. [📘] Podaj definicję wartości oczekiwanej zmiennej losowej i wymień jej własności.**  
+#### **3. 📘 Podaj definicję wartości oczekiwanej zmiennej losowej i wymień jej własności.**  
 **Definicja**:  
 - **Dyskretna zmienna losowa** (przyjmująca wartości $x_i$ z prawd. $p_i$):  
   $$
@@ -304,7 +304,7 @@ $$
 
 ---
 
-#### **4. [📘] Podaj definicję dystrybuanty zmiennej losowej i omów jej własności.**  
+#### **4. 📘 Podaj definicję dystrybuanty zmiennej losowej i omów jej własności.**  
 **Definicja**:  
 Dystrybuantą zmiennej losowej $X$ nazywamy funkcję $F_X: \mathbb{R} \to [0,1]$:  
 $$
@@ -329,7 +329,7 @@ $$
 
 ---
 
-#### **5. [📘] Podaj definicję funkcji prawdopodobieństwa (dyskretna) i gęstości (ciągła) zmiennej losowej oraz omów ich własności.**  
+#### **5. 📘 Podaj definicję funkcji prawdopodobieństwa (dyskretna) i gęstości (ciągła) zmiennej losowej oraz omów ich własności.**  
 **Funkcja prawdopodobieństwa** (dla dyskretnej zmiennej losowej):  
 Funkcja $p: \mathbb{R} \to [0,1]$ taka, że:  
 $$
@@ -351,7 +351,7 @@ $$
 
 ---
 
-#### **6. [📘] Podaj przykłady rozkładów dyskretnych i ciągłych zmiennych losowych.**  
+#### **6. 📘 Podaj przykłady rozkładów dyskretnych i ciągłych zmiennych losowych.**  
 **Rozkłady dyskretne**:  
 1. **Bernoulliego** ($X \sim \text{Ber}(p)$):  
    - $P(X=1) = p$, $P(X=0) = 1-p$  
@@ -382,7 +382,7 @@ $$
 
 ---
 
-#### **7. [📘] Podaj definicję wariancji i odchylenia standardowego zmiennej losowej oraz wymień ich własności.**  
+#### **7. 📘 Podaj definicję wariancji i odchylenia standardowego zmiennej losowej oraz wymień ich własności.**  
 **Definicja wariancji**:  
 $$
 \text{Var}(X) = E\left[(X - E[X])^2\right] = E[X^2] - (E[X])^2
@@ -414,7 +414,7 @@ $$
 
 ## **Statystyka Matematyczna**
 
-#### **1. [💡] Omów miary położenia i zmienności danych.**  
+#### **1. 💡 Omów miary położenia i zmienności danych.**  
 **Miary położenia**:  
 - **Średnia arytmetyczna**:  
   $$
@@ -440,7 +440,7 @@ Dla danych $[2, 4, 4, 6, 8]$:
 
 ---
 
-#### **2. [💡] Omów graficzną prezentację danych.**  
+#### **2. 💡 Omów graficzną prezentację danych.**  
 **Wykresy dla danych jakościowych**:  
 - **Wykres kołowy**: Proporcje kategorii (np. udział procentowy preferencji).  
 - **Wykres słupkowy**: Porównanie częstości kategorii.  
@@ -460,7 +460,7 @@ Boxplot dla danych $[10, 12, 12, 13, 14, 15, 16, 20]$:
 
 ---
 
-#### **3. [💡] Omów weryfikację hipotez dotyczących frakcji.**  
+#### **3. 💡 Omów weryfikację hipotez dotyczących frakcji.**  
 **Kroki testowania hipotezy o frakcji $p$**:  
 1. **Formułowanie hipotez**:  
    - $H_0: p = p_0$ (np. $p_0 = 0.5$ – "50% wyborców preferuje kandydata").  
@@ -481,7 +481,7 @@ $$
 
 ---
 
-#### **4. [💡] Omów weryfikację hipotez dotyczących średniej.**  
+#### **4. 💡 Omów weryfikację hipotez dotyczących średniej.**  
 **Test dla średniej ($\mu$) w rozkładzie normalnym**:  
 1. **Hipotezy**:  
    - $H_0: \mu = \mu_0$, $H_1: \mu \neq \mu_0$.  
@@ -505,7 +505,7 @@ $$
 
 ---
 
-#### **5. [💡] Omów weryfikację hipotez dotyczących odchylenia standardowego.**  
+#### **5. 💡 Omów weryfikację hipotez dotyczących odchylenia standardowego.**  
 **Test dla wariancji ($\sigma^2$) w rozkładzie normalnym**:  
 1. **Hipotezy**:  
    - $H_0: \sigma^2 = \sigma_0^2$, $H_1: \sigma^2 \neq \sigma_0^2$.  
@@ -524,7 +524,7 @@ $$
 
 ---
 
-#### **6. [💡] Omów weryfikację hipotez dotyczących niezależności dwóch zmiennych.**  
+#### **6. 💡 Omów weryfikację hipotez dotyczących niezależności dwóch zmiennych.**  
 **Test chi-kwadrat niezależności**:  
 1. **Hipotezy**:  
    - $H_0$: Zmienne są niezależne, $H_1$: Zmienne są zależne.  
@@ -556,7 +556,7 @@ $$
 
 ## **Analiza Danych i Metody Numeryczne**
 
-#### **1. [💡] Omów zagadnienie interpolacji wielomianowej. Podaj algorytm Lagrange'a lub Newtona.**  
+#### **1. 💡 Omów zagadnienie interpolacji wielomianowej. Podaj algorytm Lagrange'a lub Newtona.**  
 **Interpolacja wielomianowa**:  
 Cel: Znalezienie wielomianu $P_n(x)$ stopnia $\leq n$, który przechodzi przez $n+1$ punktów $(x_i, y_i)$ (tzn. $P_n(x_i) = y_i$).  
 
@@ -587,7 +587,7 @@ Cel: Znalezienie wielomianu $P_n(x)$ stopnia $\leq n$, który przechodzi przez $
 
 ---
 
-#### **2. [💡] Omów numeryczne rozwiązywanie równań nieliniowych, w szczególności metodę iteracji prostych lub metodę Newtona.**  
+#### **2. 💡 Omów numeryczne rozwiązywanie równań nieliniowych, w szczególności metodę iteracji prostych lub metodę Newtona.**  
 **Metoda iteracji prostych**:  
 1. Przekształć $f(x)=0$ do postaci $x = g(x)$.  
 2. Iteruj: $x_{k+1} = g(x_k)$.  
@@ -610,7 +610,7 @@ Cel: Znalezienie wielomianu $P_n(x)$ stopnia $\leq n$, który przechodzi przez $
 
 ---
 
-#### **3. [💡] Omów numeryczne rozwiązywanie układów równań liniowych, w szczególności metodę Jacobiego lub metodę Gaussa-Seidla.**  
+#### **3. 💡 Omów numeryczne rozwiązywanie układów równań liniowych, w szczególności metodę Jacobiego lub metodę Gaussa-Seidla.**  
 **Metoda Jacobiego**:  
 1. Rozkład macierzy: $A = D + R$ ($D$ – diagonalna, $R$ – reszta).  
 2. Iteracja:  
@@ -639,7 +639,7 @@ $$
 
 ---
 
-#### **4. [💡] Omów metodę najmniejszych kwadratów, w szczególności metodę regresji liniowej.**  
+#### **4. 💡 Omów metodę najmniejszych kwadratów, w szczególności metodę regresji liniowej.**  
 **Cel**: Minimalizacja sumy kwadratów odchyleń (residuów) między danymi a modelem.  
 
 **Regresja liniowa** ($y = ax + b$):  

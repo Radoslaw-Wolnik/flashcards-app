@@ -1,6 +1,6 @@
 ## **Teoretyczne Podstawy Informatyki**
 
-#### **1. [📘] Wyrażenia regularne – definicja**
+#### **1. 📘 Wyrażenia regularne – definicja**
 Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język regularny) nad skończonym alfabetem. Definiuje się je rekurencyjnie:  
 - **Baza:**  
   - `∅` (zbiór pusty), `ε` (słowo puste), `a` (pojedynczy symbol).  
@@ -13,7 +13,7 @@ Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język 
 
 ---
 
-#### **2. [💡] Przykłady wyrażeń regularnych oraz ich zastosowań**
+#### **2. 💡 Przykłady wyrażeń regularnych oraz ich zastosowań**
 **Przykłady:**  
 - `a(b|c)*` – wszystkie ciągi zaczynające się od `a`, po którym występuje dowolna kombinacja `b` i `c` (np. `a`, `ab`, `ac`, `abbc`).  
 - `[0-9]{3}-[0-9]{2}` – kody numeryczne w formacie `XXX-XX` (np. `123-45`).  
@@ -26,7 +26,7 @@ Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język 
 
 ---
 
-#### **3. [💡] Automaty skończone deterministyczne i niedeterministyczne**
+#### **3. 💡 Automaty skończone deterministyczne i niedeterministyczne**
 **a) DFA (Deterministyczny automat skończony):**  
 - **Definicja:** Piątka `(Q, Σ, δ, q₀, F)`, gdzie:  
   - `Q` – skończony zbiór stanów,  
@@ -54,7 +54,7 @@ Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język 
 
 ---
 
-#### **4. [💡] Gramatyki bezkontekstowe i języki bezkontekstowe; zastosowania**
+#### **4. 💡 Gramatyki bezkontekstowe i języki bezkontekstowe; zastosowania**
 **a) Gramatyka bezkontekstowa (CFG):**  
 - **Definicja:** Czworka `(V, Σ, P, S)`, gdzie:  
   - `V` – symbole nieterminalne (zmienne),  
@@ -79,7 +79,7 @@ Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język 
 
 ---
 
-#### **5. [💡] Maszyna Turinga i klasa języków akceptowanych przez maszyny Turinga**
+#### **5. 💡 Maszyna Turinga i klasa języków akceptowanych przez maszyny Turinga**
 **a) Maszyna Turinga (MT):**  
 - **Definicja:** Siódemka `(Q, Σ, Γ, δ, q₀, B, F)`, gdzie:  
   - `Q` – stany,  
@@ -101,7 +101,7 @@ Wyrażenie regularne to **formuła opisująca zbiór ciągów symboli** (język 
 
 ---
 
-#### **6. [📘] Hierarchia Chomsky’ego**
+#### **6. 📘 Hierarchia Chomsky’ego**
 Klasyfikacja gramatyk formalnych i odpowiadających im języków:  
 
 | Typ  | Gramatyka          | Automat               | Język                     | Przykład               |  
@@ -120,7 +120,7 @@ Klasyfikacja gramatyk formalnych i odpowiadających im języków:
 
 ## **Języki Programowania I**  
 
-#### **1. [📘] Podstawowe typy danych w języku C**
+#### **1. 📘 Podstawowe typy danych w języku C**
 Podstawowe typy wbudowane w C:  
 - **`int`**: Liczby całkowite (np. `42`, `-7`). Rozmiar: zwykle 4 bajty.  
 - **`float`**: Liczby zmiennoprzecinkowe pojedynczej precyzji (np. `3.14f`). Rozmiar: 4 bajty.  
@@ -138,7 +138,7 @@ char grade = 'A';
 
 ---
 
-#### **2. [📘] Instrukcje sterujące języka C**
+#### **2. 📘 Instrukcje sterujące języka C**
 Klasy instrukcji sterujących:  
 - **Warunkowe:**  
   - `if`/`else`:  
@@ -166,7 +166,7 @@ Klasy instrukcji sterujących:
 
 ---
 
-#### **3. [📘] Struktura programu w języku C**
+#### **3. 📘 Struktura programu w języku C**
 Typowa struktura programu:  
 ```c
 #include <stdio.h>  // Dyrektywy preprocesora (nagłówki)  
@@ -195,7 +195,7 @@ void funkcja() {     // Definicja funkcji
 
 ---
 
-#### **4. [💡] Funkcje rekurencyjne (z przykładami)**
+#### **4. 💡 Funkcje rekurencyjne (z przykładami)**
 **Definicja:** Funkcja wywołująca samą siebie, z warunkiem stopu.  
 **Przykład 1: Silnia**  
 ```c
@@ -216,7 +216,7 @@ int fib(int n) {
 
 ---
 
-#### **5. [💡] Zasięg zmiennych i funkcji w programach napisanych w języku C**   
+#### **5. 💡 Zasięg zmiennych i funkcji w programach napisanych w języku C**   
 **Rodzaje zasięgu:**  
 - **Lokalny (automatyczny):**  
   - Zmienne wewnątrz funkcji/bloku (`{}`).  
@@ -250,7 +250,7 @@ int fib(int n) {
 
 ---
 
-#### **6. [📘] Etapy kompilacji programów w języku C**
+#### **6. 📘 Etapy kompilacji programów w języku C**
 4 etapy kompilacji:  
 1. **Preprocesing:**  
    - Rozwijanie makr (`#define`), dołączanie plików nagłówkowych (`#include`).  
@@ -267,7 +267,7 @@ int fib(int n) {
 
 ---
 
-#### **7. [💡] Sposób reprezentacji napisów w języku C oraz podstawowe funkcje standardowej biblioteki do przetwarzania napisów**
+#### **7. 💡 Sposób reprezentacji napisów w języku C oraz podstawowe funkcje standardowej biblioteki do przetwarzania napisów**
 **Reprezentacja napisów:**  
 - Napisy w C to **tablice `char` zakończone znakiem `'\0'` (null-terminator)**.  
 - Przykład:  
@@ -296,7 +296,7 @@ int main() {
 
 ---
 
-#### **8. [💡] Obsługa plików w języku C**
+#### **8. 💡 Obsługa plików w języku C**
 **Operacje na plikach:**  
 1. **Otwarcie pliku:** `FILE *fopen(const char *filename, const char *mode);`  
    - Tryby: `"r"` (czytanie), `"w"` (zapis, nadpisuje), `"a"` (dopisywanie), `"r+"` (read/write).  
@@ -323,7 +323,7 @@ fclose(src); fclose(dest);
 
 ---
 
-#### **9. [💡] Definiowanie złożonych typów danych w języku C (struktury, unie i pola bitowe)**
+#### **9. 💡 Definiowanie złożonych typów danych w języku C (struktury, unie i pola bitowe)**
 **a) Struktury (`struct`):**  
 - Grupują zmienne różnych typów.  
 ```c
@@ -361,7 +361,7 @@ struct Flags {
 
 ---
 
-#### **10. [💡] Alokacja pamięci w języku C**
+#### **10. 💡 Alokacja pamięci w języku C**
 **Funkcje zarządzania pamięcią (`<stdlib.h>`):**  
 - **`malloc(size)`**: Alokuje `size` bajtów (nie inicjalizuje).  
 - **`calloc(n, size)`**: Alokuje `n * size` bajtów (inicjalizuje zerami).  
@@ -382,7 +382,7 @@ free(arr); // Zwolnienie pamięci!
 
 ---
 
-#### **11. [💡] Wskaźniki w języku C. Związek między tablicami a wskaźnikami**
+#### **11. 💡 Wskaźniki w języku C. Związek między tablicami a wskaźnikami**
 **Podstawy wskaźników:**  
 - Wskaźnik przechowuje **adres pamięci** zmiennej.  
 ```c
@@ -415,7 +415,7 @@ printf("%d", *ptr); // Dereferencja: 10
 
 ## **Języki Programowania II**  
 
-#### **1. [💡] Typy proste i obiektowe w języku Java**  
+#### **1. 💡 Typy proste i obiektowe w języku Java**  
 **Answer:**  
 **a) Typy proste (prymitywne):**  
 - 8 podstawowych typów: `byte`, `short`, `int`, `long`, `float`, `double`, `char`, `boolean`.  
@@ -446,7 +446,7 @@ System.out.println(b.equals(5));     // true
 
 ---
 
-#### **2. [💡] Użycie słów kluczowych: `abstract`, `final`, `static`**
+#### **2. 💡 Użycie słów kluczowych: `abstract`, `final`, `static`**
 **a) `abstract`:**  
 - **Klasa:** Nie można tworzyć instancji, służy jako baza dla podklas.  
 - **Metoda:** Brak implementacji, musi być nadpisana w podklasie.  
@@ -478,7 +478,7 @@ System.out.println(b.equals(5));     // true
 
 ---
 
-#### **3. [💡] Sposoby zabezpieczania dostępu do komponentów klas i obiektów w Java**   
+#### **3. 💡 Sposoby zabezpieczania dostępu do komponentów klas i obiektów w Java**   
 **Modyfikatory dostępu:**  
 - **`private`**: Dostęp tylko w tej samej klasie.  
 - **`protected`**: Dostęp w pakiecie + podklasach.  
@@ -504,7 +504,7 @@ public class BankAccount {
 
 ---
 
-#### **4. [💡] Polimorfizm w językach obiektowych (na przykładach)**   
+#### **4. 💡 Polimorfizm w językach obiektowych (na przykładach)**   
 **Definicja:** Zdolność obiektu do przyjmowania wielu form.  
 **a) Przesłanianie metod (Override):**  
 ```java
@@ -546,7 +546,7 @@ class Square implements Shape {
 
 ---
 
-#### **5. [💡] Pakiety i interfejsy w Javie**
+#### **5. 💡 Pakiety i interfejsy w Javie**
 **a) Pakiety:**  
 - Organizują klasy w grupy (np. `java.util`, `com.mojafirma.model`).  
 - Zapobiegają konfliktom nazw.  
@@ -574,7 +574,7 @@ class Circle implements Drawable {
 
 ---
 
-#### **6. [💡] Tworzenie i synchronizacja wątków w Javie**
+#### **6. 💡 Tworzenie i synchronizacja wątków w Javie**
 **a) Tworzenie wątków:**  
 - **Rozszerzenie klasy `Thread`:**  
   ```java
@@ -613,7 +613,7 @@ class Circle implements Drawable {
 
 ---
 
-#### **7. [💡] Podstawy programowania generycznego w Javie (na podstawie kolekcji)**
+#### **7. 💡 Podstawy programowania generycznego w Javie (na podstawie kolekcji)**
 **Generyki (Generics):**  
 - Pozwalają tworzyć **typowe bezpieczne** klasy/interfejsy.  
 - Eliminują konieczność rzutowania.  
@@ -650,15 +650,15 @@ void printList(List<?> list) { // Akceptuje listę dowolnego typu
 
 ## **Matematyka Dyskretna**
 
-#### **1. \[💡] Metoda indukcji matematycznej**
+#### **1. \💡 Metoda indukcji matematycznej**
 
 **Definicja:** Dowodzenie twierdzeń dla liczb naturalnych przez:
 
-1. **Baza indukcyjna:** Sprawdzenie prawdziwości dla \$n\_0\$ (np. \$n=1\$).
+1. **Baza indukcyjna:** Sprawdzenie prawdziwości dla $n\_0$ (np. $n=1$).
 2. **Krok indukcyjny:**
 
-   * **Założenie (hipoteza indukcyjna):** Twierdzenie prawdziwe dla \$n = k\$.
-   * **Dowód:** Pokaż prawdziwość dla \$n = k+1\$.
+   * **Założenie (hipoteza indukcyjna):** Twierdzenie prawdziwe dla $n = k$.
+   * **Dowód:** Pokaż prawdziwość dla $n = k+1$.
 
 **Przykład:** Dowód, że
 
@@ -666,14 +666,14 @@ $$
 1 + 2 + \dots + n = \frac{n(n+1)}{2}.
 $$
 
-* **Baza:** Dla \$n=1\$:
+* **Baza:** Dla $n=1$:
 
 $$
 1 = \frac{1 \cdot 2}{2} = 1.
 $$
 
 * **Krok:**
-  Załóżmy, że dla pewnego \$k\$ zachodzi:
+  Załóżmy, że dla pewnego $k$ zachodzi:
 
 $$
 \sum_{i=1}^k i = \frac{k(k+1)}{2}.
@@ -690,48 +690,48 @@ $$
 
 ---
 
-#### **2. \[💡] Sposoby kodowania liczb w komputerze**
+#### **2. \💡 Sposoby kodowania liczb w komputerze**
 
 **a) Liczby całkowite:**
 
 * **Uzupełnienie do dwóch (two's complement):**
 
   * Najstarszy bit: znak (0 – dodatnia, 1 – ujemna).
-  * Przykład: \$-3\$ w 4 bitach:
+  * Przykład: $-3$ w 4 bitach:
 
   $$
   3 = 0011 \;\to\; \text{odwróć bity: }1100 \;\to\; +1: 1101.
   $$
 
 * **Kod BCD (Binary-Coded Decimal):**
-  Każda cyfra dziesiętna kodowana 4 bitami (np. \$12 \to 0001,0010\$).
+  Każda cyfra dziesiętna kodowana 4 bitami (np. $12 \to 0001,0010$).
 
 **b) Liczby rzeczywiste:**
 
 * **Reprezentacja zmiennoprzecinkowa (IEEE 754):**
-  Składniki: znak (\$S\$), wykładnik (\$E\$), mantysa (\$M\$).
+  Składniki: znak ($S$), wykładnik ($E$), mantysa ($M$).
   Wartość:
 
   $$
   (-1)^S \times 1.M \times 2^{E - \text{bias}}.
   $$
 
-  Dla formatu float (32 bity): \$S=1\$ bit, \$E=8\$ bitów, \$M=23\$ bitów.
+  Dla formatu float (32 bity): $S=1$ bit, $E=8$ bitów, $M=23$ bitów.
 
 ---
 
-#### **3. \[💡] Zasada szufladkowa Dirichleta**
+#### **3. \💡 Zasada szufladkowa Dirichleta**
 
-**Treść:** Jeśli \$n\$ obiektów umieszczamy w \$m\$ szufladach i \$n > m\$, to co najmniej jedna szuflada zawiera \$\lceil n/m \rceil\$ obiektów.
+**Treść:** Jeśli $n$ obiektów umieszczamy w $m$ szufladach i $n > m$, to co najmniej jedna szuflada zawiera $\lceil n/m \rceil$ obiektów.
 
 **Przykłady:**
 
-1. Wśród 13 osób co najmniej 2 urodziły się w tym samym miesiącu (\$13 > 12\$).
-2. Dowód, że w grupie 6 osób są 3 znajomych lub 3 obcych (graf \$K\_6\$ z krawędziami w 2 kolorach).
+1. Wśród 13 osób co najmniej 2 urodziły się w tym samym miesiącu ($13 > 12$).
+2. Dowód, że w grupie 6 osób są 3 znajomych lub 3 obcych (graf $K\_6$ z krawędziami w 2 kolorach).
 
 ---
 
-#### **4. \[💡] Liczba ciągów, funkcji i podzbiorów**
+#### **4. \💡 Liczba ciągów, funkcji i podzbiorów**
 
 * **Permutacje (ciągi bez powtórzeń):**
 
@@ -759,7 +759,7 @@ $$
 2^n \quad (\emptyset,\{1\},\{2\},\{1,2\})
 $$
 
-* **Kombinacje (podzbiory \$k\$-elementowe):**
+* **Kombinacje (podzbiory $k$-elementowe):**
 
 $$
 \binom{n}{k} = \frac{n!}{k!(n-k)!} \\
@@ -768,7 +768,7 @@ $$
 
 ---
 
-#### **5. \[💡] Kongruencja modulo i pierścień \$\mathbb{Z}\_m\$**
+#### **5. \💡 Kongruencja modulo i pierścień $\mathbb{Z}\_m$**
 
 **Kongruencja:**
 
@@ -776,26 +776,26 @@ $$
 a \equiv b \pmod{m} \iff m \mid (a - b).
 $$
 
-**Pierścień \$\mathbb{Z}\_m\$:** Zbiór reszt \${0,1,\dots,m-1}\$ z dodawaniem i mnożeniem modulo \$m\$.
+**Pierścień $\mathbb{Z}\_m$:** Zbiór reszt ${0,1,\dots,m-1}$ z dodawaniem i mnożeniem modulo $m$.
 
-**Element odwrotny:** \$a^{-1}\$ istnieje wtedy i tylko wtedy, gdy \$\gcd(a,m)=1\$.
+**Element odwrotny:** $a^{-1}$ istnieje wtedy i tylko wtedy, gdy $\gcd(a,m)=1$.
 
-* **Algorytm Euklidesa (rozszerzony):** Znajdź \$x,y\$ takie, że \$ax + my = 1\$. Wtedy \$x \equiv a^{-1} \pmod{m}\$.
+* **Algorytm Euklidesa (rozszerzony):** Znajdź $x,y$ takie, że $ax + my = 1$. Wtedy $x \equiv a^{-1} \pmod{m}$.
 
-**Przykład:** \$3^{-1} \bmod 11\$:
+**Przykład:** $3^{-1} \bmod 11$:
 
 $$
 11 = 3\cdot3 + 2,\;3=2\cdot1+1,\;1=3-2\cdot1=4\cdot3-1\cdot11
 $$
 
-Zatem \$3^{-1} \equiv 4 \pmod{11}\$.
+Zatem $3^{-1} \equiv 4 \pmod{11}$.
 
 ---
 
-#### **6. \[📘] Funkcja Eulera \$\phi(n)\$**
+#### **6. 📘 Funkcja Eulera $\phi(n)$**
 
-**Definicja:** Liczba liczb w \${1,2,\dots,n}\$ względnie pierwszych z \$n\$.
-**Wzór:** Jeśli \$n=\prod\_{i=1}^r p\_i^{k\_i}\$, to
+**Definicja:** Liczba liczb w ${1,2,\dots,n}$ względnie pierwszych z $n$.
+**Wzór:** Jeśli $n=\prod\_{i=1}^r p\_i^{k\_i}$, to
 
 $$
 \phi(n) = n \prod_{i=1}^r \Bigl(1 - \frac{1}{p_i}\Bigr).
@@ -803,31 +803,31 @@ $$
 
 **Własności:**
 
-1. \$\phi(p)=p-1\$ dla liczby pierwszej \$p\$.
-2. \$\phi(p^k)=p^k-p^{k-1}\$.
-3. Jeśli \$\gcd(a,b)=1\$, to \$\phi(ab)=\phi(a)\phi(b)\$.
-4. **Twierdzenie Eulera:** Jeśli \$\gcd(a,n)=1\$, to \$a^{\phi(n)}\equiv1\pmod{n}\$.
+1. $\phi(p)=p-1$ dla liczby pierwszej $p$.
+2. $\phi(p^k)=p^k-p^{k-1}$.
+3. Jeśli $\gcd(a,b)=1$, to $\phi(ab)=\phi(a)\phi(b)$.
+4. **Twierdzenie Eulera:** Jeśli $\gcd(a,n)=1$, to $a^{\phi(n)}\equiv1\pmod{n}$.
 
-**Przykład:** \$\phi(10)=4\$ (liczby: 1,3,7,9).
-
----
-
-#### **7. \[💡] Algorytm RSA**
-
-1. Wybierz dwie duże liczby pierwsze \$p,q\$.
-2. Oblicz \$n=pq\$ oraz \$\phi(n)=(p-1)(q-1)\$.
-3. Wybierz \$e\$ takie, że \$1\<e<\phi(n)\$ i \$\gcd(e,\phi(n))=1\$.
-4. Znajdź \$d\$ takie, że \$ed\equiv1\pmod{\phi(n)}\$.
-
-> **Klucz publiczny:** \$(e,n)\$
-> **Klucz prywatny:** \$(d,n)\$
-
-* **Szyfrowanie:** \$C = M^e \bmod n\$.
-* **Deszyfrowanie:** \$M = C^d \bmod n\$.
+**Przykład:** $\phi(10)=4$ (liczby: 1,3,7,9).
 
 ---
 
-#### **8. \[📘] Sieci boolowskie**
+#### **7. \💡 Algorytm RSA**
+
+1. Wybierz dwie duże liczby pierwsze $p,q$.
+2. Oblicz $n=pq$ oraz $\phi(n)=(p-1)(q-1)$.
+3. Wybierz $e$ takie, że $1\<e<\phi(n)$ i $\gcd(e,\phi(n))=1$.
+4. Znajdź $d$ takie, że $ed\equiv1\pmod{\phi(n)}$.
+
+> **Klucz publiczny:** $(e,n)$
+> **Klucz prywatny:** $(d,n)$
+
+* **Szyfrowanie:** $C = M^e \bmod n$.
+* **Deszyfrowanie:** $M = C^d \bmod n$.
+
+---
+
+#### **8. 📘 Sieci boolowskie**
 
 Graf skierowany acykliczny (DAG), w którym wierzchołki to bramki logiczne (AND, OR, NOT, XOR), a krawędzie to połączenia.
 
@@ -854,12 +854,12 @@ C = A \land B
 
 ---
 
-#### **9. \[📘] Funkcje parzystości**
+#### **9. 📘 Funkcje parzystości**
 
 **Definicje:**
 
-* Parzysta: \$f(-x)=f(x)\$.
-* Nieparzysta: \$f(-x)=-f(x)\$.
+* Parzysta: $f(-x)=f(x)$.
+* Nieparzysta: $f(-x)=-f(x)$.
 
 **Własności:**
 
@@ -873,12 +873,12 @@ $$
 
 **Przykłady:**
 
-* Parzysta: \$x^2\$.
-* Nieparzysta: \$x^3\$.
+* Parzysta: $x^2$.
+* Nieparzysta: $x^3$.
 
 ---
 
-#### **10. \[💡] Drzewa i przeszukiwanie**
+#### **10. \💡 Drzewa i przeszukiwanie**
 
 **Drzewo:** Spójny, acykliczny graf.
 **BST:** Lewe poddrzewo ≤ korzeń < prawe poddrzewo.
@@ -891,11 +891,11 @@ $$
 
 **BFS:** Przeszukiwanie poziomami.
 
-**Złożoność (BST):** \$O(h)\$, gdzie \$h\$ to wysokość drzewa (dla zrównoważonego: \$O(\log n)\$).
+**Złożoność (BST):** $O(h)$, gdzie $h$ to wysokość drzewa (dla zrównoważonego: $O(\log n)$).
 
 ---
 
-#### **11. \[💡] Rekurencja**
+#### **11. \💡 Rekurencja**
 
 Funkcja wywołująca samą siebie z mniejszym problemem.
 
@@ -938,7 +938,7 @@ def inorder(node):
 
 ## **Algorytmy i Struktury Danych**  
 
-#### **1. [📘] Złożoność czasowa algorytmów sortowania**
+#### **1. 📘 Złożoność czasowa algorytmów sortowania**
 **Kluczowe algorytmy i ich złożoności:**  
 | Algorytm          | Złożoność (avg) | Złożoność (worst) | Stabilny? | Uwagi                          |  
 |-------------------|-----------------|-------------------|-----------|--------------------------------|  
@@ -963,7 +963,7 @@ def inorder(node):
 
 ---
 
-#### **2. [💡] Drzewa poszukiwań binarnych (BST i czerwono-czarne): definicja i złożoność operacji**   
+#### **2. 💡 Drzewa poszukiwań binarnych (BST i czerwono-czarne): definicja i złożoność operacji**   
 **a) Standard BST:**  
 - **Definicja:** Dla każdego węzła:
   - Lewe poddrzewo $\leq$ węzeł  
@@ -972,7 +972,7 @@ def inorder(node):
   - Wstawianie: $O(h)$  
   - Usuwanie: $O(h)$  
   - Wyszukiwanie: $O(h)$  
-  - \(h\) – wysokość drzewa (w najgorszym przypadku $O(n)$, gdy drzewo zdegenerowane).  
+  - $h$ – wysokość drzewa (w najgorszym przypadku $O(n)$, gdy drzewo zdegenerowane).  
 
 **b) Drzewa czerwono-czarne (RBT):**  
 - **Definicja:** Samorównoważące BST z dodatkowymi właściwościami:  
@@ -981,8 +981,8 @@ def inorder(node):
   3. Czerwony węzeł ma **czarne dzieci**.  
   4. Każda ścieżka do liścia ma **tę samą liczbę czarnych węzłów** (czarna wysokość).  
 - **Operacje:**  
-  - Wstawianie/usuwanie: \(O(\log n)\) (rotacje i przemalowania zachowują właściwości).  
-  - Wyszukiwanie: \(O(\log n)\).  
+  - Wstawianie/usuwanie: $O(\log n)$ (rotacje i przemalowania zachowują właściwości).  
+  - Wyszukiwanie: $O(\log n)$.  
 
 **Porównanie:**  
 | Właściwość       | BST          | Czerwono-czarne |  
@@ -994,7 +994,7 @@ def inorder(node):
 ---
 
 
-#### **3. \[💡] B‑drzewa: definicja i złożoność operacji**
+#### **3. \💡 B‑drzewa: definicja i złożoność operacji**
 
 **Definicja:** Samorównoważące drzewo dla systemów dyskowych (duże dane):
 
@@ -1020,7 +1020,7 @@ def inorder(node):
 
 ---
 
-#### **4. \[💡] Tablice z haszowaniem: idea i sposoby rozwiązywania konfliktów**
+#### **4. \💡 Tablice z haszowaniem: idea i sposoby rozwiązywania konfliktów**
 
 **Idea haszowania:**
 
@@ -1063,7 +1063,7 @@ def inorder(node):
 
 ---
 
-#### **5. [💡] Kopce binarne i ich zastosowania**
+#### **5. 💡 Kopce binarne i ich zastosowania**
 **Definicja:** Kompletne drzewo binarne spełniające własność kopca:  
 - **Kopiec min:** Wartość węzła $\leq$ wartości dzieci.  
 - **Kopiec max:** Wartość węzła $\geq$ wartości dzieci.  
@@ -1090,7 +1090,7 @@ def inorder(node):
 
 ---
 
-#### **6. [💡] Stosy i kolejki: definicja i typowe implementacje**
+#### **6. 💡 Stosy i kolejki: definicja i typowe implementacje**
 **a) Stos (LIFO):**  
 - **Definicja:** Dodawanie (`push`) i usuwanie (`pop`) z **tego samego końca** (wierzchołek).  
 - **Operacje:**  
@@ -1130,7 +1130,7 @@ def inorder(node):
 
 ## **Systemy Operacyjne**  
 
-#### **1. [💡] Znaczenie praw specjalnych o kodach "s" i "t" w systemach Unix/Linux/BSD**
+#### **1. 💡 Znaczenie praw specjalnych o kodach "s" i "t" w systemach Unix/Linux/BSD**
 **a) `s` (SetUID/SetGID):**  
 - **SetUID (`s` w uprawnieniach właściciela):**  
   - Plik wykonywany z `s` (np. `-rwsr-xr-x`) uruchamia się z uprawnieniami **właściciela**, a nie użytkownika.  
@@ -1159,7 +1159,7 @@ def inorder(node):
 
 ---
 
-#### **2. [💡] Budowa systemu plików w systemach Unix/Linux**
+#### **2. 💡 Budowa systemu plików w systemach Unix/Linux**
 **Hierarchia katalogów (FHS – Filesystem Hierarchy Standard):**  
 | Ścieżka          | Zawartość                                                                 |  
 |------------------|---------------------------------------------------------------------------|  
@@ -1185,7 +1185,7 @@ $ ls -i /etc/passwd  # Wyświetla numer inode
 
 ---
 
-#### **3. [💡] Koncepcja procesu w systemie operacyjnym**
+#### **3. 💡 Koncepcja procesu w systemie operacyjnym**
 **Definicja:** Proces to **wykonywane wystąpienie programu** z własną przestrzenią adresową, zasobami i stanem.  
 
 **Stany procesu:**  
@@ -1212,7 +1212,7 @@ pstree      # Drzewo procesów
 
 ---
 
-#### **4. [💡] Bash jako język programowania**
+#### **4. 💡 Bash jako język programowania**
 Bash to interpreter poleceń z możliwością pisania skryptów.  
 
 **Kluczowe funkcje:**  
@@ -1257,7 +1257,7 @@ Bash to interpreter poleceń z możliwością pisania skryptów.
 
 ---
 
-#### **5. [💡] Zasada działania macierzy RAID**
+#### **5. 💡 Zasada działania macierzy RAID**
 **RAID (Redundant Array of Independent Disks):** Łączenie dysków w celu zwiększenia wydajności/niezawodności.  
 
 | Typ   | Minimalna liczba dysków | Zasada działania                     | Zalety                                 | Wady                          |  
@@ -1280,7 +1280,7 @@ Dysk3: Parzystość(B1,B4), Blok3, Blok6
 
 ## **Architektura Komputerów**  
 
-#### **1. [💡] Wykorzystanie rejestrów procesora (na przykładzie programu przetwarzającego łańcuchy znaków)**
+#### **1. 💡 Wykorzystanie rejestrów procesora (na przykładzie programu przetwarzającego łańcuchy znaków)**
 Rejestry procesora to szybkie komórki pamięci wewnątrz CPU używane do tymczasowego przechowywania danych, adresów i wyników operacji.  
 
 **Przykład programu w asemblerze x86 (kopiowanie łańcucha `src` do `dest`):**  
@@ -1325,7 +1325,7 @@ exit:
 
 ---
 
-#### **2. [📘] Przykłady instrukcji arytmetycznych i logicznych asemblera**
+#### **2. 📘 Przykłady instrukcji arytmetycznych i logicznych asemblera**
 **a) Instrukcje arytmetyczne:**  
 | Instrukcja   | Składnia          | Działanie                     |  
 |--------------|-------------------|-------------------------------|  
@@ -1355,7 +1355,7 @@ add eax, ebx    ; EAX = EAX + EBX → EAX = 8
 
 ---
 
-#### **3. [💡] Typy przerwań w procesorach x86**
+#### **3. 💡 Typy przerwań w procesorach x86**
 Przerwania to mechanizm zatrzymania bieżącego wykonania programu w celu obsługi zdarzeń.  
 
 | Typ przerwania     | Źródło                                  | Przykłady                                   |  
@@ -1379,7 +1379,7 @@ int 0x80    ; Przerwanie → kernel obsługuje wywołanie
 
 ---
 
-#### **4. [💡] Wsparcie zarządzania pamięcią wirtualną w procesorach x86**   
+#### **4. 💡 Wsparcie zarządzania pamięcią wirtualną w procesorach x86**   
 Pamięć wirtualna to abstrakcja, która mapuje adresy wirtualne na fizyczne.  
 
 **Mechanizmy w x86:**  
@@ -1419,7 +1419,7 @@ Pamięć wirtualna to abstrakcja, która mapuje adresy wirtualne na fizyczne.
 
 ## **Sieci Komputerowe**  
 
-#### **1. [📘] Model ISO-OSI stosu protokołów komunikacyjnych**
+#### **1. 📘 Model ISO-OSI stosu protokołów komunikacyjnych**
 Model ISO/OSI to **7-warstwowa architektura** standardów komunikacji sieciowej:  
 1. **Fizyczna (Physical):** Przesył bitów przez medium (kabel, WiFi).  
    - Przykład: Ethernet (RJ45), DSL.  
@@ -1440,7 +1440,7 @@ Model ISO/OSI to **7-warstwowa architektura** standardów komunikacji sieciowej:
 
 ---
 
-#### **2. [💡] Charakterystyka modelu klient-serwer**
+#### **2. 💡 Charakterystyka modelu klient-serwer**
 **Architektura:**  
 - **Klient:** Inicjuje żądania (np. przeglądarka).  
 - **Serwer:** Odbiera żądania, przetwarza, zwraca odpowiedzi (np. serwer WWW).  
@@ -1466,7 +1466,7 @@ Model ISO/OSI to **7-warstwowa architektura** standardów komunikacji sieciowej:
 
 ---
 
-#### **3. [📘] Pojęcie topologii fizycznej sieci komputerowych, przykłady topologii**
+#### **3. 📘 Pojęcie topologii fizycznej sieci komputerowych, przykłady topologii**
 **Topologia fizyczna** = układ fizycznych połączeń między urządzeniami.  
 
 | Typ topologii      | Opis                                                                 | Zalety/Wady                                                                 |  
@@ -1483,7 +1483,7 @@ Model ISO/OSI to **7-warstwowa architektura** standardów komunikacji sieciowej:
 
 ---
 
-#### **4. [💡] Organizacja domen w sieci Internet**
+#### **4. 💡 Organizacja domen w sieci Internet**
 **Domena** = czytelna dla człowieka nazwa zastępująca adres IP (np. `google.com`).  
 
 **Hierarchia DNS:**  
@@ -1508,7 +1508,7 @@ Model ISO/OSI to **7-warstwowa architektura** standardów komunikacji sieciowej:
 
 ---
 
-#### **5. [💡] Porównanie działania protokołów TCP i UDP**
+#### **5. 💡 Porównanie działania protokołów TCP i UDP**
 
 | Kryterium          | TCP (Transmission Control Protocol)       | UDP (User Datagram Protocol)        |  
 |--------------------|-------------------------------------------|--------------------------------------|  
@@ -1533,7 +1533,7 @@ Klient: DANE → (bez potwierdzenia)
 
 ---
 
-#### **6. [📘] Protokoły poczty elektronicznej**
+#### **6. 📘 Protokoły poczty elektronicznej**
 **a) SMTP (Simple Mail Transfer Protocol):**  
 - **Port:** 25 (lub 465/587 dla szyfrowania).  
 - **Funkcja:** Wysyłanie wiadomości między serwerami.  
@@ -1566,7 +1566,7 @@ Klient: DANE → (bez potwierdzenia)
 
 ## **Bazy Danych**  
 
-#### **1. [📘] Pojęcia klucza w relacyjnych bazach danych i słowa kluczowe w SQL**
+#### **1. 📘 Pojęcia klucza w relacyjnych bazach danych i słowa kluczowe w SQL**
 **Klucze:**  
 - **Klucz główny (Primary Key):** Unikalnie identyfikuje wiersz w tabeli (np. `id`).  
   ```sql
@@ -1592,7 +1592,7 @@ Klient: DANE → (bez potwierdzenia)
 
 ---
 
-#### **2. [📘] Warunki poprawności (więzy) dla tabel baz danych**
+#### **2. 📘 Warunki poprawności (więzy) dla tabel baz danych**
 **Więzy integralności:**  
 | Typ więzu              | Opis                                                                 | Przykład SQL                                  |  
 |------------------------|----------------------------------------------------------------------|-----------------------------------------------|  
@@ -1613,7 +1613,7 @@ CREATE TABLE Employees (
 
 ---
 
-#### **3. [💡] Pojęcie transakcji, własności transakcji, przykłady negatywnych zjawisk**
+#### **3. 💡 Pojęcie transakcji, własności transakcji, przykłady negatywnych zjawisk**
 **Transakcja:** Sekwencja operacji traktowana jako **niepodzielna jednostka pracy** (np. przelew bankowy).  
 
 **Własności ACID:**  
@@ -1640,7 +1640,7 @@ COMMIT;  -- Zatwierdź
 
 ---
 
-#### **4. [💡] Negatywne strony redundancji w bazach danych, przykłady, sposoby zwalczania**
+#### **4. 💡 Negatywne strony redundancji w bazach danych, przykłady, sposoby zwalczania**
 **Redundancja = powielanie danych.**  
 **Negatywne skutki:**  
 - **Niespójność danych:** Aktualizacja w jednym miejscu, brak w innym (np. zmiana adresu klienta w `Orders`, ale nie w `Users`).  
@@ -1669,7 +1669,7 @@ Tabela `Orders` przechowuje:
 
 ---
 
-#### **5. [💡] Realizacja operacji rzutu i wyboru relacji w SQL; inne operacje**
+#### **5. 💡 Realizacja operacji rzutu i wyboru relacji w SQL; inne operacje**
 **a) Rzut (PROJECT):** Wybór kolumn.  
 - SQL: `SELECT kolumna1, kolumna2 FROM tabela`  
   ```sql
@@ -1685,10 +1685,10 @@ Tabela `Orders` przechowuje:
 **c) Inne operacje algebry relacji w SQL:**  
 | Operacja          | Algebra relacji | SQL                                     |  
 |-------------------|-----------------|-----------------------------------------|  
-| **Złączenie (JOIN)** | \(R \bowtie S\) | `SELECT * FROM R JOIN S ON R.id=S.id`   |  
-| **Suma (UNION)**  | \(R \cup S\)    | `SELECT ... UNION SELECT ...`           |  
-| **Różnica (EXCEPT)**| \(R - S\)      | `SELECT ... EXCEPT SELECT ...`          |  
-| **Iloczyn kartezjański** | \(R \times S\) | `SELECT * FROM R, S`                  |  
+| **Złączenie (JOIN)** | $R \bowtie S$ | `SELECT * FROM R JOIN S ON R.id=S.id`   |  
+| **Suma (UNION)**  | $R \cup S$    | `SELECT ... UNION SELECT ...`           |  
+| **Różnica (EXCEPT)**| $R - S$      | `SELECT ... EXCEPT SELECT ...`          |  
+| **Iloczyn kartezjański** | $R \times S$ | `SELECT * FROM R, S`                  |  
 
 **Przykład złączenia:**  
 ```sql
@@ -1699,7 +1699,7 @@ JOIN Orders ON Users.id = Orders.user_id;  -- Połączenie tabel
 
 ---
 
-#### **6. [📘] Rodzaje związków w relacyjnych bazach danych i realizacja w SQL**
+#### **6. 📘 Rodzaje związków w relacyjnych bazach danych i realizacja w SQL**
 **Trzy rodzaje związków:**  
 1. **1:1 (jeden do jednego):**  
    - *Przykład:* Użytkownik ma jeden profil.  
@@ -1738,7 +1738,7 @@ JOIN Orders ON Users.id = Orders.user_id;  -- Połączenie tabel
 
 ---
 
-#### **7. [💡] Problemy usuwania przy kluczu obcym i rozwiązania**   
+#### **7. 💡 Problemy usuwania przy kluczu obcym i rozwiązania**   
 **Problem:** Usunięcie rekordu, do którego odwołują się inne tabele, narusza integralność.  
 *Przykład:*  
 ```sql
@@ -1766,7 +1766,7 @@ CREATE TABLE Orders (
 
 ## **Podstawy Inżynierii Oprogramowania**  
 
-#### **1. [💡] Przypadki użycia (use cases) w UML: notacja, zastosowania, diagram dla bankomatu**
+#### **1. 💡 Przypadki użycia (use cases) w UML: notacja, zastosowania, diagram dla bankomatu**
 **Definicja:** Przypadki użycia opisują **interakcje między aktorami a systemem** w celu osiągnięcia konkretnego celu.  
 - **Aktor:** Rola zewnętrzna (człowiek/system) inicjująca interakcję (np. "Klient", "Bank").  
 - **Przypadek użycia:** Funkcjonalność systemu (np. "Wypłata gotówki").  
@@ -1792,7 +1792,7 @@ CREATE TABLE Orders (
 
 ---
 
-#### **2. [💡] Diagram klas w UML: składnia, zastosowania, diagram dla programu opisującego samochód**   
+#### **2. 💡 Diagram klas w UML: składnia, zastosowania, diagram dla programu opisującego samochód**   
 **Definicja:** Diagram klas modeluje **strukturę systemu** (klasy, atrybuty, metody, relacje).  
 
 **Składnia:**  
@@ -1826,7 +1826,7 @@ CREATE TABLE Orders (
 
 ---
 
-#### **3. [💡] Diagram sekwencji w UML: składnia, zastosowania, diagram dla scenariusza bankomatu**   
+#### **3. 💡 Diagram sekwencji w UML: składnia, zastosowania, diagram dla scenariusza bankomatu**   
 **Definicja:** Diagram sekwencji pokazuje **kolejność komunikatów między obiektami** w scenariuszu.  
 
 **Składnia:**  
@@ -1854,7 +1854,7 @@ CREATE TABLE Orders (
 
 ---
 
-#### **4. [💡] Diagram stanu w UML: składnia, zastosowania, diagram dla automatu z napojami**
+#### **4. 💡 Diagram stanu w UML: składnia, zastosowania, diagram dla automatu z napojami**
 **Definicja:** Diagram stanów modeluje **zachowanie obiektu w reakcji na zdarzenia**.  
 
 **Składnia:**  
@@ -1878,7 +1878,7 @@ CREATE TABLE Orders (
 
 ---
 
-#### **5. [💡] Podstawowe fazy tworzenia oprogramowania; charakteryzacja co najmniej trzech modeli cyklu życia**
+#### **5. 💡 Podstawowe fazy tworzenia oprogramowania; charakteryzacja co najmniej trzech modeli cyklu życia**
 **Fazy tworzenia oprogramowania:**  
 1. **Zbieranie wymagań:** Definicja potrzeb klienta.  
 2. **Projektowanie:** Architektura systemu (diagramy UML).  
