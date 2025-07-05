@@ -664,14 +664,12 @@ void printList(List<?> list) { // Akceptuje listę dowolnego typu
 
 $$
 1 + 2 + \dots + n = \frac{n(n+1)}{2}.
-
 $$
 
 * **Baza:** Dla $n=1$:
 
 $$
 1 = \frac{1 \cdot 2}{2} = 1.
-
 $$
 
 * **Krok:**
@@ -679,7 +677,6 @@ $$
 
 $$
 \sum_{i=1}^k i = \frac{k(k+1)}{2}.
-
 $$
 
 Wtedy:
@@ -702,10 +699,9 @@ $$
   * Najstarszy bit: znak (0 – dodatnia, 1 – ujemna).
   * Przykład: $-3$ w 4 bitach:
 
-$$
+$
 3 = 0011 \;\to\; \text{odwróć bity: }1100 \;\to\; +1: 1101
-
-$$
+$
 
 * **Kod BCD (Binary-Coded Decimal):**
   Każda cyfra dziesiętna kodowana 4 bitami (np. $12 \to 0001,0010$).
@@ -716,10 +712,9 @@ $$
   Składniki: znak ($S$), wykładnik ($E$), mantysa ($M$).
   Wartość:
 
-$$
+$
 (-1)^S \times 1.M \times 2^{E - \text{bias}}
-
-$$
+$
 
   Dla formatu float (32 bity): $S=1$ bit, $E=8$ bitów, $M=23$ bitów.
 
