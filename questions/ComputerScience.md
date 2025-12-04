@@ -699,9 +699,9 @@ $$
   * Najstarszy bit: znak (0 – dodatnia, 1 – ujemna).
   * Przykład: $-3$ w 4 bitach:
 
-$
+$$
 3 = 0011 \;\to\; \text{odwróć bity: }1100 \;\to\; +1: 1101
-$
+$$
 
 * **Kod BCD (Binary-Coded Decimal):**
   Każda cyfra dziesiętna kodowana 4 bitami (np. $12 \to 0001,0010$).
@@ -712,9 +712,9 @@ $
   Składniki: znak ($S$), wykładnik ($E$), mantysa ($M$).
   Wartość:
 
-$
+$$
 (-1)^S \times 1.M \times 2^{E - \text{bias}}
-$
+$$
 
   Dla formatu float (32 bity): $S=1$ bit, $E=8$ bitów, $M=23$ bitów.
 
@@ -816,7 +816,7 @@ $$
 
 1. Wybierz dwie duże liczby pierwsze $p,q$.
 2. Oblicz $n=pq$ oraz $\phi(n)=(p-1)(q-1)$.
-3. Wybierz $e$ takie, że $1\<e<\phi(n)$ i $\gcd(e,\phi(n))=1$.
+3. Wybierz $e$ takie, że $1<e<\phi(n)$ i $\gcd(e,\phi(n))=1$.
 4. Znajdź $d$ takie, że $ed\equiv1\pmod{\phi(n)}$.
 
 > **Klucz publiczny:** $(e,n)$

@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+/* Add to your global CSS */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+/* Custom scrollbar for the answer section */
+.prose::-webkit-scrollbar {
+  width: 4px;
+}
+
+.prose::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+
+.prose::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 10px;
+}
+
+.prose::-webkit-scrollbar-thumb:hover {
+  background: #a1a1a1;
+}
