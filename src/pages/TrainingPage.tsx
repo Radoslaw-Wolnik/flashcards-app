@@ -1,6 +1,6 @@
 // src/pages/TrainingPage.tsx
 import React, { useEffect, useMemo, useRef, useState } from 'react'
-import type { Flashcard } from '../types/flashcard'
+import type { Flashcard as FlashcardType } from '../types/flashcard'
 import type { SessionState } from '../types/session'
 import subjectsData from '../data/subjects.json'
 import { getAllFlashcards } from '../utils/dataUtils'
@@ -9,7 +9,7 @@ import { initSession, nextRound, processNextCard } from '../utils/sessionManager
 import { shuffleArray } from '../utils/shuffle'
 import { Button } from '../components/Button'
 import { ProgressTracker } from '../components/ProgressTracker'
-import { FlashcardTraining } from '../components/Flashcard/FlashcardTraining'
+import Flashcard from '../components/Flashcard/Flashcard'
 import { CategoryFilter } from '../components/FilterControls/CategoryFilter'
 import { TeacherFilter } from '../components/FilterControls/TeacherFilter'
 import { Modal } from '../components/Modal'
@@ -24,10 +24,9 @@ export const TrainingPage: React.FC = () => {
   const [count, setCount] = useState<number|'all'>('all')
   // session
   const [session, setSession] = useState<SessionState|null>(null)
-  const [current, setCurrent] = useState<Flashcard|null>(null)
-
-  const [showAnswer, setShowAnswer] = useState(false)
-  const [userAnswer, setUserAnswer] = useState<boolean | null>(null)
+  const [current, setCurrent] = useState<FlashcardType|null>(null)
+  const [currentCardFlipped, setCurrentCardFlipped] = useState(false)
+  const [hasRevealedAnswer, setHasRevealedAnswer] = useState(false)
 
   const allCards = getAllFlashcards()
 
@@ -48,7 +47,6 @@ export const TrainingPage: React.FC = () => {
 
   // Initialize subjects when availableSubjects changes
   useEffect(() => {
-    // Only set if there's a real change needed
     const newIds = availableSubjects.map(s => s.id);
     const shouldUpdate = 
       subjectIds.length === 0 || 
@@ -86,29 +84,21 @@ export const TrainingPage: React.FC = () => {
     }
   };
 
-  const handleChoice = (didKnow: boolean) => {
-    setUserAnswer(didKnow);
-    setShowAnswer(true);
-  };
-
-  const handleNext = () => {
-    if (userAnswer !== null) {
-      handleAnswer(userAnswer);
-      setShowAnswer(false);
-      setUserAnswer(null);
+  const handleCardFlip = (isFlipped: boolean) => {
+    setCurrentCardFlipped(isFlipped)
+    if (isFlipped && !hasRevealedAnswer) {
+      setHasRevealedAnswer(true)
     }
   };
 
-  const showModal = (title: string, message: string) => {
-    setModalContent({ title, message });
-    setModalOpen(true);
-  };
-
-  const handleAnswer = (known: boolean) => {
-    if (!session) return;
+  const handleChoice = (didKnow: boolean) => {
+    if (!session || !current) return
     
     // Process the answer
-    processNextCard(session, known);
+    processNextCard(session, didKnow);
+    
+    setHasRevealedAnswer(false)
+    setCurrentCardFlipped(false)
     
     // Advance to next card or round
     if (session.toReview.length > 0) {
@@ -133,6 +123,22 @@ export const TrainingPage: React.FC = () => {
     }
   };
 
+  const handleNext = () => {
+    if (!session || !current) return
+    
+    // Advance to next card or round
+    if (session.toReview.length > 0) {
+      setCurrent(session.toReview[0])
+      setCurrentCardFlipped(false)
+      setHasRevealedAnswer(false)
+    }
+  };
+
+  const showModal = (title: string, message: string) => {
+    setModalContent({ title, message });
+    setModalOpen(true);
+  };
+
   const handleModalClose = () => {
     setModalOpen(false);
     
@@ -142,14 +148,16 @@ export const TrainingPage: React.FC = () => {
       // Start next round with incorrect cards
       nextRound(session);
       setCurrent(session.toReview[0] || null);
+      setCurrentCardFlipped(false);
+      setHasRevealedAnswer(false);
     } else {
       // Training complete
       setSession(null);
       setCurrent(null);
+      setCurrentCardFlipped(false);
+      setHasRevealedAnswer(false);
     }
   };
-
-
 
   const start = () => {
     // base pool by category/teacher/type
@@ -176,13 +184,15 @@ export const TrainingPage: React.FC = () => {
     const newSession = initSession(picked);
     setSession(newSession);
     setCurrent(newSession.toReview[0] || null);
+    setCurrentCardFlipped(false);
+    setHasRevealedAnswer(false);
   };
 
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-4">Training Mode</h1>
+    <div className="container mx-auto px-4 py-6">
+      <h1 className="text-2xl font-bold mb-6">Training Mode</h1>
 
-        <Modal
+      <Modal
         isOpen={modalOpen}
         onClose={handleModalClose}
         title={modalContent.title}
@@ -190,7 +200,7 @@ export const TrainingPage: React.FC = () => {
       />
       
       {!session ? (
-        <div className="space-y-4 mb-6">
+        <div className="space-y-6 mb-6 max-w-2xl">
           {/* Category & Teacher */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <CategoryFilter
@@ -209,28 +219,28 @@ export const TrainingPage: React.FC = () => {
 
           {/* Subject Selection */}
           {availableSubjects.length > 0 && (
-            <div className="border rounded p-4">
-              <label className="inline-flex items-center font-medium">
+            <div className="border rounded-xl p-4 bg-white shadow-sm">
+              <label className="inline-flex items-center font-medium mb-3">
                 <input
                   type="checkbox"
                   ref={selectAllRef}
-                  className="form-checkbox"
+                  className="form-checkbox h-5 w-5 text-indigo-600"
                   checked={subjectIds.length === availableSubjects.length}
                   onChange={handleSelectAll}
                 />
-                <span className="ml-2">Select All</span>
+                <span className="ml-2 text-lg">Select All Subjects</span>
               </label>
 
-              <div className="mt-3 grid grid-cols-2 gap-2">
+              <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
                 {availableSubjects.map(s => (
-                  <label key={s.id} className="inline-flex items-center">
+                  <label key={s.id} className="inline-flex items-center p-2 hover:bg-gray-50 rounded">
                     <input
                       type="checkbox"
-                      className="form-checkbox"
+                      className="form-checkbox h-5 w-5 text-indigo-600"
                       checked={subjectIds.includes(s.id)}
                       onChange={() => toggleSubject(s.id)}
                     />
-                    <span className="ml-2">{s.name}</span>
+                    <span className="ml-3">{s.name}</span>
                   </label>
                 ))}
               </div>
@@ -238,57 +248,131 @@ export const TrainingPage: React.FC = () => {
           )}
 
           {/* Number of questions */}
-          <div>
-            <label className="block mb-1">Number of questions:</label>
+          <div className="border rounded-xl p-4 bg-white shadow-sm">
+            <label className="block mb-2 font-medium text-lg">Number of questions:</label>
             <select
-              className="border rounded px-3 py-2"
+              className="border rounded-lg px-4 py-2 w-full max-w-xs"
               value={count}
               onChange={e => {
                 const v = e.target.value;
                 setCount(v === 'all' ? 'all' : parseInt(v, 10));
               }}
             >
-              <option value="all">All</option>
-              <option value="20">20</option>
-              <option value="10">10</option>
-              <option value="3">3</option>
+              <option value="all">All available</option>
+              <option value="50">50 questions</option>
+              <option value="30">30 questions</option>
+              <option value="20">20 questions</option>
+              <option value="10">10 questions</option>
+              <option value="5">5 questions</option>
             </select>
           </div>
 
-          <Button onClick={start}>Start Training</Button>
+          <div className="pt-4">
+            <Button 
+              onClick={start} 
+              variant="primary"
+              className="px-8 py-3 text-lg"
+              disabled={availableSubjects.length === 0}
+            >
+              Start Training
+            </Button>
+            
+            {availableSubjects.length === 0 && (
+              <p className="mt-2 text-gray-500 text-sm">
+                Please select a category or teacher to see available subjects.
+              </p>
+            )}
+          </div>
         </div>
       ) : current ? (
-        <div className="flex flex-col h-[70vh] min-h-[500px] max-h-[800px]">
-          <ProgressTracker
-            round={session.round}
-            correctCount={session.correct.length}
-            incorrectCount={session.incorrect.length}
-          />
-          
-          <div className="flex-grow mb-6">
-            <FlashcardTraining
-              question={current.question}
-              answer={current.answer}
-              showAnswer={showAnswer}
+        <div className="flex flex-col items-center">
+          <div className="w-full max-w-4xl mb-6">
+            <ProgressTracker
+              round={session.round}
+              correctCount={session.correct.length}
+              incorrectCount={session.incorrect.length}
             />
           </div>
           
-          <div className="flex justify-center space-x-4 mt-auto">
-            {!showAnswer ? (
-              <>
-                <Button variant="secondary" onClick={() => handleChoice(false)}>
-                  I don't know
-                </Button>
-                <Button variant="primary" onClick={() => handleChoice(true)}>
-                  I know
-                </Button>
-              </>
+          {/* Flashcard */}
+          <div className="w-full max-w-4xl mb-8">
+            <Flashcard
+              key={current.id}
+              question={current.question}
+              answer={current.answer}
+              isFlipped={currentCardFlipped}
+              onFlip={handleCardFlip}
+              maxWidth="700px"
+            />
+          </div>
+          
+          {/* Action Buttons */}
+          <div className="w-full max-w-2xl">
+            {!hasRevealedAnswer ? (
+              <div className="text-center p-6 bg-blue-50 rounded-xl">
+                <p className="mb-2 font-medium text-blue-700">Reveal the answer to continue</p>
+                <p className="text-sm text-blue-500">
+                  Click the card or press Space to flip and see the answer
+                </p>
+              </div>
             ) : (
-              <Button onClick={handleNext}>Next</Button>
+              <div className="bg-gray-50 rounded-xl p-6">
+                <p className="text-center font-medium mb-6 text-gray-700">
+                  Did you know the answer?
+                </p>
+                
+                <div className="flex flex-col sm:flex-row justify-center gap-4">
+                  <Button 
+                    variant="secondary" 
+                    onClick={() => handleChoice(false)}
+                    className="px-6 py-3 flex-1 bg-red-50 hover:bg-red-100 text-red-700 border-red-200"
+                  >
+                    <span className="font-medium">I don't know</span>
+                  </Button>
+                  
+                  <Button 
+                    variant="primary" 
+                    onClick={() => handleChoice(true)}
+                    className="px-6 py-3 flex-1 bg-green-50 hover:bg-green-100 text-green-700 border-green-200"
+                  >
+                    <span className="font-medium">I know</span>
+                  </Button>
+                  
+                  {session.toReview.length > 1 && (
+                    <Button 
+                      onClick={handleNext}
+                      variant="primary"
+                      className="px-6 py-3 flex-1"
+                    >
+                      <span className="font-medium">Skip</span>
+                    </Button>
+                  )}
+                </div>
+                
+                <div className="mt-4 text-center text-sm text-gray-500">
+                  {session.toReview.length - 1} card(s) remaining in this round
+                </div>
+              </div>
             )}
+          </div>
+          
+          {/* Exit Button */}
+          <div className="mt-8">
+            <Button 
+              onClick={() => {
+                if (window.confirm('Are you sure you want to end this training session?')) {
+                  setSession(null)
+                  setCurrent(null)
+                }
+              }}
+              variant="secondary"
+              className="px-4 py-2"
+            >
+              End Training Session
+            </Button>
           </div>
         </div>
       ) : null}
     </div>
-  );
-};
+  )
+}

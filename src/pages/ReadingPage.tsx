@@ -7,7 +7,7 @@ import { CategoryFilter }    from '../components/FilterControls/CategoryFilter'
 import { TeacherFilter }     from '../components/FilterControls/TeacherFilter'
 import { SubjectFilter }     from '../components/FilterControls/SubjectFilter'
 import { TypeFilter }        from '../components/FilterControls/TypeFilter'
-import { FlashcardRead }     from '../components/Flashcard/FlashcardRead'
+import  FlashcardRead      from '../components/Flashcard/Flashcard'
 // import type { Flashcard } from '../types/flashcard'
 
 export const ReadingPage: React.FC = () => {
