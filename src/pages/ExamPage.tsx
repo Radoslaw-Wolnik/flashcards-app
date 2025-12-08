@@ -1,191 +1,222 @@
-import React, { useState } from 'react'
+import React, { useState, useMemo, useCallback } from 'react'
 import type { Flashcard } from '../types/flashcard'
-import teachersData    from '../data/teachers.json'
-import subjectsData    from '../data/subjects.json'
+import type { Teacher } from '../types/flashcard'
+import type { Subject } from '../types/flashcard'
+import rawTeachers from '../data/teachers.json'
+import rawSubjects from '../data/subjects.json'
 import { getAllFlashcards } from '../utils/dataUtils'
-import { shuffleArray }     from '../utils/shuffle'
-import { Button }           from '../components/Button'
-import { ProgressTracker }  from '../components/ProgressTracker'
-import { FlashcardTraining }from '../components/Flashcard/FlashcardTraining'
-import { Modal } from '../components/Modal';
+import { shuffleArray } from '../utils/shuffle'
+import { Modal } from '../components/Modal'
+import { ExamConfigPanel } from '../components/Exam/ExamConfigPanel'
+import { ExamSession } from '../components/Exam/ExamSession'
 
-type Rounds = 1 | 3 | 5 | 10
+const teachersData = rawTeachers as Teacher[]
+const subjectsData = rawSubjects as Subject[]
+
+type ExamState = {
+  currentRound: number
+  totalCorrect: number
+  totalIncorrect: number
+  currentRoundCards: Flashcard[]
+  currentCardIndex: number
+  roundHistory: boolean[]
+  usedCardIds: Set<string>
+}
 
 export const ExamPage: React.FC = () => {
-  const [rounds,       setRounds]       = useState<Rounds>(1)
-  const [currentRound, setCRound]       = useState<number>(0)
-  const [usedIds,      setUsedIds]      = useState<Set<string>>(new Set())
-  const [history,      setHistory]      = useState<boolean[]>([])
-  const [currentSet,   setCurrentSet]   = useState<Flashcard[]>([])
-  const [indexInSet,   setIndexInSet]   = useState<number>(0)
-
-  const [showAnswer, setShowAnswer] = useState(false)
-  const [userAnswer, setUserAnswer] = useState<boolean | null>(null)
+  // Configuration state
+  const [config, setConfig] = useState({
+    rounds: 1 as 1 | 3 | 5 | 10
+  })
+  
+  // Exam state
+  const [examState, setExamState] = useState<ExamState | null>(null)
+  
+  // Modal state
+  const [modalOpen, setModalOpen] = useState(false)
+  const [modalContent, setModalContent] = useState({ title: '', message: '' })
 
   const allCards = getAllFlashcards()
 
-  const [modalOpen, setModalOpen] = useState(false);
-  const [modalContent, setModalContent] = useState({
-    title: '',
-    message: '',
-  });
+  // Memoize teacher pools
+  const { teacherPools, availableTeachersCount } = useMemo(() => {
+    const subjMap = subjectsData.reduce<Record<string, string>>((acc, s) => {
+      if (s.teacherId) acc[s.id] = s.teacherId
+      return acc
+    }, {})
 
-  const subjMap = subjectsData.reduce<Record<string,string>>((acc, s) => {
-    if (s.teacherId) acc[s.id] = s.teacherId
-    return acc
-  }, {})
+    const pools = teachersData.map(t => ({
+      teacher: t,
+      pool: allCards.filter(fc => subjMap[fc.subjectId] === t.id)
+    })).filter(tp => tp.pool.length > 0)
 
-  const teacherPools = teachersData.map(t => ({
-    teacher: t,
-    pool: allCards.filter(fc => subjMap[fc.subjectId] === t.id)
-  }))
-
-  const startExam = () => {
-    setUsedIds(new Set())
-    setHistory([])
-    setCRound(1)
-    pickNextSet(new Set())
-  }
-
-  const handleChoice = (didKnow: boolean) => {
-    setUserAnswer(didKnow)
-    setShowAnswer(true)
-  }
-
-  const handleNext = () => {
-    if (userAnswer !== null) {
-      handleAnswer(userAnswer)
-      setShowAnswer(false)
-      setUserAnswer(null)
+    return {
+      teacherPools: pools,
+      availableTeachersCount: pools.length
     }
+  }, [allCards])
+
+  // Start exam
+  const startExam = () => {
+    const initialExamState: ExamState = {
+      currentRound: 1,
+      totalCorrect: 0,
+      totalIncorrect: 0,
+      currentRoundCards: [],
+      currentCardIndex: 0,
+      roundHistory: [],
+      usedCardIds: new Set()
+    }
+
+    // Pick first round
+    const newExamState = pickNextRound(initialExamState)
+    setExamState(newExamState)
   }
 
-  function pickNextSet(prevUsed: Set<string>) {
-    const newUsed = new Set(prevUsed)
+  // Helper to pick cards for next round
+  const pickNextRound = (state: ExamState): ExamState => {
+    const newUsedIds = new Set(state.usedCardIds)
     const picks: Flashcard[] = []
 
     teacherPools.forEach(({ pool }) => {
-      const avail = pool.filter(fc => !newUsed.has(fc.id))
+      const avail = pool.filter(fc => !newUsedIds.has(fc.id))
       if (avail.length > 0) {
         const choice = shuffleArray(avail)[0]
         picks.push(choice)
-        newUsed.add(choice.id)
+        newUsedIds.add(choice.id)
       }
     })
 
-    setUsedIds(newUsed)
-    setCurrentSet(shuffleArray(picks))
-    setIndexInSet(0)
-    setHistory([])
+    return {
+      ...state,
+      currentRoundCards: shuffleArray(picks),
+      currentCardIndex: 0,
+      roundHistory: [],
+      usedCardIds: newUsedIds
+    }
   }
 
-   const showModal = (title: string, message: string) => {
-    setModalContent({ title, message });
-    setModalOpen(true);
-  };
+  // Handle user answer
+  const handleAnswer = useCallback((isCorrect: boolean) => {
+    if (!examState) return
 
-  const handleAnswer = (known: boolean) => {
-    setHistory(h => [...h, known]);
-    const nextIdx = indexInSet + 1;
+    setExamState(prev => {
+      if (!prev) return prev
 
-    if (nextIdx < currentSet.length) {
-      setIndexInSet(nextIdx);
-      return;
-    }
+      const newRoundHistory = [...prev.roundHistory, isCorrect]
+      const newCorrect = prev.totalCorrect + (isCorrect ? 1 : 0)
+      const newIncorrect = prev.totalIncorrect + (isCorrect ? 0 : 1)
+      const nextIndex = prev.currentCardIndex + 1
 
-    // Round finished
-    const corrects = history.filter(h => h).length + (known ? 1 : 0);
-    const total = history.length + 1;
-    const pct = Math.round((corrects / total) * 100);
-    
-    if (currentRound < rounds) {
-      showModal(
-        `Round ${currentRound} Complete!`,
-        `You scored ${pct}% correct. Get ready for the next round!`
-      );
-    } else {
-      showModal(
-        'Exam Finished!',
-        `You scored an average of ${pct}% correct over ${rounds} rounds.`
-      );
-    }
-  };
+      // If more cards in this round
+      if (nextIndex < prev.currentRoundCards.length) {
+        return {
+          ...prev,
+          totalCorrect: newCorrect,
+          totalIncorrect: newIncorrect,
+          currentCardIndex: nextIndex,
+          roundHistory: newRoundHistory
+        }
+      }
 
+      // Round finished - show modal
+      const roundScore = newRoundHistory.filter(h => h).length
+      const roundTotal = newRoundHistory.length
+      const roundPercentage = Math.round((roundScore / roundTotal) * 100)
+
+      let modalTitle = ''
+      let modalMessage = ''
+
+      if (prev.currentRound < config.rounds) {
+        modalTitle = `Round ${prev.currentRound} Complete!`
+        modalMessage = `You scored ${roundPercentage}% correct (${roundScore}/${roundTotal}). Get ready for round ${prev.currentRound + 1}!`
+      } else {
+        const totalScore = newCorrect + newIncorrect
+        const totalPercentage = Math.round((newCorrect / totalScore) * 100)
+        modalTitle = 'Exam Finished!'
+        modalMessage = `Congratulations! You completed ${config.rounds} rounds with an average score of ${totalPercentage}% correct.`
+      }
+
+      setModalContent({ title: modalTitle, message: modalMessage })
+      setModalOpen(true)
+
+      // Return updated state
+      return {
+        ...prev,
+        totalCorrect: newCorrect,
+        totalIncorrect: newIncorrect,
+        roundHistory: newRoundHistory
+      }
+    })
+  }, [examState, config.rounds])
+
+  // Handle modal close (transition to next round or finish)
   const handleModalClose = () => {
-    setModalOpen(false);
-    
-    if (currentRound < rounds) {
+    setModalOpen(false)
+
+    if (!examState) return
+
+    if (examState.currentRound < config.rounds) {
       // Start next round
-      setCRound(r => r + 1);
-      setHistory([]);
-      pickNextSet(usedIds);
+      const nextRoundState = {
+        ...examState,
+        currentRound: examState.currentRound + 1
+      }
+      const newExamState = pickNextRound(nextRoundState)
+      setExamState(newExamState)
     } else {
       // Exam complete
-      setCRound(0);
-      setHistory([]);
-      setCurrentSet([]);
-      setUsedIds(new Set());
+      setExamState(null)
     }
-  };
+  }
+
+  // End exam early
+  const handleEndExam = () => {
+    if (window.confirm('Are you sure you want to end this exam? Your progress will be lost.')) {
+      setExamState(null)
+    }
+  }
+
+  // Current card
+  const currentCard = examState?.currentRoundCards[examState.currentCardIndex] || null
 
   return (
-    <div className="container mx-auto px-4">
-      <h1 className="text-2xl font-bold mb-4">Exam Mode</h1>
+    <div className="container mx-auto px-4 py-6">
+      <div className="text-center mb-8">
+        <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+          Exam Mode
+        </h1>
+        <p className="text-gray-600 mt-2">
+          Test your knowledge across all teachers with multiple rounds
+        </p>
+      </div>
 
-        <Modal
+      <Modal
         isOpen={modalOpen}
         onClose={handleModalClose}
         title={modalContent.title}
         message={modalContent.message}
       />
-
-      {currentRound === 0 ? (
-        <div className="space-y-4">
-          <label className="block mb-1">Number of rounds:</label>
-          <select
-            className="border rounded px-3 py-2"
-            value={rounds}
-            onChange={e => setRounds(parseInt(e.target.value) as Rounds)}
-          >
-            <option value={1}>1</option>
-            <option value={3}>3</option>
-            <option value={5}>5</option>
-            <option value={10}>10</option>
-          </select>
-
-          <Button onClick={startExam}>Start Exam</Button>
-        </div>
+      
+      {!examState ? (
+        <ExamConfigPanel
+          config={config}
+          onConfigChange={setConfig}
+          onStart={startExam}
+          availableTeachersCount={availableTeachersCount}
+        />
       ) : (
-        <div className="flex flex-col h-[70vh] min-h-[500px] max-h-[800px]">
-          <ProgressTracker
-            round={currentRound}
-            correctCount={history.filter(h => h).length}
-            incorrectCount={history.filter(h => !h).length}
-          />
-          
-          <div className="flex-grow mb-6">
-            <FlashcardTraining
-              question={currentSet[indexInSet].question}
-              answer={currentSet[indexInSet].answer}
-              showAnswer={showAnswer}
-            />
-          </div>
-          
-          <div className="flex justify-center space-x-4 mt-auto">
-            {!showAnswer ? (
-              <>
-                <Button variant="secondary" onClick={() => handleChoice(false)}>
-                  I don't know
-                </Button>
-                <Button variant="primary" onClick={() => handleChoice(true)}>
-                  I know
-                </Button>
-              </>
-            ) : (
-              <Button onClick={handleNext}>Next</Button>
-            )}
-          </div>
-        </div>
+        <ExamSession
+          currentRound={examState.currentRound}
+          totalRounds={config.rounds}
+          currentCard={currentCard}
+          cardIndex={examState.currentCardIndex}
+          totalCardsInRound={examState.currentRoundCards.length}
+          correctCount={examState.totalCorrect}
+          incorrectCount={examState.totalIncorrect}
+          onAnswer={handleAnswer}
+          onEndExam={handleEndExam}
+        />
       )}
     </div>
   )
