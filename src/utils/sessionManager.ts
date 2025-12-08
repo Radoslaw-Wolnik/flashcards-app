@@ -1,16 +1,17 @@
+// src/utils/sessionManager.ts
 import type { Flashcard } from '../types/flashcard'
 import type { SessionState } from '../types/session'
-
 
 /**
  * Initialize a training session given the picked questions.
  */
 export function initSession(cards: Flashcard[]): SessionState {
   return {
-    round:    1,
-    correct:  [],
+    round: 1,
+    correct: [],
     incorrect: [],
     toReview: [...cards],
+    originalCards: [...cards] // Store original cards for reference
   }
 }
 
@@ -29,6 +30,6 @@ export function processNextCard(state: SessionState, isCorrect: boolean): void {
 export function nextRound(state: SessionState): void {
   state.round += 1
   state.toReview = [...state.incorrect]
-  state.correct = []
   state.incorrect = []
+  // Note: We keep correct cards in the correct array
 }
