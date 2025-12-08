@@ -1,6 +1,5 @@
 @import "tailwindcss";
 
-/* Add to your global CSS */
 .backface-hidden {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;
