@@ -134,6 +134,7 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Icons from Lucide React
 - UI patterns from Headless UI
 - Design inspiration from modern learning platforms
+- <a href="https://www.flaticon.com/free-icons/vocabulary" title="vocabulary icons">Vocabulary icons created by manshagraphics - Flaticon</a>
 
 ---
 
