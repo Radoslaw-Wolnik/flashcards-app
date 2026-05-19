@@ -1,5 +1,6 @@
 // src/components/Training/TrainingConfigPanel.tsx
 import React, { useMemo, useRef, useCallback } from 'react'
+import { Play, Target } from 'lucide-react'
 import type { Subject, Teacher } from '../../types/flashcard'
 
 interface TrainingConfig {
@@ -68,10 +69,12 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
   return (
     <div className="space-y-6 max-w-2xl mx-auto">
       {/* Ready to Train Header */}
-      <div className="text-center p-6 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl shadow-sm">
-        <div className="text-5xl mb-4">🎯</div>
-        <h2 className="text-2xl font-bold mb-2">Ready to Train?</h2>
-        <p className="text-gray-600 mb-6">
+      <div className="surface-card p-6 text-center">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+          <Target className="h-6 w-6" aria-hidden="true" />
+        </div>
+        <h2 className="text-2xl font-bold mb-2 text-slate-950">Ready to Train?</h2>
+        <p className="text-slate-600">
           Customize your training session below
         </p>
       </div>
@@ -79,9 +82,9 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
       {/* Category & Teacher Filters */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
         <div>
-          <label className="block mb-2 font-medium">Category</label>
+          <label className="field-label">Category</label>
           <select
-            className="w-full border rounded-lg px-4 py-2 bg-white"
+            className="select-input"
             value={config.categoryId}
             onChange={e => onConfigChange({ 
               ...config, 
@@ -95,9 +98,9 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
         </div>
         
         <div>
-          <label className="block mb-2 font-medium">Teacher</label>
+          <label className="field-label">Teacher</label>
           <select
-            className="w-full border rounded-lg px-4 py-2 bg-white"
+            className="select-input"
             value={config.teacherId}
             onChange={e => onConfigChange({ ...config, teacherId: e.target.value })}
           >
@@ -113,12 +116,12 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
 
       {/* Subject Selection */}
       {availableSubjects.length > 0 && (
-        <div className="border rounded-xl p-5 bg-white shadow-sm">
+        <div className="surface-card p-5">
           <label className="inline-flex items-center font-medium mb-4">
             <input
               type="checkbox"
               ref={selectAllRef}
-              className="form-checkbox h-5 w-5 text-indigo-600"
+              className="h-5 w-5 accent-blue-600"
               checked={config.subjectIds.length === availableSubjects.length}
               onChange={handleSelectAll}
             />
@@ -134,23 +137,23 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
             {availableSubjects.map(subject => (
               <label 
                 key={subject.id} 
-                className="inline-flex items-center p-3 hover:bg-gray-50 rounded-lg cursor-pointer transition-colors"
+                className="inline-flex items-center p-3 hover:bg-slate-50 rounded-lg cursor-pointer transition-colors"
               >
                 <input
                   type="checkbox"
-                  className="form-checkbox h-5 w-5 text-indigo-600"
+                  className="h-5 w-5 accent-blue-600"
                   checked={config.subjectIds.includes(subject.id)}
                   onChange={() => toggleSubject(subject.id)}
                 />
                 <span className="ml-3 font-medium">{subject.name}</span>
-                <span className="ml-2 text-sm text-gray-500">
+                <span className="ml-2 text-sm text-slate-500">
                   ({allCardsCount[subject.id] || 0})
                 </span>
               </label>
             ))}
           </div>
           
-          <div className="mt-4 text-sm text-gray-500">
+          <div className="mt-4 text-sm text-slate-500">
             {config.subjectIds.length} of {availableSubjects.length} subjects selected
             {config.subjectIds.length > 0 && (
               <span className="ml-2 font-medium">
@@ -162,8 +165,8 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
       )}
 
       {/* Number of Questions */}
-      <div className="border rounded-xl p-5 bg-white shadow-sm">
-        <label className="block mb-3 font-medium text-lg">Number of Questions</label>
+      <div className="surface-card p-5">
+        <label className="block mb-3 font-semibold text-lg text-slate-800">Number of Questions</label>
         
         {availableCardsCount > 0 ? (
           <>
@@ -174,8 +177,8 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
                   onClick={() => onConfigChange({ ...config, count: num })}
                   className={`px-4 py-2 rounded-lg transition-colors ${
                     config.count === num 
-                      ? 'bg-indigo-600 text-white' 
-                      : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                      ? 'bg-blue-600 text-white' 
+                      : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                   }`}
                 >
                   {num} questions
@@ -186,23 +189,23 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
                 onClick={() => onConfigChange({ ...config, count: 'all' })}
                 className={`px-4 py-2 rounded-lg transition-colors ${
                   config.count === 'all' 
-                    ? 'bg-indigo-600 text-white' 
-                    : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                    ? 'bg-blue-600 text-white' 
+                    : 'bg-slate-100 text-slate-700 hover:bg-slate-200'
                 }`}
               >
                 All ({availableCardsCount})
               </button>
             </div>
             
-            <div className="mt-4 text-sm text-gray-500">
+            <div className="mt-4 text-sm text-slate-500">
               {config.count === 'all' 
                 ? `Training with all ${availableCardsCount} available cards` 
                 : `Training with ${config.count} randomly selected cards`}
             </div>
           </>
         ) : (
-          <div className="text-center p-4 bg-gray-50 rounded-lg">
-            <p className="text-gray-500">
+          <div className="text-center p-4 bg-slate-50 rounded-lg">
+            <p className="text-slate-500">
               {availableSubjects.length === 0
                 ? "No subjects available for current filters"
                 : config.subjectIds.length === 0 
@@ -218,9 +221,12 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
         <button
           onClick={onStart}
           disabled={isStartDisabled}
-          className="px-8 py-4 text-lg bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl hover:from-indigo-700 hover:to-purple-700 transition-all transform hover:-translate-y-1 shadow-lg hover:shadow-xl disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:translate-y-0"
+          className="primary-action flex-col px-8 py-4 text-lg"
         >
-          <span className="font-bold">{getStartButtonText()}</span>
+          <span className="flex items-center gap-2 font-bold">
+            <Play className="h-5 w-5" aria-hidden="true" />
+            {getStartButtonText()}
+          </span>
           <div className="text-sm opacity-90 mt-1">
             {config.subjectIds.length} subject{config.subjectIds.length !== 1 ? 's' : ''}
             {config.teacherId && (

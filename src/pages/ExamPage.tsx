@@ -9,6 +9,7 @@ import { shuffleArray } from '../utils/shuffle'
 import { Modal } from '../components/Modal'
 import { ExamConfigPanel } from '../components/Exam/ExamConfigPanel'
 import { ExamSession } from '../components/Exam/ExamSession'
+import { PageHeader } from '../components/PageHeader'
 
 const teachersData = rawTeachers as Teacher[]
 const subjectsData = rawSubjects as Subject[]
@@ -36,7 +37,7 @@ export const ExamPage: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState({ title: '', message: '' })
 
-  const allCards = getAllFlashcards()
+  const allCards = useMemo(() => getAllFlashcards(), [])
 
   // Memoize teacher pools
   const { teacherPools, availableTeachersCount } = useMemo(() => {
@@ -181,15 +182,12 @@ export const ExamPage: React.FC = () => {
   const currentCard = examState?.currentRoundCards[examState.currentCardIndex] || null
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <div className="text-center mb-8">
-        <h1 className="text-3xl font-bold bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-          Exam Mode
-        </h1>
-        <p className="text-gray-600 mt-2">
-          Test your knowledge across all teachers with multiple rounds
-        </p>
-      </div>
+    <main className="page-shell">
+      <PageHeader
+        eyebrow="Exam mode"
+        title="Simulate the oral exam"
+        description="Each round draws one card per teacher so you can rehearse a broad, exam-like mix."
+      />
 
       <Modal
         isOpen={modalOpen}
@@ -218,6 +216,6 @@ export const ExamPage: React.FC = () => {
           onEndExam={handleEndExam}
         />
       )}
-    </div>
+    </main>
   )
 }

@@ -11,6 +11,7 @@ import { shuffleArray } from '../utils/shuffle'
 import { TrainingConfigPanel } from '../components/Training/TrainingConfigPanel'
 import { TrainingSession } from '../components/Training/TrainingSession'
 import { Modal } from '../components/Modal'
+import { PageHeader } from '../components/PageHeader'
 
 // Cast the raw subjects data to Subject[] type
 const subjectsData = rawSubjects as Subject[]
@@ -31,7 +32,7 @@ export const TrainingPage: React.FC = () => {
   const [modalOpen, setModalOpen] = useState(false)
   const [modalContent, setModalContent] = useState({ title: '', message: '' })
 
-  const allCards = getAllFlashcards()
+  const allCards = useMemo(() => getAllFlashcards(), [])
 
   // Memoize data
   const { availableSubjects, availableTeachers, cardCounts, availableCardsCount } = useMemo(() => {
@@ -44,13 +45,15 @@ export const TrainingPage: React.FC = () => {
       filteredSubjects = filteredSubjects.filter(s => s.teacherId === config.teacherId)
     }
 
+    const teacherLookup = new Map(teachersData.map(teacher => [teacher.id, teacher.name]))
+
     // Get unique teachers
     const teacherMap = new Map<string, { id: string; name: string }>()
     subjectsData.forEach(subject => {
       if (subject.teacherId && !teacherMap.has(subject.teacherId)) {
         teacherMap.set(subject.teacherId, {
           id: subject.teacherId,
-          name: subject.teacherId
+          name: teacherLookup.get(subject.teacherId) || subject.teacherId
         })
       }
     })
@@ -152,8 +155,12 @@ export const TrainingPage: React.FC = () => {
   }
 
   return (
-    <div className="container mx-auto px-4 py-6">
-      <h1 className="text-2xl font-bold mb-6">Training Mode</h1>
+    <main className="page-shell">
+      <PageHeader
+        eyebrow="Training mode"
+        title="Practice until it sticks"
+        description="Build a focused set, flip each card, and recycle the missed ones into the next round."
+      />
 
       <Modal
         isOpen={modalOpen}
@@ -180,6 +187,6 @@ export const TrainingPage: React.FC = () => {
           onEndSession={handleEndSession}
         />
       )}
-    </div>
+    </main>
   )
 }

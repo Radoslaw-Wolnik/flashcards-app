@@ -45,8 +45,8 @@ export const TrainingSession: React.FC<TrainingSessionProps> = ({
             {/* Action Buttons */}
             {viewer.currentCard && (
               <div className="w-full max-w-2xl mt-8">
-                <div className="bg-gray-50 rounded-xl p-6">
-                  <p className="text-center font-medium mb-6 text-gray-700">
+                <div className="soft-panel p-6">
+                  <p className="text-center font-medium mb-6 text-slate-700">
                     Rate your knowledge:
                   </p>
                   
@@ -54,7 +54,7 @@ export const TrainingSession: React.FC<TrainingSessionProps> = ({
                     <button
                       onClick={viewer.actions.handleDontKnow}
                       disabled={viewer.actions.isAnimating}
-                      className="px-6 py-3 flex-1 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 rounded-lg font-medium transition-colors disabled:opacity-50"
+                      className="danger-action flex-1"
                     >
                       I don't know
                     </button>
@@ -62,14 +62,14 @@ export const TrainingSession: React.FC<TrainingSessionProps> = ({
                     <button
                       onClick={viewer.actions.handleKnow}
                       disabled={viewer.actions.isAnimating}
-                      className="px-6 py-3 flex-1 bg-green-50 hover:bg-green-100 text-green-700 border border-green-200 rounded-lg font-medium transition-colors disabled:opacity-50"
+                      className="success-action flex-1"
                     >
                       I know
                     </button>
                     
                   </div>
                   
-                  <div className="mt-6 text-center text-sm text-gray-500">
+                  <div className="mt-6 text-center text-sm text-slate-500">
                     <p>Tip: You can flip the card to check the answer before rating, or rate immediately.</p>
                     <p className="mt-1">
                       {session.toReview.length - 1} card(s) remaining in this round
@@ -86,7 +86,7 @@ export const TrainingSession: React.FC<TrainingSessionProps> = ({
       <div className="mt-8">
         <button
           onClick={onEndSession}
-          className="px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+          className="secondary-action"
         >
           End Training Session
         </button>

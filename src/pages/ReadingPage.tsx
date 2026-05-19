@@ -6,7 +6,8 @@ import { getAllFlashcards } from '../utils/dataUtils'
 import { filterFlashcards } from '../utils/filterUtils'
 import { ReadingFilterPanel } from '../components/Reading/ReadingFilterPanel'
 import { SubjectAccordion } from '../components/Reading/SubjectAccordion'
-import { Search, Filter } from 'lucide-react'
+import { PageHeader } from '../components/PageHeader'
+import { BookOpenCheck, Brain, Filter, LibraryBig, Search, Sigma, X } from 'lucide-react'
 
 export const ReadingPage: React.FC = () => {
   // Filter states
@@ -80,12 +81,11 @@ export const ReadingPage: React.FC = () => {
 
   // Calculate card counts per subject
   const cardCounts = useMemo(() => {
-    const counts: Record<string, number> = {}
-    subjectsData.forEach(subject => {
-      counts[subject.id] = allCards.filter(c => c.subjectId === subject.id).length
-    })
-    return counts
-  }, [allCards, subjectsData])
+    return allCards.reduce<Record<string, number>>((counts, card) => {
+      counts[card.subjectId] = (counts[card.subjectId] || 0) + 1
+      return counts
+    }, {})
+  }, [allCards])
 
   // Toggle subject expansion
   const toggleSubject = useCallback((subjectId: string) => {
@@ -122,42 +122,41 @@ export const ReadingPage: React.FC = () => {
   const totalCardsCount = searchedCards.length
 
   return (
-    <div className="container mx-auto px-4 py-6 max-w-6xl">
-      {/* Header */}
-      <div className="mb-8">
-        <h1 className="text-3xl font-bold text-gray-900 mb-2">Browse Flashcards</h1>
-        <p className="text-gray-600">
-          Browse and search through all available flashcards organized by subject
-        </p>
-      </div>
+    <main className="page-shell">
+      <PageHeader
+        eyebrow="Reading mode"
+        title="Browse Flashcards"
+        description="Scan every question, filter by subject or teacher, and open the answers without starting a practice session."
+      />
 
       {/* Search Bar and Controls */}
       <div className="mb-6">
         <div className="flex items-center gap-3 mb-4">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-3 top-1/2 h-5 w-5 -translate-y-1/2 text-slate-400" />
             <input
               type="text"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search questions or answers..."
-              className="w-full pl-10 pr-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+              className="text-input pl-10 pr-10"
             />
             {searchQuery && (
               <button
                 onClick={() => setSearchQuery('')}
-                className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                className="absolute right-3 top-1/2 flex h-7 w-7 -translate-y-1/2 items-center justify-center rounded-md text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                aria-label="Clear search"
               >
-                ×
+                <X className="h-4 w-4" aria-hidden="true" />
               </button>
             )}
           </div>
           <button
             onClick={() => setShowFilters(!showFilters)}
-            className={`px-4 py-3 rounded-lg border flex items-center gap-2 transition-colors ${
+            className={`secondary-action py-3 ${
               showFilters
-                ? 'bg-blue-50 border-blue-200 text-blue-700'
-                : 'border-gray-300 hover:bg-gray-50'
+                ? 'border-blue-200 bg-blue-50 text-blue-700'
+                : ''
             }`}
           >
             <Filter className="w-5 h-5" />
@@ -166,7 +165,7 @@ export const ReadingPage: React.FC = () => {
         </div>
 
         {/* Stats */}
-        <div className="flex items-center justify-between text-sm text-gray-600 mb-4">
+        <div className="flex items-center justify-between text-sm text-slate-600 mb-4">
           <div>
             Showing <span className="font-semibold">{groupedBySubject.length}</span> subjects •{' '}
             <span className="font-semibold">{totalCardsCount}</span> cards
@@ -174,7 +173,7 @@ export const ReadingPage: React.FC = () => {
           {groupedBySubject.length > 0 && (
             <button
               onClick={toggleAllSubjects}
-              className="text-blue-600 hover:text-blue-800 hover:underline"
+              className="font-semibold text-blue-600 hover:text-blue-800"
             >
               {expandedSubjects.size === groupedBySubject.length 
                 ? 'Collapse All' 
@@ -215,17 +214,19 @@ export const ReadingPage: React.FC = () => {
             />
           ))
         ) : (
-          <div className="text-center py-12 border-2 border-dashed border-gray-300 rounded-xl">
-            <div className="text-5xl mb-4">📚</div>
-            <h3 className="text-xl font-semibold text-gray-700 mb-2">
+          <div className="surface-card border-dashed py-12 text-center">
+            <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+              <LibraryBig className="h-6 w-6" aria-hidden="true" />
+            </div>
+            <h3 className="text-xl font-semibold text-slate-800 mb-2">
               No flashcards found
             </h3>
-            <p className="text-gray-500 mb-4">
+            <p className="text-slate-500 mb-4">
               Try adjusting your filters or search term
             </p>
             <button
               onClick={clearAllFilters}
-              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"
+              className="primary-action"
             >
               Clear All Filters
             </button>
@@ -235,31 +236,35 @@ export const ReadingPage: React.FC = () => {
 
       {/* Quick Stats Footer */}
       {groupedBySubject.length > 0 && (
-        <div className="mt-8 pt-6 border-t border-gray-200">
+        <div className="mt-8 pt-6 border-t border-slate-200">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-            <div className="text-center p-4 bg-blue-50 rounded-lg">
+            <div className="stat-card text-center">
+              <BookOpenCheck className="mx-auto mb-2 h-5 w-5 text-blue-700" aria-hidden="true" />
               <div className="text-2xl font-bold text-blue-700">{groupedBySubject.length}</div>
-              <div className="text-sm text-gray-600">Subjects</div>
+              <div className="text-sm text-slate-600">Subjects</div>
             </div>
-            <div className="text-center p-4 bg-green-50 rounded-lg">
-              <div className="text-2xl font-bold text-green-700">
+            <div className="stat-card text-center">
+              <Brain className="mx-auto mb-2 h-5 w-5 text-teal-700" aria-hidden="true" />
+              <div className="text-2xl font-bold text-teal-700">
                 {searchedCards.filter(c => c.type === 'memorize').length}
               </div>
-              <div className="text-sm text-gray-600">Memorization Cards</div>
+              <div className="text-sm text-slate-600">Memorization Cards</div>
             </div>
-            <div className="text-center p-4 bg-amber-50 rounded-lg">
+            <div className="stat-card text-center">
+              <Sigma className="mx-auto mb-2 h-5 w-5 text-amber-700" aria-hidden="true" />
               <div className="text-2xl font-bold text-amber-700">
                 {searchedCards.filter(c => c.type === 'understand').length}
               </div>
-              <div className="text-sm text-gray-600">Understanding Cards</div>
+              <div className="text-sm text-slate-600">Understanding Cards</div>
             </div>
-            <div className="text-center p-4 bg-purple-50 rounded-lg">
-              <div className="text-2xl font-bold text-purple-700">{totalCardsCount}</div>
-              <div className="text-sm text-gray-600">Total Cards</div>
+            <div className="stat-card text-center">
+              <LibraryBig className="mx-auto mb-2 h-5 w-5 text-slate-700" aria-hidden="true" />
+              <div className="text-2xl font-bold text-slate-800">{totalCardsCount}</div>
+              <div className="text-sm text-slate-600">Total Cards</div>
             </div>
           </div>
         </div>
       )}
-    </div>
+    </main>
   )
 }

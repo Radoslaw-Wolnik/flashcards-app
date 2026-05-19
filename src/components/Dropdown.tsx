@@ -20,7 +20,7 @@ export const Dropdown: React.FC<DropdownProps> = ({
 }) => {
   return (
     <select
-      className="block w-full px-3 py-2 border rounded-2xl shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+      className="select-input"
       value={value ?? ''}
       onChange={e => onChange(e.target.value)}
     >

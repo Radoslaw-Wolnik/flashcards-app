@@ -10,10 +10,10 @@ export const Button: React.FC<ButtonProps> = ({
   children,
   ...props
 }) => {
-  const base = 'px-4 py-2 rounded-2xl shadow focus:outline-none focus:ring-2 focus:ring-offset-2'
+  const base = 'inline-flex items-center justify-center gap-2 rounded-lg px-4 py-2 font-medium shadow-sm focus:outline-none focus:ring-2 focus:ring-offset-2'
   const styles = variant === 'primary'
     ? 'bg-blue-600 hover:bg-blue-700 text-white focus:ring-blue-500'
-    : 'bg-gray-200 hover:bg-gray-300 text-gray-800 focus:ring-gray-400'
+    : 'bg-white border border-slate-300 hover:bg-slate-50 text-slate-800 focus:ring-blue-500'
 
   return (
     <button

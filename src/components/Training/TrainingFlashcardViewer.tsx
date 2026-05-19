@@ -100,8 +100,8 @@ export const TrainingFlashcardViewer: React.FC<TrainingFlashcardViewerProps> = (
       {carousel}
       {currentCard && (
         <div className="w-full max-w-2xl mt-8">
-          <div className="bg-gray-50 rounded-xl p-6">
-            <p className="text-center font-medium mb-6 text-gray-700">
+          <div className="soft-panel p-6">
+            <p className="text-center font-medium mb-6 text-slate-700">
               Rate your knowledge:
             </p>
             
@@ -109,7 +109,7 @@ export const TrainingFlashcardViewer: React.FC<TrainingFlashcardViewerProps> = (
               <button
                 onClick={handleDontKnow}
                 disabled={isAnimating}
-                className="px-6 py-3 flex-1 bg-red-50 hover:bg-red-100 text-red-700 border border-red-200 rounded-lg font-medium transition-colors disabled:opacity-50"
+                className="danger-action flex-1"
               >
                 I don't know
               </button>
@@ -117,7 +117,7 @@ export const TrainingFlashcardViewer: React.FC<TrainingFlashcardViewerProps> = (
               <button
                 onClick={handleKnow}
                 disabled={isAnimating}
-                className="px-6 py-3 flex-1 bg-green-50 hover:bg-green-100 text-green-700 border border-green-200 rounded-lg font-medium transition-colors disabled:opacity-50"
+                className="success-action flex-1"
               >
                 I know
               </button>

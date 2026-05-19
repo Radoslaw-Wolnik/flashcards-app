@@ -1,19 +1,7 @@
 // src/components/Flashcard/ReadModeFlashcardViewer.tsx
 import React, { useCallback, useRef, useState, useEffect } from 'react'
+import { ChevronLeft, ChevronRight, LibraryBig } from 'lucide-react'
 import { FlashcardCarousel } from '../Flashcard/FlashcardCarousel'
-
-// Icons
-const ChevronLeft: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-  </svg>
-)
-
-const ChevronRight: React.FC<React.SVGProps<SVGSVGElement>> = (props) => (
-  <svg {...props} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-  </svg>
-)
 
 interface ReadModeFlashcardViewerProps {
   cards: Array<{
@@ -122,8 +110,10 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
 
   if (cards.length === 0) {
     return (
-      <div className="text-center py-12 text-gray-500">
-        <div className="text-4xl mb-4">📚</div>
+      <div className="text-center py-12 text-slate-500">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+          <LibraryBig className="h-6 w-6" aria-hidden="true" />
+        </div>
         <p className="text-lg">No cards to display</p>
       </div>
     )
@@ -146,7 +136,7 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
             <button
               onClick={handlePrev}
               disabled={isAnimating}
-              className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-shadow disabled:opacity-50"
+              className="secondary-action h-12 w-12 rounded-full p-0 shadow-sm hover:shadow-md"
               aria-label="Previous card"
             >
               <ChevronLeft className="w-6 h-6" />
@@ -170,7 +160,7 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
                 <button
                   onClick={handlePrev}
                   disabled={isAnimating}
-                  className="p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50"
+                  className="secondary-action h-11 w-11 rounded-full p-0 shadow-sm"
                   aria-label="Previous card"
                 >
                   <ChevronLeft className="w-6 h-6" />
@@ -178,13 +168,13 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
                 <button
                   onClick={handleNext}
                   disabled={isAnimating}
-                  className="p-3 bg-white rounded-full shadow-lg hover:shadow-xl transition-shadow disabled:opacity-50"
+                  className="secondary-action h-11 w-11 rounded-full p-0 shadow-sm"
                   aria-label="Next card"
                 >
                   <ChevronRight className="w-6 h-6" />
                 </button>
               </div>
-              <div className="md:hidden mt-4 text-center text-sm text-gray-500">
+              <div className="md:hidden mt-4 text-center text-sm text-slate-500">
                 <div className="flex items-center justify-center gap-2">
                   <ChevronLeft className="w-4 h-4" />
                   <span>Swipe to change cards</span>
@@ -201,7 +191,7 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
             <button
               onClick={handleNext}
               disabled={isAnimating}
-              className="p-4 bg-white rounded-full shadow-lg hover:shadow-2xl transition-shadow disabled:opacity-50"
+              className="secondary-action h-12 w-12 rounded-full p-0 shadow-sm hover:shadow-md"
               aria-label="Next card"
             >
               <ChevronRight className="w-6 h-6" />
@@ -216,13 +206,13 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
       {/* Progress Tracker */}
       {showProgress && cards.length > 0 && (
         <div className="w-full max-w-4xl mb-6">
-          <div className="flex items-center justify-between text-sm text-gray-600 mb-2">
+          <div className="flex items-center justify-between text-sm text-slate-600 mb-2">
             <span>Card {currentIndex + 1} of {cards.length}</span>
             <span>{Math.round(((currentIndex + 1) / cards.length) * 100)}%</span>
           </div>
-          <div className="w-full bg-gray-200 rounded-full h-2">
+          <div className="w-full bg-slate-200 rounded-full h-2">
             <div
-              className="bg-indigo-600 h-2 rounded-full transition-all duration-300 ease-in-out"
+              className="bg-blue-600 h-2 rounded-full transition-all duration-300 ease-in-out"
               style={{ width: `${((currentIndex + 1) / cards.length) * 100}%` }}
             />
           </div>

@@ -42,6 +42,73 @@
   }
 }
 
+@layer components {
+  .page-shell {
+    @apply mx-auto w-full max-w-7xl px-4 py-6 sm:px-6 lg:px-8;
+  }
+
+  .page-header {
+    @apply mb-6 flex w-full flex-col gap-4 border-b border-slate-200 pb-6 md:flex-row md:items-end md:justify-between;
+  }
+
+  .page-eyebrow {
+    @apply text-sm font-semibold uppercase tracking-wide text-teal-700;
+  }
+
+  .page-title {
+    @apply mt-1 text-3xl font-bold text-slate-950 md:text-4xl;
+  }
+
+  .page-description {
+    @apply mt-2 max-w-3xl text-base leading-7 text-slate-600;
+  }
+
+  .surface-card {
+    @apply rounded-lg border border-slate-200 bg-white shadow-sm;
+  }
+
+  .soft-panel {
+    @apply rounded-lg border border-slate-200 bg-slate-50/85;
+  }
+
+  .stat-card {
+    @apply rounded-lg border border-slate-200 bg-white p-4 shadow-sm;
+  }
+
+  .field-label {
+    @apply mb-2 block text-sm font-semibold text-slate-700;
+  }
+
+  .text-input,
+  .select-input {
+    @apply w-full rounded-lg border border-slate-300 bg-white px-4 py-3 text-slate-900 shadow-sm outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100;
+  }
+
+  .chip-button {
+    @apply rounded-lg border border-slate-200 bg-white px-3 py-2 text-left text-sm font-medium text-slate-700 transition hover:border-slate-300 hover:bg-slate-50;
+  }
+
+  .chip-button-active {
+    @apply border-blue-200 bg-blue-50 text-blue-700;
+  }
+
+  .primary-action {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-blue-600 px-5 py-3 font-semibold text-white shadow-sm transition hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50;
+  }
+
+  .secondary-action {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-slate-300 bg-white px-4 py-2 font-medium text-slate-700 transition hover:bg-slate-50 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50;
+  }
+
+  .danger-action {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 font-semibold text-red-700 transition hover:bg-red-100 focus:outline-none focus:ring-2 focus:ring-red-300 focus:ring-offset-2 disabled:opacity-50;
+  }
+
+  .success-action {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-teal-200 bg-teal-50 px-4 py-3 font-semibold text-teal-700 transition hover:bg-teal-100 focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 disabled:opacity-50;
+  }
+}
+
 .backface-hidden {
   backface-visibility: hidden;
   -webkit-backface-visibility: hidden;

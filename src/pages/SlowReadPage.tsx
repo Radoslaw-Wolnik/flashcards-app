@@ -1,23 +1,28 @@
 // src/pages/SlowReadPage.tsx
-import React, { useEffect, useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import { getAllFlashcards } from '../utils/dataUtils'
 import { SubjectFilter } from '../components/FilterControls/SubjectFilter'
 import { ReadModeFlashcardViewer } from '../components/SlowRead/ReadModeFlashcardViewer'
 import type { Flashcard } from '../types/flashcard'
+import { PageHeader } from '../components/PageHeader'
+import { LibraryBig } from 'lucide-react'
 
 const SlowReadPage: React.FC = () => {
   const [subjectId, setSubjectId] = useState<string>('')
-  const [cards, setCards] = useState<Flashcard[]>([])
+  const allCards = useMemo(() => getAllFlashcards(), [])
 
-  // Load/filter cards when subject changes
-  useEffect(() => {
-    const all = getAllFlashcards()
-    const filtered = subjectId ? all.filter((c) => c.subjectId === subjectId) : []
-    setCards(filtered)
-  }, [subjectId])
+  const cards = useMemo<Flashcard[]>(() => {
+    return subjectId ? allCards.filter((card) => card.subjectId === subjectId) : []
+  }, [allCards, subjectId])
 
   return (
-    <div className="container mx-auto px-4 flex flex-col items-center min-h-screen py-6">
+    <main className="page-shell flex min-h-screen flex-col items-center">
+      <PageHeader
+        eyebrow="Slow read"
+        title="Move through one subject calmly"
+        description="Choose a subject and swipe or use the arrows to review the cards without scoring yourself."
+      />
+
       <div className="w-full max-w-md mb-6">
         <SubjectFilter value={subjectId} onChange={setSubjectId} />
       </div>
@@ -31,13 +36,15 @@ const SlowReadPage: React.FC = () => {
           />
         </div>
       ) : (
-        <div className="text-gray-500 mt-12 text-center">
-          <div className="text-4xl mb-4">📚</div>
-          <p className="text-xl mb-2">No flashcards found</p>
-          <p className="text-gray-400">Select a subject to begin.</p>
+        <div className="surface-card mt-12 w-full max-w-md py-12 text-center text-slate-500">
+          <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+            <LibraryBig className="h-6 w-6" aria-hidden="true" />
+          </div>
+          <p className="text-xl font-semibold text-slate-800 mb-2">No flashcards found</p>
+          <p className="text-slate-500">Select a subject to begin.</p>
         </div>
       )}
-    </div>
+    </main>
   )
 }
 

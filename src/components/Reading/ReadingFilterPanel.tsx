@@ -1,4 +1,5 @@
 import React, { useMemo } from 'react'
+import { X } from 'lucide-react'
 import type { Subject } from '../../types/flashcard'
 import subjectsData from '../../data/subjects.json'
 import teachersData from '../../data/teachers.json'
@@ -48,12 +49,13 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
 
   // Available teachers
   const availableTeachers = useMemo(() => {
+    const teacherLookup = new Map(teachersData.map(teacher => [teacher.id, teacher.name]))
     const teacherMap = new Map<string, { id: string; name: string }>()
     subjects.forEach(subject => {
       if (subject.teacherId && !teacherMap.has(subject.teacherId)) {
         teacherMap.set(subject.teacherId, {
           id: subject.teacherId,
-          name: subject.teacherId
+          name: teacherLookup.get(subject.teacherId) || subject.teacherId
         })
       }
     })
@@ -82,24 +84,24 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
         className="ml-2 hover:opacity-75"
         aria-label={`Remove ${label} filter`}
       >
-        ×
+        <X className="h-3.5 w-3.5" aria-hidden="true" />
       </button>
     </div>
   )
 
   return (
-    <div className="bg-white rounded-xl shadow-sm border border-gray-200 p-5 mb-6">
+    <div className="surface-card p-5 mb-6">
       {/* Header */}
       <div className="flex items-center justify-between mb-4">
         <div>
-          <h2 className="text-lg font-semibold text-gray-800">Filter Flashcards</h2>
-          <p className="text-sm text-gray-500">
+          <h2 className="text-lg font-semibold text-slate-800">Filter Flashcards</h2>
+          <p className="text-sm text-slate-500">
             {visibleSubjectsCount} subject{visibleSubjectsCount !== 1 ? 's' : ''} • {totalCardsCount} card{totalCardsCount !== 1 ? 's' : ''}
           </p>
         </div>
         <button
           onClick={onClearAll}
-          className="text-sm text-gray-500 hover:text-gray-700 hover:underline"
+          className="text-sm font-medium text-slate-500 hover:text-slate-700"
         >
           Clear All
         </button>
@@ -107,8 +109,8 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
 
       {/* Active Filters */}
       {(categoryId || teacherId || subjectId || flashcardType) && (
-        <div className="mb-4 pb-4 border-b border-gray-100">
-          <p className="text-sm text-gray-500 mb-2">Active filters:</p>
+        <div className="mb-4 pb-4 border-b border-slate-100">
+          <p className="text-sm text-slate-500 mb-2">Active filters:</p>
           <div className="flex flex-wrap gap-2">
             {categoryId && (
               <FilterBadge
@@ -146,7 +148,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {/* Category Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="field-label">
             Category
           </label>
           <div className="flex flex-col space-y-2">
@@ -157,7 +159,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
                 className={`px-3 py-2 rounded-lg text-left transition-colors ${
                   categoryId === cat
                     ? 'bg-blue-50 border border-blue-200 text-blue-700'
-                    : 'hover:bg-gray-50 text-gray-700'
+                    : 'hover:bg-slate-50 text-slate-700'
                 }`}
               >
                 {cat === '' ? 'All Categories' : 
@@ -169,7 +171,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
 
         {/* Teacher Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="field-label">
             Teacher
           </label>
           <div className="max-h-48 overflow-y-auto pr-2">
@@ -178,7 +180,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
               className={`w-full px-3 py-2 rounded-lg text-left transition-colors mb-1 ${
                 teacherId === ''
                   ? 'bg-purple-50 border border-purple-200 text-purple-700'
-                  : 'hover:bg-gray-50 text-gray-700'
+                  : 'hover:bg-slate-50 text-slate-700'
               }`}
             >
               All Teachers
@@ -190,7 +192,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
                 className={`w-full px-3 py-2 rounded-lg text-left transition-colors mb-1 ${
                   teacherId === teacher.id
                     ? 'bg-purple-50 border border-purple-200 text-purple-700'
-                    : 'hover:bg-gray-50 text-gray-700'
+                    : 'hover:bg-slate-50 text-slate-700'
                 }`}
               >
                 {teacher.name}
@@ -201,7 +203,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
 
         {/* Subject Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="field-label">
             Subject
           </label>
           <div className="max-h-48 overflow-y-auto pr-2">
@@ -210,7 +212,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
               className={`w-full px-3 py-2 rounded-lg text-left transition-colors mb-1 ${
                 subjectId === ''
                   ? 'bg-green-50 border border-green-200 text-green-700'
-                  : 'hover:bg-gray-50 text-gray-700'
+                  : 'hover:bg-slate-50 text-slate-700'
               }`}
             >
               All Subjects
@@ -222,11 +224,11 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
                 className={`w-full px-3 py-2 rounded-lg text-left transition-colors mb-1 ${
                   subjectId === subject.id
                     ? 'bg-green-50 border border-green-200 text-green-700'
-                    : 'hover:bg-gray-50 text-gray-700'
+                    : 'hover:bg-slate-50 text-slate-700'
                 }`}
               >
                 <div className="font-medium">{subject.name}</div>
-                <div className="text-xs text-gray-500">
+                <div className="text-xs text-slate-500">
                   {cardCounts[subject.id] || 0} cards
                 </div>
               </button>
@@ -236,7 +238,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
 
         {/* Type Filter */}
         <div>
-          <label className="block text-sm font-medium text-gray-700 mb-1">
+          <label className="field-label">
             Card Type
           </label>
           <div className="flex flex-col space-y-2">
@@ -247,7 +249,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
                 className={`px-3 py-2 rounded-lg text-left transition-colors ${
                   flashcardType === type
                     ? 'bg-amber-50 border border-amber-200 text-amber-700'
-                    : 'hover:bg-gray-50 text-gray-700'
+                    : 'hover:bg-slate-50 text-slate-700'
                 }`}
               >
                 {type === '' ? 'All Types' : 

@@ -27,13 +27,13 @@ const CardFooter: React.FC<{
   accentClass: string
   children?: React.ReactNode
 }> = ({ label, accentClass, children }) => (
-  <div className="mt-4 md:mt-6 pt-4 border-t border-gray-200">
+  <div className="mt-4 md:mt-6 pt-4 border-t border-slate-200">
     <div className="flex items-center justify-between">
       <div className="flex items-center">
         <div className={`w-2 h-6 rounded-full mr-3 ${accentClass}`} />
-        <span className="text-sm font-medium">{label}</span>
+        <span className="text-sm font-medium text-slate-700">{label}</span>
       </div>
-      <div className="text-xs text-gray-400 flex items-center gap-2">{children}</div>
+      <div className="text-xs text-slate-400 flex items-center gap-2">{children}</div>
     </div>
   </div>
 )
@@ -62,7 +62,7 @@ const Flashcard: React.FC<Props> = ({
 
   return (
     <div
-      className="relative w-full mx-auto aspect-3/4 md:aspect-[10/7] @min-[1200px]:aspect-square"
+      className="relative w-full mx-auto aspect-[3/4] md:aspect-[10/7] lg:aspect-[4/3]"
       style={{ maxWidth }}
     >
       <div
@@ -83,7 +83,7 @@ const Flashcard: React.FC<Props> = ({
         >
           {/* FRONT - Question */}
           <div
-            className="absolute w-full h-full border rounded-2xl p-4 md:p-6 shadow-lg bg-white flex flex-col transition-all duration-300 ease-in-out hover:shadow-2xl hover:-translate-y-1 hover:bg-gray-50"
+            className="absolute w-full h-full border border-slate-200 rounded-lg p-4 md:p-6 shadow-study bg-study-paper flex flex-col transition-all duration-300 ease-in-out hover:-translate-y-1 hover:border-blue-200"
             style={{ 
               transform: 'rotateY(0deg)', 
               backfaceVisibility: 'hidden', 
@@ -113,7 +113,7 @@ const Flashcard: React.FC<Props> = ({
 
           {/* BACK - Answer */}
           <div
-            className="absolute w-full h-full border rounded-2xl p-4 md:p-6 shadow-lg bg-gradient-to-br from-blue-50 to-indigo-50 flex flex-col border-blue-200"
+            className="absolute w-full h-full border border-blue-100 rounded-lg p-4 md:p-6 shadow-study bg-white flex flex-col"
             style={{ 
               transform: 'rotateY(180deg)', 
               backfaceVisibility: 'hidden', 

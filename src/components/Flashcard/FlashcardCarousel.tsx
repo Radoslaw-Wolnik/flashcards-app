@@ -1,5 +1,6 @@
 // src/components/Flashcard/FlashcardCarousel.tsx
 import React from 'react'
+import { LibraryBig } from 'lucide-react'
 import Flashcard from '../Flashcard/Flashcard'
 
 interface FlashcardCarouselProps {
@@ -24,8 +25,10 @@ export const FlashcardCarousel: React.FC<FlashcardCarouselProps> = ({
 }) => {
   if (!currentCard) {
     return (
-      <div className="text-center py-12 text-gray-500">
-        <div className="text-4xl mb-4">📚</div>
+      <div className="text-center py-12 text-slate-500">
+        <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
+          <LibraryBig className="h-6 w-6" aria-hidden="true" />
+        </div>
         <p className="text-lg">No card to display</p>
       </div>
     )
