@@ -8,32 +8,23 @@ interface TrainingSessionProps {
   session: SessionState
   onSessionUpdate: (session: SessionState) => void
   onRoundComplete: () => void
-  onEndSession: () => void
+  onEndSession?: () => void
 }
 
 export const TrainingSession: React.FC<TrainingSessionProps> = ({
   session,
   onSessionUpdate,
-  onRoundComplete,
-  onEndSession
+  onRoundComplete
 }) => {
   return (
     <div className="flex w-full flex-col items-center gap-3">
-      <div className="flex w-full max-w-6xl flex-col gap-3 md:flex-row md:items-center">
-        <div className="min-w-0 flex-1">
-          <ProgressTracker
-            round={session.round}
-            correctCount={session.correct.length}
-            incorrectCount={session.incorrect.length}
-            totalCards={session.originalCards.length}
-          />
-        </div>
-        <button
-          onClick={onEndSession}
-          className="secondary-action shrink-0"
-        >
-          End Training
-        </button>
+      <div className="w-full max-w-6xl">
+        <ProgressTracker
+          round={session.round}
+          correctCount={session.correct.length}
+          incorrectCount={session.incorrect.length}
+          totalCards={session.originalCards.length}
+        />
       </div>
       
       <TrainingFlashcardViewer

@@ -153,35 +153,26 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
             slideDirection={slideDirection}
           />
 
-          {/* Mobile Navigation & Swipe Hint */}
+          {/* Mobile Navigation */}
           {showNavigation && (
-            <>
-              <div className="md:hidden flex justify-center space-x-12 mt-6">
-                <button
-                  onClick={handlePrev}
-                  disabled={isAnimating}
-                  className="secondary-action h-11 w-11 rounded-full p-0 shadow-sm"
-                  aria-label="Previous card"
-                >
-                  <ChevronLeft className="w-6 h-6" />
-                </button>
-                <button
-                  onClick={handleNext}
-                  disabled={isAnimating}
-                  className="secondary-action h-11 w-11 rounded-full p-0 shadow-sm"
-                  aria-label="Next card"
-                >
-                  <ChevronRight className="w-6 h-6" />
-                </button>
-              </div>
-              <div className="md:hidden mt-4 text-center text-sm text-slate-500">
-                <div className="flex items-center justify-center gap-2">
-                  <ChevronLeft className="w-4 h-4" />
-                  <span>Swipe to change cards</span>
-                  <ChevronRight className="w-4 h-4" />
-                </div>
-              </div>
-            </>
+            <div className="md:hidden flex justify-center space-x-12 mt-6">
+              <button
+                onClick={handlePrev}
+                disabled={isAnimating}
+                className="secondary-action h-11 w-11 rounded-full p-0 shadow-sm"
+                aria-label="Previous card"
+              >
+                <ChevronLeft className="w-6 h-6" />
+              </button>
+              <button
+                onClick={handleNext}
+                disabled={isAnimating}
+                className="secondary-action h-11 w-11 rounded-full p-0 shadow-sm"
+                aria-label="Next card"
+              >
+                <ChevronRight className="w-6 h-6" />
+              </button>
+            </div>
           )}
         </div>
 
