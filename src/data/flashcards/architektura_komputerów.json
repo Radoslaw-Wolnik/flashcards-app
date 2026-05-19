@@ -1,27 +1,27 @@
 [
   {
-    "id": "ar01",
+    "id": "architektura_komputerów-01",
     "subjectId": "architektura_komputerów",
     "type": "understand",
     "question": "Wykorzystanie rejestrów procesora (na przykładzie programu przetwarzającego łańcuchy znaków)",
     "answer": "Rejestry procesora to szybkie komórki pamięci wewnątrz CPU używane do tymczasowego przechowywania danych, adresów i wyników operacji.  \n\n**Przykład programu w asemblerze x86 (kopiowanie łańcucha `src` do `dest`):**  \n```assembly\nsection .data\n    src db \"Hello\", 0   ; Źródłowy łańcuch\n    dest times 6 db 0   ; Docelowy bufor\n\nsection .text\nglobal _start\n_start:\n    mov esi, src        ; ESI = adres początku src (rejestr źródłowy)\n    mov edi, dest       ; EDI = adres początku dest (rejestr docelowy)\n    mov ecx, 6          ; ECX = licznik (długość łańcucha)\n\ncopy_loop:\n    mov al, [esi]       ; AL (bajt z rejestru AX) = bieżący znak z src\n    mov [edi], al       ; Zapisz AL do dest\n    inc esi             ; ESI++ (przesuń wskaźnik źródłowy)\n    inc edi             ; EDI++ (przesuń wskaźnik docelowy)\n    dec ecx             ; ECX-- (dekrementuj licznik)\n    jnz copy_loop       ; Skocz jeśli ECX != 0 (flaga ZF=0)\n\nexit:\n    mov eax, 1          ; Syscall exit\n    int 0x80\n```\n\n**Wykorzystane rejestry i ich role:**  \n| Rejestr | Rola                                                                 |  \n|---------|----------------------------------------------------------------------|  \n| **ESI** | **Rejestr źródłowy** – przechowuje adres bieżącego znaku w `src`.    |  \n| **EDI** | **Rejestr docelowy** – przechowuje adres bieżącej pozycji w `dest`.  |  \n| **ECX** | **Licznik** – śledzi pozostałe iteracje.                             |  \n| **AL**  | **Rejestr akumulatora (8-bitowy)** – tymczasowo przechowuje znak.    |  \n| **EFLAGS** | **Rejestr flag** – `dec ecx` ustawia flagę `ZF` (Zero Flag), używaną przez `jnz`. |  \n\n**Kluczowe operacje:**  \n\n- `mov`: Przenosi dane między pamięcią a rejestrami.  \n\n- `inc`/`dec`: Inkrementacja/dekrementacja rejestrów.  \n\n- `jnz`: Skok warunkowy (Jump if Not Zero) – kontrola przepływu."
   },
   {
-    "id": "ar02",
+    "id": "architektura_komputerów-02",
     "subjectId": "architektura_komputerów",
     "type": "memorize",
     "question": "Przykłady instrukcji arytmetycznych i logicznych asemblera",
     "answer": "**a) Instrukcje arytmetyczne:**  \n| Instrukcja   | Składnia          | Działanie                     |  \n|--------------|-------------------|-------------------------------|  \n| `ADD`        | `ADD dst, src`    | `dst = dst + src`             |  \n| `SUB`        | `SUB dst, src`    | `dst = dst - src`             |  \n| `MUL`        | `MUL reg`         | `AX = AL * reg` (8-bit)       |  \n| `DIV`        | `DIV reg`         | `AL = AX / reg` (iloraz)      |  \n\n**b) Instrukcje logiczne:**  \n| Instrukcja   | Składnia          | Działanie                     |  \n|--------------|-------------------|-------------------------------|  \n| `AND`        | `AND dst, src`    | `dst = dst & src` (bitowe AND)|  \n| `OR`         | `OR dst, src`     | `dst = dst \\| src` (bitowe OR)|  \n| `XOR`        | `XOR dst, src`    | `dst = dst ⊕ src` (XOR)       |  \n| `NOT`        | `NOT op`          | `op = ~op` (negacja bitowa)   |  \n\n**Przykład działania `ADD`:**  \n```assembly\nmov eax, 5      ; EAX = 5\nmov ebx, 3      ; EBX = 3\nadd eax, ebx    ; EAX = EAX + EBX → EAX = 8\n```\n**Rejestr flag po `ADD`:**  \n\n- **CF (Carry Flag):** 1 jeśli wystąpiło przeniesienie.  \n\n- **ZF (Zero Flag):** 1 jeśli wynik = 0.  \n\n- **OF (Overflow Flag):** 1 jeśli przekroczono zakres."
   },
   {
-    "id": "ar03",
+    "id": "architektura_komputerów-03",
     "subjectId": "architektura_komputerów",
     "type": "understand",
     "question": "Typy przerwań w procesorach x86",
     "answer": "Przerwania to mechanizm zatrzymania bieżącego wykonania programu w celu obsługi zdarzeń.  \n\n| Typ przerwania     | Źródło                                  | Przykłady                                   |  \n|--------------------|-----------------------------------------|--------------------------------------------|  \n| **Sprzętowe (IRQ)**| Urządzenia zewnętrzne (klawiatura, dysk)| IRQ0: Timer systemowy, IRQ1: Klawiatura     |  \n| **Programowe**     | Instrukcja `INT` w kodzie               | `INT 0x80`: Wywołanie systemowe w Linuxie   |  \n| **Wyjątki**        | Błędy procesora                         | `#DE` (Dzielenie przez zero), `#PF` (Błąd strony) |  \n\n**Cykl obsługi przerwania:**  \n1. Zapis stanu procesora (rejestry) na stosie.  \n2. Pobranie adresu procedury obsługi przerwania z **tablicy wektorów przerwań (IVT)**.  \n3. Wykonanie procedury obsługi.  \n4. Przywrócenie stanu procesora (`IRET`).  \n\n**Przykład wywołania systemowego w Linuxie (przerwanie `0x80`):**  \n```assembly\nmov eax, 1  ; Numer syscall (exit)\nmov ebx, 0  ; Kod powrotu\nint 0x80    ; Przerwanie → kernel obsługuje wywołanie\n```"
   },
   {
-    "id": "ar04",
+    "id": "architektura_komputerów-04",
     "subjectId": "architektura_komputerów",
     "type": "understand",
     "question": "Wsparcie zarządzania pamięcią wirtualną w procesorach x86",

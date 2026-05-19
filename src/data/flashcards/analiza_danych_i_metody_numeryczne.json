@@ -1,27 +1,27 @@
 [
   {
-    "id": "an01",
+    "id": "analiza_danych_i_metody_numeryczne-01",
     "subjectId": "analiza_danych_i_metody_numeryczne",
     "type": "understand",
     "question": "Omów zagadnienie interpolacji wielomianowej. Podaj algorytm Lagrange'a lub Newtona.",
     "answer": "**Interpolacja wielomianowa**  \n  \nCel: Znalezienie wielomianu $P_n(x)$ stopnia $\\leq n$, który przechodzi przez $n+1$ punktów $(x_i, y_i)$ (tzn. $P_n(x_i) = y_i$).  \n\n**Algorytm Lagrange'a**  \n  \n1. **Wielomian bazowy**:  \n   $$\\ell_i(x) = \\prod_{\\substack{j=0 \\\\ j \\neq i}}^{n} \\frac{x - x_j}{x_i - x_j}$$  \n2. **Wielomian interpolacyjny**:  \n   $$P_n(x) = \\sum_{i=0}^{n} y_i \\cdot \\ell_i(x)$$  \n   *Przykład*: Dla punktów $(-1,1), (0,0), (1,1)$:  \n   $$P_2(x) = 1 \\cdot \\frac{x(x-1)}{2} + 0 \\cdot \\frac{(x+1)(x-1)}{-1} + 1 \\cdot \\frac{(x+1)x}{2} = x^2$$  \n\n**Algorytm Newtona**  \n  \n1. **Ilorazy różnicowe**:  \n\n- $f[x_i] = y_i$  \n\n- $f[x_i,x_j] = \\frac{f[x_j]-f[x_i]}{x_j-x_i}$  \n\n- $f[x_i,x_j,x_k] = \\frac{f[x_j,x_k]-f[x_i,x_j]}{x_k-x_i}$  \n2. **Wielomian**:  \n   $$P_n(x) = f[x_0] + f[x_0,x_1](x-x_0) + f[x_0,x_1,x_2](x-x_0)(x-x_1) + \\cdots$$  \n   *Zaleta*: Dodanie nowego punktu wymaga tylko jednego dodatkowego składnika."
   },
   {
-    "id": "an02",
+    "id": "analiza_danych_i_metody_numeryczne-02",
     "subjectId": "analiza_danych_i_metody_numeryczne",
     "type": "understand",
     "question": "Omów numeryczne rozwiązywanie równań nieliniowych, w szczególności metodę iteracji prostych lub metodę Newtona.",
     "answer": "**Metoda iteracji prostych**  \n  \n1. Przekształć $f(x)=0$ do postaci $x = g(x)$.  \n2. Iteruj: $x_{k+1} = g(x_k)$.  \n   *Warunek zbieżności*: $|g'(x)| < 1$ w otoczeniu pierwiastka.  \n   *Przykład*: Dla $x = e^{-x}$:  \n   $$x_{k+1} = e^{-x_k}, \\quad x_0 = 0.5 \\to x_1 \\approx 0.6065 \\to x_2 \\approx 0.5452 \\to \\cdots$$  \n\n**Metoda Newtona (stycznych)**  \n  \n1. Iteracja:  \n   $$x_{k+1} = x_k - \\frac{f(x_k)}{f'(x_k)}$$  \n2. *Zbieżność*: Kwadratowa, gdy $f'(x^*) \\neq 0$.  \n   *Przykład*: Dla $f(x) = x^2 - 2$:  \n   $$x_{k+1} = x_k - \\frac{x_k^2 - 2}{2x_k} = \\frac{x_k}{2} + \\frac{1}{x_k}, \\quad x_0 = 1 \\to x_1 = 1.5 \\to x_2 \\approx 1.4167$$"
   },
   {
-    "id": "an03",
+    "id": "analiza_danych_i_metody_numeryczne-03",
     "subjectId": "analiza_danych_i_metody_numeryczne",
     "type": "understand",
     "question": "Omów numeryczne rozwiązywanie układów równań liniowych, w szczególności metodę Jacobiego lub metodę Gaussa-Seidla.",
     "answer": "**Metoda Jacobiego**  \n  \n1. Rozkład macierzy: $A = D + R$ ($D$ – diagonalna, $R$ – reszta).  \n2. Iteracja:  \n   $$\\mathbf{x}^{(k+1)} = D^{-1} \\left( \\mathbf{b} - R \\mathbf{x}^{(k)} \\right)$$  \n   *Współrzędnie*:  \n   $$x_i^{(k+1)} = \\frac{1}{a_{ii}} \\left( b_i - \\sum_{j \\neq i} a_{ij} x_j^{(k)} \\right)$$  \n\n**Metoda Gaussa-Seidla**  \n  \nWykorzystuje najnowsze przybliżenia:  \n$$x_i^{(k+1)} = \\frac{1}{a_{ii}} \\left( b_i - \\sum_{j=1}^{i-1} a_{ij} x_j^{(k+1)} - \\sum_{j=i+1}^{n} a_{ij} x_j^{(k)} \\right)$$  \n*Przykład*: Dla układu:  \n$$\\begin{cases}\n4x_1 - x_2 = 3 \\\\\n-2x_1 + 5x_2 = 2\n\\end{cases}$$  \n\n- **Jacobi**: $x_1^{(1)} = \\frac{3 + x_2^{(0)}}{4}, \\quad x_2^{(1)} = \\frac{2 + 2x_1^{(0)}}{5}$  \n\n- **Gauss-Seidel**: $x_1^{(1)} = \\frac{3 + x_2^{(0)}}{4}, \\quad x_2^{(1)} = \\frac{2 + 2x_1^{(1)}}{5}$"
   },
   {
-    "id": "an04",
+    "id": "analiza_danych_i_metody_numeryczne-04",
     "subjectId": "analiza_danych_i_metody_numeryczne",
     "type": "understand",
     "question": "Omów metodę najmniejszych kwadratów, w szczególności metodę regresji liniowej.",

@@ -1,10 +1,6 @@
 import React, { useState, useMemo } from 'react'
 import { ChevronDown, ChevronRight, BookOpen, Hash, Type } from 'lucide-react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
-import 'katex/dist/katex.min.css'
+import { MarkdownContent } from '../MarkdownContent'
 import type { Subject } from '../../types/flashcard'
 import type { Flashcard } from '../../types/flashcard'
 
@@ -50,7 +46,12 @@ export const SubjectAccordion: React.FC<SubjectAccordionProps> = ({
           <div className={`w-2 h-2 rounded-full mr-3 ${
             card.type === 'memorize' ? 'bg-blue-500' : 'bg-green-500'
           }`} />
-          <span className="font-medium text-gray-800">{card.question}</span>
+          <MarkdownContent
+            variant="compact"
+            className="font-medium text-gray-800"
+          >
+            {card.question}
+          </MarkdownContent>
         </div>
         <div className="flex items-center space-x-2">
           <span className={`px-2 py-1 text-xs rounded ${
@@ -72,13 +73,10 @@ export const SubjectAccordion: React.FC<SubjectAccordionProps> = ({
             <Type className="w-4 h-4 mr-2 text-gray-400" />
             <span className="text-sm font-medium text-gray-700">Answer</span>
           </div>
-          <div className="prose prose-sm max-w-none">
-            <ReactMarkdown 
-              remarkPlugins={[remarkGfm, remarkMath]} 
-              rehypePlugins={[rehypeKatex]}
-            >
+          <div>
+            <MarkdownContent variant="answer">
               {card.answer}
-            </ReactMarkdown>
+            </MarkdownContent>
           </div>
         </div>
       )}

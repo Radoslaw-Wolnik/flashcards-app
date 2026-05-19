@@ -1,10 +1,7 @@
 // src/components/Flashcard/Flashcard.tsx
 import React from 'react'
-import ReactMarkdown from 'react-markdown'
-import remarkGfm from 'remark-gfm'
-import remarkMath from 'remark-math'
-import rehypeKatex from 'rehype-katex'
-import 'katex/dist/katex.min.css'
+import { HelpCircle, RotateCcw } from 'lucide-react'
+import { MarkdownContent } from '../MarkdownContent'
 
 interface Props {
   question: string
@@ -24,19 +21,6 @@ const ASPECT_RATIOS = {
   square: 1,
 }
 */
-
-// SVG components
-const IconQuestion = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" />
-  </svg>
-)
-
-const IconArrow = () => (
-  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
-  </svg>
-)
 
 const CardFooter: React.FC<{
   label: string
@@ -109,15 +93,18 @@ const Flashcard: React.FC<Props> = ({
             <div className="flex-1 overflow-hidden min-h-0">
               <div className="h-full overflow-y-auto flex items-center justify-center p-2 md:p-4">
                 <div className="w-full">
-                  <p className="text-lg md:text-xl text-gray-800 leading-relaxed text-center font-semibold px-2">
+                  <MarkdownContent
+                    variant="question"
+                    className="text-center text-lg md:text-xl font-semibold"
+                  >
                     {question}
-                  </p>
+                  </MarkdownContent>
                 </div>
               </div>
             </div>
 
             <CardFooter label="QUESTION" accentClass="bg-blue-500">
-              <IconQuestion />
+              <HelpCircle className="w-5 h-5" aria-hidden="true" />
               {!disableFlip && (
                 <span className="hidden sm:inline text-xs">Click or press Space to flip</span>
               )}
@@ -134,18 +121,15 @@ const Flashcard: React.FC<Props> = ({
             }}
           >
             <div className="flex-1 overflow-hidden min-h-0">
-              <div className="h-full overflow-y-auto pr-2 prose prose-sm max-w-none p-2 md:p-4">
-                <ReactMarkdown 
-                  remarkPlugins={[remarkGfm, remarkMath]} 
-                  rehypePlugins={[rehypeKatex]}
-                >
+              <div className="h-full overflow-y-auto pr-2 p-2 md:p-4">
+                <MarkdownContent variant="answer">
                   {answer}
-                </ReactMarkdown>
+                </MarkdownContent>
               </div>
             </div>
 
             <CardFooter label="ANSWER" accentClass="bg-green-500">
-              <IconArrow />
+              <RotateCcw className="w-5 h-5" aria-hidden="true" />
               {!disableFlip && (
                 <span className="hidden sm:inline text-xs">Click or press Space to flip back</span>
               )}

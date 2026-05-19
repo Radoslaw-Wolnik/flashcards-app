@@ -4,6 +4,10 @@ import rawSubjects from '../data/subjects.json'
 
 // Tell TS: “I promise this JSON matches Subject[]”
 const subjectsData = rawSubjects as Subject[]
+const subjectsById = subjectsData.reduce<Record<string, Subject>>((acc, subj) => {
+  acc[subj.id] = subj
+  return acc
+}, {})
 
 type FilterOpts = {
   categoryId?: 'maths' | 'cs'
@@ -16,14 +20,8 @@ export function filterFlashcards(
   allCards: Flashcard[],
   { categoryId, teacherId, subjectId, flashcardType }: FilterOpts
 ): Flashcard[] {
-  // Now subjectsData is known to be Subject[]
-  const subjMap = subjectsData.reduce<Record<string, Subject>>((acc, subj) => {
-    acc[subj.id] = subj
-    return acc
-  }, {})
-
   return allCards.filter(card => {
-    const subj = subjMap[card.subjectId]
+    const subj = subjectsById[card.subjectId]
     if (!subj) return false
     if (categoryId    && subj.categoryId   !== categoryId)     return false
     if (teacherId     && subj.teacherId    !== teacherId)      return false
