@@ -125,7 +125,7 @@ export const ReadModeFlashcardViewer: React.FC<ReadModeFlashcardViewerProps> = (
       
       {/* Main Card Area */}
       <div 
-        className="w-full flex items-center justify-center min-h-[500px] md:min-h-[600px]"
+        className="w-full flex items-center justify-center"
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}

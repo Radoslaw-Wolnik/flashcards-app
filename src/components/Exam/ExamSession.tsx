@@ -1,6 +1,5 @@
 import React, { useCallback, useState } from 'react'
 import { FlashcardCarousel } from '../Flashcard/FlashcardCarousel'
-//import { ProgressTracker } from '../ProgressTracker'
 import type { Flashcard } from '../../types/flashcard'
 
 interface ExamSessionProps {
@@ -60,11 +59,10 @@ export const ExamSession: React.FC<ExamSessionProps> = ({
   }, [performActionWithAnimation, onAnswer])
 
   return (
-    <div className="flex flex-col items-center w-full">
-      {/* Progress Tracker */}
-      <div className="w-full max-w-4xl mb-6">
-        <div className="surface-card flex flex-col sm:flex-row items-center justify-between p-4">
-          <div className="flex items-center space-x-6 mb-4 sm:mb-0">
+    <div className="flex w-full flex-col items-center gap-3">
+      <div className="flex w-full max-w-6xl flex-col gap-3 md:flex-row md:items-center">
+        <div className="surface-card flex min-w-0 flex-1 flex-col sm:flex-row items-center justify-between p-4">
+          <div className="flex items-center space-x-6 mb-3 sm:mb-0">
             <div className="text-center">
               <div className="text-sm text-amber-700 font-semibold">Round</div>
               <div className="text-xl font-bold">
@@ -93,68 +91,69 @@ export const ExamSession: React.FC<ExamSessionProps> = ({
             </div>
           </div>
         </div>
-      </div>
-      
-      {/* Flashcard */}
-      <div className="w-full">
-        <FlashcardCarousel
-          currentCard={currentCard ? {
-            id: currentCard.id,
-            question: currentCard.question,
-            answer: currentCard.answer
-          } : null}
-          isFlipped={isFlipped}
-          onFlip={setIsFlipped}
-          slideDirection={slideDirection}
-          maxWidth="700px"
-        />
-      </div>
-      
-      {/* Action Buttons */}
-      {currentCard && (
-        <div className="w-full max-w-2xl mt-8">
-          <div className="soft-panel p-6">
-            <p className="text-center font-medium mb-6 text-slate-700">
-              Rate your knowledge for this question:
-            </p>
-            
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <button
-                onClick={handleDontKnow}
-                disabled={isAnimating}
-                className="danger-action flex-1"
-              >
-                I don't know
-              </button>
-              
-              <button
-                onClick={handleKnow}
-                disabled={isAnimating}
-                className="success-action flex-1"
-              >
-                I know
-              </button>
-            </div>
-            
-            <div className="mt-6 text-center text-sm text-slate-500">
-              <p>Tip: Flip the card to check the answer before rating your knowledge.</p>
-              <p className="mt-1">
-                Questions in this round: One from each teacher ({totalCardsInRound} total)
-              </p>
-            </div>
-          </div>
-        </div>
-      )}
-      
-      {/* Exit Button */}
-      <div className="mt-8">
+
         <button
           onClick={onEndExam}
-          className="secondary-action"
+          className="secondary-action shrink-0"
         >
           End Exam
         </button>
       </div>
+      
+      {currentCard && (
+        <div className="grid w-full max-w-6xl items-center gap-3 lg:grid-cols-[9rem_minmax(0,1fr)_9rem]">
+          <div className="study-action-rail">
+            <button
+              onClick={handleDontKnow}
+              disabled={isAnimating}
+              className="danger-action"
+            >
+              I don't know
+            </button>
+          </div>
+
+          <div className="min-w-0">
+            <FlashcardCarousel
+              currentCard={{
+                id: currentCard.id,
+                question: currentCard.question,
+                answer: currentCard.answer
+              }}
+              isFlipped={isFlipped}
+              onFlip={setIsFlipped}
+              slideDirection={slideDirection}
+              maxWidth="700px"
+            />
+          </div>
+
+          <div className="study-action-rail">
+            <button
+              onClick={handleKnow}
+              disabled={isAnimating}
+              className="success-action"
+            >
+              I know
+            </button>
+          </div>
+
+          <div className="study-mobile-actions">
+            <button
+              onClick={handleDontKnow}
+              disabled={isAnimating}
+              className="danger-action"
+            >
+              I don't know
+            </button>
+            <button
+              onClick={handleKnow}
+              disabled={isAnimating}
+              className="success-action"
+            >
+              I know
+            </button>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

@@ -62,7 +62,7 @@ const Flashcard: React.FC<Props> = ({
 
   return (
     <div
-      className="relative w-full mx-auto aspect-[3/4] md:aspect-[10/7] lg:aspect-[4/3]"
+      className="study-card-frame relative w-full mx-auto"
       style={{ maxWidth }}
     >
       <div

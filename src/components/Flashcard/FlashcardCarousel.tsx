@@ -1,5 +1,5 @@
 // src/components/Flashcard/FlashcardCarousel.tsx
-import React from 'react'
+import React, { useLayoutEffect, useRef, useState } from 'react'
 import { LibraryBig } from 'lucide-react'
 import Flashcard from '../Flashcard/Flashcard'
 
@@ -23,6 +23,22 @@ export const FlashcardCarousel: React.FC<FlashcardCarouselProps> = ({
   slideDirection = null,
   maxWidth = '700px'
 }) => {
+  const previousCardId = useRef<string | null>(currentCard?.id ?? null)
+  const [entryDirection, setEntryDirection] = useState<'left' | 'right' | null>(null)
+
+  useLayoutEffect(() => {
+    const currentCardId = currentCard?.id ?? null
+
+    if (previousCardId.current && currentCardId !== previousCardId.current && slideDirection) {
+      setEntryDirection(slideDirection === 'left' ? 'right' : 'left')
+      const frame = window.requestAnimationFrame(() => setEntryDirection(null))
+      previousCardId.current = currentCardId
+      return () => window.cancelAnimationFrame(frame)
+    }
+
+    previousCardId.current = currentCardId
+  }, [currentCard?.id, slideDirection])
+
   if (!currentCard) {
     return (
       <div className="text-center py-12 text-slate-500">
@@ -36,14 +52,18 @@ export const FlashcardCarousel: React.FC<FlashcardCarouselProps> = ({
 
   return (
     <div className="flex flex-col items-center w-full">
-      <div className="w-full flex items-center justify-center min-h-[500px] md:min-h-[600px]">
+      <div className="w-full flex items-center justify-center">
         <div className="flex-1 max-w-4xl">
           <div 
             className={`transition-all duration-300 ease-in-out ${
-              slideDirection === 'left'
-                ? 'opacity-0 transform translate-x-full'
+              entryDirection === 'right'
+                ? 'opacity-0 translate-x-full'
+                : entryDirection === 'left'
+                ? 'opacity-0 -translate-x-full'
+                : slideDirection === 'left'
+                ? 'opacity-0 -translate-x-full'
                 : slideDirection === 'right'
-                ? 'opacity-0 transform -translate-x-full'
+                ? 'opacity-0 translate-x-full'
                 : 'opacity-100 transform translate-x-0'
             }`}
           >

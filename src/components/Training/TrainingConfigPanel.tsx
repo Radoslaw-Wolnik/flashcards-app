@@ -1,6 +1,6 @@
 // src/components/Training/TrainingConfigPanel.tsx
 import React, { useMemo, useRef, useCallback } from 'react'
-import { Play, Target } from 'lucide-react'
+import { Play, TimerReset } from 'lucide-react'
 import type { Subject, Teacher } from '../../types/flashcard'
 
 interface TrainingConfig {
@@ -71,7 +71,7 @@ export const TrainingConfigPanel: React.FC<TrainingConfigPanelProps> = ({
       {/* Ready to Train Header */}
       <div className="surface-card p-6 text-center">
         <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-          <Target className="h-6 w-6" aria-hidden="true" />
+          <TimerReset className="h-6 w-6" aria-hidden="true" />
         </div>
         <h2 className="text-2xl font-bold mb-2 text-slate-950">Ready to Train?</h2>
         <p className="text-slate-600">

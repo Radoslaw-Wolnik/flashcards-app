@@ -5,7 +5,7 @@ import { SubjectFilter } from '../components/FilterControls/SubjectFilter'
 import { ReadModeFlashcardViewer } from '../components/SlowRead/ReadModeFlashcardViewer'
 import type { Flashcard } from '../types/flashcard'
 import { PageHeader } from '../components/PageHeader'
-import { LibraryBig } from 'lucide-react'
+import { ScanLine } from 'lucide-react'
 
 const SlowReadPage: React.FC = () => {
   const [subjectId, setSubjectId] = useState<string>('')
@@ -38,7 +38,7 @@ const SlowReadPage: React.FC = () => {
       ) : (
         <div className="surface-card mt-12 w-full max-w-md py-12 text-center text-slate-500">
           <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-blue-50 text-blue-700">
-            <LibraryBig className="h-6 w-6" aria-hidden="true" />
+            <ScanLine className="h-6 w-6" aria-hidden="true" />
           </div>
           <p className="text-xl font-semibold text-slate-800 mb-2">No flashcards found</p>
           <p className="text-slate-500">Select a subject to begin.</p>
