@@ -28,21 +28,22 @@ export const MarkdownContent: React.FC<MarkdownContentProps> = ({
   const normalized = useMemo(() => normalizeMarkdown(children), [children])
 
   return (
-    <ReactMarkdown
-      className={`${variantClass[variant]} ${className}`.trim()}
-      remarkPlugins={[
-        remarkGfm,
-        [remarkMath, { singleDollarTextMath: true }]
-      ]}
-      rehypePlugins={[
-        [rehypeKatex, {
-          output: 'html',
-          strict: false,
-          throwOnError: false
-        }]
-      ]}
-    >
-      {normalized}
-    </ReactMarkdown>
+    <div className={`${variantClass[variant]} ${className}`.trim()}>
+      <ReactMarkdown
+        remarkPlugins={[
+          remarkGfm,
+          [remarkMath, { singleDollarTextMath: true }]
+        ]}
+        rehypePlugins={[
+          [rehypeKatex, {
+            output: 'html',
+            strict: false,
+            throwOnError: false
+          }]
+        ]}
+      >
+        {normalized}
+      </ReactMarkdown>
+    </div>
   )
 }

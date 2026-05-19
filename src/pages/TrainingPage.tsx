@@ -74,7 +74,7 @@ export const TrainingPage: React.FC = () => {
     }, {} as Record<string, number>)
 
     // Calculate total available cards
-    let pool = filterFlashcards(allCards, {
+    const pool = filterFlashcards(allCards, {
       categoryId: config.categoryId || undefined,
       teacherId: config.teacherId || undefined,
     })
@@ -95,7 +95,7 @@ export const TrainingPage: React.FC = () => {
 
   // Start training session
   const startTraining = () => {
-    let pool = filterFlashcards(allCards, {
+    const pool = filterFlashcards(allCards, {
       categoryId: config.categoryId || undefined,
       teacherId: config.teacherId || undefined,
     })
