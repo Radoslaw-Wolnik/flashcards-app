@@ -1,18 +1,11 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import type { Flashcard } from '../types/flashcard'
-import type { Teacher } from '../types/flashcard'
-import type { Subject } from '../types/flashcard'
-import rawTeachers from '../data/teachers.json'
-import rawSubjects from '../data/subjects.json'
-import { getAllFlashcards } from '../utils/dataUtils'
+import { getAllFlashcards, getAllSubjects, getAllTeachers } from '../utils/dataUtils'
 import { shuffleArray } from '../utils/shuffle'
 import { Modal } from '../components/Modal'
 import { ExamConfigPanel } from '../components/Exam/ExamConfigPanel'
 import { ExamSession } from '../components/Exam/ExamSession'
 import { PageHeader } from '../components/PageHeader'
-
-const teachersData = rawTeachers as Teacher[]
-const subjectsData = rawSubjects as Subject[]
 
 type ExamState = {
   currentRound: number
@@ -38,6 +31,8 @@ export const ExamPage: React.FC = () => {
   const [modalContent, setModalContent] = useState({ title: '', message: '' })
 
   const allCards = useMemo(() => getAllFlashcards(), [])
+  const subjectsData = useMemo(() => getAllSubjects(), [])
+  const teachersData = useMemo(() => getAllTeachers(), [])
 
   // Memoize teacher pools
   const { teacherPools, availableTeachersCount } = useMemo(() => {
@@ -55,7 +50,7 @@ export const ExamPage: React.FC = () => {
       teacherPools: pools,
       availableTeachersCount: pools.length
     }
-  }, [allCards])
+  }, [allCards, subjectsData, teachersData])
 
   // Start exam
   const startExam = () => {

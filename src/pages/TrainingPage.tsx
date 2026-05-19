@@ -2,9 +2,7 @@
 import React, { useState, useMemo } from 'react'
 import type { SessionState } from '../types/session'
 import type { Subject } from '../types/flashcard'
-import rawSubjects from '../data/subjects.json'
-import teachersData from '../data/teachers.json'
-import { getAllFlashcards } from '../utils/dataUtils'
+import { getAllFlashcards, getAllSubjects, getAllTeachers } from '../utils/dataUtils'
 import { filterFlashcards } from '../utils/filterUtils'
 import { initSession, nextRound } from '../utils/sessionManager'
 import { shuffleArray } from '../utils/shuffle'
@@ -12,9 +10,6 @@ import { TrainingConfigPanel } from '../components/Training/TrainingConfigPanel'
 import { TrainingSession } from '../components/Training/TrainingSession'
 import { Modal } from '../components/Modal'
 import { PageHeader } from '../components/PageHeader'
-
-// Cast the raw subjects data to Subject[] type
-const subjectsData = rawSubjects as Subject[]
 
 export const TrainingPage: React.FC = () => {
   // Configuration state
@@ -33,6 +28,8 @@ export const TrainingPage: React.FC = () => {
   const [modalContent, setModalContent] = useState({ title: '', message: '' })
 
   const allCards = useMemo(() => getAllFlashcards(), [])
+  const subjectsData = useMemo(() => getAllSubjects(), [])
+  const teachersData = useMemo(() => getAllTeachers(), [])
 
   // Memoize data
   const { availableSubjects, availableTeachers, cardCounts, availableCardsCount } = useMemo(() => {
@@ -90,7 +87,7 @@ export const TrainingPage: React.FC = () => {
       cardCounts: counts,
       availableCardsCount: finalPool.length
     }
-  }, [config.categoryId, config.teacherId, config.subjectIds, allCards])
+  }, [config.categoryId, config.teacherId, config.subjectIds, allCards, subjectsData, teachersData])
 
 
   // Start training session

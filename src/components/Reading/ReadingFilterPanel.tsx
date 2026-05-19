@@ -1,10 +1,10 @@
 import React, { useMemo } from 'react'
 import { X } from 'lucide-react'
-import type { Subject } from '../../types/flashcard'
-import subjectsData from '../../data/subjects.json'
-import teachersData from '../../data/teachers.json'
+import type { Subject, Teacher } from '../../types/flashcard'
 
 interface ReadingFilterPanelProps {
+  subjects: Subject[]
+  teachers: Teacher[]
   categoryId: 'maths' | 'cs' | ''
   teacherId: string
   subjectId: string
@@ -20,6 +20,8 @@ interface ReadingFilterPanelProps {
 }
 
 export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
+  subjects,
+  teachers,
   categoryId,
   teacherId,
   subjectId,
@@ -33,8 +35,6 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
   visibleSubjectsCount,
   totalCardsCount
 }) => {
-  const subjects = subjectsData as Subject[]
-
   // Memoize filtered subjects for dropdown
   const filteredSubjects = useMemo(() => {
     let result = subjects
@@ -49,7 +49,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
 
   // Available teachers
   const availableTeachers = useMemo(() => {
-    const teacherLookup = new Map(teachersData.map(teacher => [teacher.id, teacher.name]))
+    const teacherLookup = new Map(teachers.map(teacher => [teacher.id, teacher.name]))
     const teacherMap = new Map<string, { id: string; name: string }>()
     subjects.forEach(subject => {
       if (subject.teacherId && !teacherMap.has(subject.teacherId)) {
@@ -60,8 +60,8 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
       }
     })
     
-    if (teacherMap.size === 0 && teachersData.length > 0) {
-      teachersData.forEach(teacher => {
+    if (teacherMap.size === 0 && teachers.length > 0) {
+      teachers.forEach(teacher => {
         if (teacher.id) {
           teacherMap.set(teacher.id, teacher)
         }
@@ -69,7 +69,7 @@ export const ReadingFilterPanel: React.FC<ReadingFilterPanelProps> = ({
     }
     
     return Array.from(teacherMap.values())
-  }, [subjects])
+  }, [subjects, teachers])
 
   // Filter badge components
   const FilterBadge: React.FC<{

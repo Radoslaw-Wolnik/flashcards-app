@@ -1,5 +1,5 @@
 import React from 'react'
-import subjectsData from '../../data/subjects.json'
+import { getAllSubjects } from '../../utils/dataUtils'
 import { Dropdown } from '../Dropdown'
 
 interface Props {
@@ -13,6 +13,7 @@ interface Props {
 export const SubjectFilter: React.FC<Props> = ({
   value, onChange, categoryId, teacherId
 }) => {
+  const subjectsData = React.useMemo(() => getAllSubjects(), [])
   const filtered = subjectsData.filter(s =>
     (!categoryId || s.categoryId === categoryId) &&
     (!teacherId  || s.teacherId  === teacherId)

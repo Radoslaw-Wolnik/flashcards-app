@@ -1,8 +1,7 @@
 import React, { useState, useMemo, useCallback } from 'react'
 import type { Subject } from '../types/flashcard'
 import type { Flashcard } from '../types/flashcard'
-import rawSubjects from '../data/subjects.json'
-import { getAllFlashcards } from '../utils/dataUtils'
+import { getAllFlashcards, getAllSubjects, getAllTeachers } from '../utils/dataUtils'
 import { filterFlashcards } from '../utils/filterUtils'
 import { ReadingFilterPanel } from '../components/Reading/ReadingFilterPanel'
 import { SubjectAccordion } from '../components/Reading/SubjectAccordion'
@@ -22,7 +21,8 @@ export const ReadingPage: React.FC = () => {
   const [showFilters, setShowFilters] = useState<boolean>(true)
 
   const allCards = useMemo(() => getAllFlashcards(), [])
-  const subjectsData = rawSubjects as Subject[]
+  const subjectsData = useMemo(() => getAllSubjects(), [])
+  const teachersData = useMemo(() => getAllTeachers(), [])
 
   // Memoize filtered cards
   const filteredCards = useMemo(() => {
@@ -186,6 +186,8 @@ export const ReadingPage: React.FC = () => {
       {/* Filter Panel */}
       {showFilters && (
         <ReadingFilterPanel
+          subjects={subjectsData}
+          teachers={teachersData}
           categoryId={categoryId}
           teacherId={teacherId}
           subjectId={subjectId}

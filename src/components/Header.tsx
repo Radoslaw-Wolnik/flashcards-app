@@ -1,12 +1,13 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
-import { BookOpenCheck, ClipboardCheck, LibraryBig, ScanLine, TimerReset } from 'lucide-react'
+import { BookOpenCheck, ClipboardCheck, LibraryBig, ScanLine, SquarePen, TimerReset } from 'lucide-react'
 
 const links = [
   { to: '/', label: 'Reading', icon: LibraryBig },
   { to: '/training', label: 'Training', icon: TimerReset },
   { to: '/exam', label: 'Exam', icon: ClipboardCheck },
-  { to: '/slow-read', label: 'Slow Read', icon: ScanLine }
+  { to: '/slow-read', label: 'Slow Read', icon: ScanLine },
+  { to: '/cards', label: 'Cards', icon: SquarePen }
 ]
 
 export const Header: React.FC = () => {

@@ -12,6 +12,9 @@ const ExamPage = lazy(() => import('./pages/ExamPage').then(module => ({
   default: module.ExamPage
 })))
 const SlowReadPage = lazy(() => import('./pages/SlowReadPage'))
+const CardEditorPage = lazy(() => import('./pages/CardEditorPage').then(module => ({
+  default: module.CardEditorPage
+})))
 
 const RouteFallback: React.FC = () => (
   <main className="page-shell">
@@ -30,6 +33,7 @@ export const AppRoutes: React.FC = () => (
         <Route path="/training" element={<TrainingPage />} />
         <Route path="/exam" element={<ExamPage />} />
         <Route path="/slow-read" element={<SlowReadPage />} />
+        <Route path="/cards" element={<CardEditorPage />} />
       </Routes>
     </Suspense>
   </BrowserRouter>
