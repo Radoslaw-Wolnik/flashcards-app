@@ -8,6 +8,7 @@ A React study app for licencjat exam preparation. It focuses on technical flashc
 - Training mode: build a focused practice set and repeat missed cards in later rounds.
 - Exam mode: simulate a broad exam round with one question per teacher.
 - Slow read mode: move through one subject calmly with arrows, keyboard, or swipe navigation.
+- Cards page: add or edit flashcards with Markdown, LaTeX, and a live rendered preview.
 
 ## Tech Stack
 
@@ -27,8 +28,6 @@ src/
     flashcards/        Per-subject flashcard collections
   pages/               Route-level study modes
   utils/               Data, filtering, markdown, and session helpers
-content/source/        Original Markdown source material
-scripts/               Import/normalization helpers for source material
 ```
 
 ## Development
@@ -58,14 +57,6 @@ Flashcards live in `src/data/flashcards/*.json`.
 
 Use stable, globally unique card IDs. The current convention is `subjectId-01`, `subjectId-02`, and so on.
 
-## Content Helpers
+## Editing Cards
 
-The original Markdown inputs are kept in `content/source/`.
-
-```bash
-python scripts/import_flashcards.py content/source/Maths.md --category maths --out-dir out
-python scripts/import_flashcards.py content/source/ComputerScience.md --category cs --out-dir out
-python scripts/normalize_flashcard_json.py --input-dir out/flashcards --output-dir out/cleaned
-```
-
-Review generated JSON before copying it into `src/data`, especially teacher assignments and answer wording.
+The app reads the checked-in study set from `src/data`. The Cards page stores added or edited cards in browser localStorage and merges them with the JSON data at runtime, so custom edits survive refreshes on the same browser without needing to touch the JSON files by hand.
